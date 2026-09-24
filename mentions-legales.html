@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions légales | RTB</title>
+    <meta
+        name="description"
+        content="Mentions légales du site RTB - Réhabilitation & Transformation du Bâtiment."
+    >
+    <style>
+        :root {
+            --bg: #f4f1eb;
+            --surface: #ffffff;
+            --surface-alt: #f3efe7;
+            --dark: #1f2b35;
+            --text: #24313a;
+            --muted: #69757f;
+            --line: #d8d3ca;
+            --orange: #f29a1f;
+            --orange-dark: #d07c0c;
+            --shadow: 0 18px 34px rgba(27, 39, 49, 0.08);
+            --content: 980px;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.65;
+        }
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(var(--content), calc(100% - 32px)); margin: 0 auto; }
+        .topbar {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 13px;
+        }
+        .topbar-inner {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid rgba(31, 43, 53, 0.08);
+            backdrop-filter: blur(10px);
+        }
+        .header-inner {
+            min-height: 84px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .brand img { width: 172px; }
+        .nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 42px;
+            padding: 0 15px;
+            border-radius: 999px;
+            color: var(--dark);
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .nav a:hover { background: var(--surface-alt); }
+        main { padding: 58px 0 86px; }
+        .hero {
+            background: #fff;
+            border: 1px solid rgba(31, 43, 53, 0.08);
+            box-shadow: var(--shadow);
+            padding: 34px;
+            margin-bottom: 24px;
+        }
+        .eyebrow {
+            display: inline-block;
+            color: var(--orange-dark);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 14px 0 12px;
+            font-size: clamp(34px, 5vw, 52px);
+            line-height: 1.03;
+            letter-spacing: -0.03em;
+            color: var(--dark);
+        }
+        .intro {
+            margin: 0;
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 17px;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid rgba(31, 43, 53, 0.08);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            margin: 0 0 14px;
+            color: var(--dark);
+            font-size: 27px;
+        }
+        .card p,
+        .card li {
+            color: var(--muted);
+            font-size: 16px;
+        }
+        .card ul {
+            margin: 14px 0 0;
+            padding-left: 18px;
+        }
+        .key-list {
+            display: grid;
+            gap: 12px;
+        }
+        .key-list div {
+            padding: 16px 18px;
+            background: var(--surface-alt);
+            border-left: 3px solid var(--orange);
+        }
+        .footer {
+            padding: 28px 0 36px;
+            background: #fff;
+            border-top: 1px solid rgba(31, 43, 53, 0.08);
+            color: var(--muted);
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 720px) {
+            .topbar-inner,
+            .header-inner,
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .hero,
+            .card { padding: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <div>RTB - Réhabilitation &amp; Transformation du Bâtiment</div>
+            <div>06 81 32 79 05 - contact@rtb.fr</div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Retour à l'accueil RTB">
+                <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/logo-RTB.jpg" alt="RTB">
+            </a>
+            <nav class="nav" aria-label="Navigation secondaire">
+                <a href="index.html">Accueil</a>
+                <a href="index.html#prestations">Prestations</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="politique-confidentialite.html">Confidentialité</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <span class="eyebrow">Informations légales</span>
+                <h1>Mentions légales</h1>
+                <p class="intro">
+                    Cette page est rédigée pour une future mise en ligne propre du site RTB.
+                    Elle reprend les éléments attendus pour un site vitrine d'entreprise et reste
+                    facilement adaptable lors de l'intégration finale sous WordPress.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>Éditeur du site</h2>
+                <div class="key-list">
+                    <div><strong>Entreprise :</strong> RTB - Réhabilitation &amp; Transformation du Bâtiment</div>
+                    <div><strong>Adresse :</strong> 138 Rue Félix Berthelot, 59390 Lys-lez-Lannoy, France</div>
+                    <div><strong>Téléphone :</strong> 06 81 32 79 05</div>
+                    <div><strong>E-mail :</strong> contact@rtb.fr</div>
+                </div>
+                <p>
+                    Le directeur de publication est le représentant légal de l'entreprise RTB
+                    ou toute personne dûment habilitée à ce titre lors de la mise en ligne définitive.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>Hébergement</h2>
+                <p>
+                    Le site a vocation à être hébergé chez OVHcloud, 2 rue Kellermann, 59100 Roubaix, France,
+                    via une offre d'hébergement web ou infrastructure équivalente choisie par RTB.
+                </p>
+                <p>
+                    Les paramètres techniques exacts de l'hébergement, du certificat SSL et des services
+                    associés pourront être précisés ou ajustés lors de la publication définitive.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>Objet du site</h2>
+                <p>
+                    Le site a pour objectif de présenter l'activité de RTB, ses domaines d'intervention,
+                    sa zone d'activité et ses modalités de contact. Il s'agit d'un site vitrine destiné
+                    principalement à des particuliers recherchant une entreprise de bâtiment de proximité.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>Propriété intellectuelle</h2>
+                <p>
+                    L'ensemble du contenu présent sur ce site, notamment les textes, photographies,
+                    éléments graphiques, logos, icônes, documents et mises en page, est protégé par
+                    le droit de la propriété intellectuelle.
+                </p>
+                <p>
+                    Sauf autorisation écrite préalable, toute reproduction, représentation, adaptation,
+                    diffusion ou exploitation, même partielle, de ces contenus est interdite.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>Responsabilité</h2>
+                <p>
+                    RTB s'efforce de fournir sur ce site des informations exactes, à jour et utiles.
+                    Toutefois, l'entreprise ne peut garantir l'absence totale d'erreurs, d'omissions
+                    ou d'indisponibilités temporaires.
+                </p>
+                <p>
+                    Les informations présentes sur le site ont une valeur indicative et ne remplacent
+                    pas un échange direct, un devis ou une validation contractuelle.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>Liens externes</h2>
+                <p>
+                    Le site peut contenir des liens vers des contenus tiers. RTB ne peut être tenue
+                    responsable du contenu, du fonctionnement ou des politiques de confidentialité
+                    appliquées par ces sites externes.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2>Contact</h2>
+                <p>
+                    Pour toute question concernant le site, son contenu ou l'exercice de vos droits,
+                    vous pouvez écrire à <a href="mailto:contact@rtb.fr">contact@rtb.fr</a> ou contacter
+                    RTB au <a href="tel:+33681327905">06 81 32 79 05</a>.
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div>RTB - Réhabilitation &amp; Transformation du Bâtiment</div>
+            <div class="footer-links">
+                <a href="index.html">Accueil</a>
+                <a href="politique-confidentialite.html">Politique de confidentialité</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

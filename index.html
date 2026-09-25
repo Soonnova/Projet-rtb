@@ -38,6 +38,7 @@
     }
     </script>
 
+    <script src="tracking.js" defer></script>
     <style>
         :root {
             --bg: #f4f1eb;
@@ -213,7 +214,7 @@
             position: fixed;
             top: 0;
             right: 0;
-            width: 24px;
+            width: 28px;
             height: 100vh;
             z-index: 60;
             pointer-events: none;
@@ -221,10 +222,10 @@
         }
         .scroll-wall-track {
             position: absolute;
-            top: 18px;
-            bottom: 18px;
-            left: 4px;
-            right: 4px;
+            top: 26px;
+            bottom: 52px;
+            left: 5px;
+            right: 5px;
             border-radius: 999px;
             background:
                 linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(227, 218, 205, 0.95) 100%);
@@ -234,9 +235,9 @@
         }
         .scroll-wall-fill {
             position: absolute;
-            top: 18px;
-            left: 4px;
-            width: calc(100% - 8px);
+            top: 26px;
+            left: 5px;
+            width: calc(100% - 10px);
             height: var(--scroll-progress);
             border-radius: 999px 999px 10px 10px;
             background:
@@ -260,10 +261,10 @@
         }
         .scroll-wall-trowel {
             position: absolute;
-            top: clamp(20px, var(--scroll-progress), calc(100% - 20px));
+            top: clamp(30px, calc(var(--scroll-progress) + 16px), calc(100% - 56px));
             left: 50%;
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             transform: translate(-50%, -50%) rotate(90deg);
             background: url("trowel.png") center/contain no-repeat;
             filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.18));
@@ -1129,7 +1130,23 @@
                 width: 100%;
             }
             .scroll-wall {
-                width: 18px;
+                width: 20px;
+            }
+            .scroll-wall-track {
+                top: 20px;
+                bottom: 36px;
+                left: 4px;
+                right: 4px;
+            }
+            .scroll-wall-fill {
+                top: 20px;
+                left: 4px;
+                width: calc(100% - 8px);
+            }
+            .scroll-wall-trowel {
+                width: 24px;
+                height: 24px;
+                top: clamp(24px, calc(var(--scroll-progress) + 12px), calc(100% - 42px));
             }
         }
 

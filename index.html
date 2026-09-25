@@ -123,44 +123,6 @@
             border-bottom: 1px solid rgba(31, 43, 53, 0.08);
             backdrop-filter: blur(12px);
         }
-        .header-progress {
-            position: relative;
-            height: 16px;
-            overflow: hidden;
-            border-top: 1px solid rgba(31, 43, 53, 0.06);
-            background: #f3eee6;
-        }
-        .header-progress-track {
-            position: absolute;
-            inset: 0 auto 0 0;
-            width: var(--scroll-progress);
-            background:
-                linear-gradient(180deg, rgba(190, 196, 201, 0.95) 0%, rgba(134, 141, 147, 0.95) 100%),
-                repeating-linear-gradient(
-                    90deg,
-                    rgba(255, 255, 255, 0.12) 0 26px,
-                    rgba(0, 0, 0, 0.06) 26px 28px,
-                    rgba(255, 255, 255, 0.12) 28px 54px,
-                    rgba(0, 0, 0, 0.06) 54px 56px
-                );
-            transition: width 0.16s ease-out;
-        }
-        .header-trowel {
-            position: absolute;
-            top: 50%;
-            left: clamp(12px, var(--scroll-progress), calc(100% - 26px));
-            width: 24px;
-            height: 24px;
-            transform: translate(-50%, -50%);
-            color: var(--orange);
-            filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.16));
-            transition: left 0.16s ease-out;
-        }
-        .header-trowel svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
         .header-inner {
             min-height: 94px;
             display: flex;
@@ -235,6 +197,72 @@
         .header-cta {
             flex: 0 0 auto;
             margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+        .header-masonry {
+            position: relative;
+            width: 224px;
+            height: 54px;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid rgba(31, 43, 53, 0.1);
+            background: linear-gradient(180deg, #f5f1e8 0%, #ece5d7 100%);
+            box-shadow: var(--shadow-soft);
+        }
+        .header-masonry-base,
+        .header-masonry-fill {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(rgba(86, 93, 100, 0.16), rgba(86, 93, 100, 0.16)),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent 0 15px,
+                    rgba(255, 255, 255, 0.18) 15px 17px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    #a65324 0 34px,
+                    #8f451d 34px 36px,
+                    #b8632f 36px 70px,
+                    #8f451d 70px 72px
+                );
+        }
+        .header-masonry-base {
+            opacity: 0.18;
+        }
+        .header-masonry-fill {
+            width: var(--scroll-progress);
+            transition: width 0.16s ease-out;
+        }
+        .header-masonry-label {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+        }
+        .header-masonry .header-trowel {
+            position: absolute;
+            top: 50%;
+            left: clamp(16px, var(--scroll-progress), calc(100% - 22px));
+            width: 28px;
+            height: 28px;
+            transform: translate(-50%, -50%) rotate(-8deg);
+            color: #f29a1f;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+            transition: left 0.16s ease-out;
+        }
+        .header-masonry .header-trowel svg {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .btn {
@@ -1003,7 +1031,7 @@
                 justify-content: stretch;
                 margin-left: 0;
             }
-            .header-cta .btn {
+            .header-masonry {
                 width: 100%;
             }
         }
@@ -1028,7 +1056,6 @@
             .hero-inner { padding: 52px 0 64px; }
             .hero-points { grid-template-columns: 1fr; }
             .brand img { width: 154px; }
-            .header-progress { height: 12px; }
         }
 
         @media (max-width: 680px) {
@@ -1105,17 +1132,18 @@
                         <a class="nav-link" href="#contact" data-scroll-target="#contact">Contact</a>
                     </nav>
                     <div class="header-cta">
-                        <a href="#contact" class="btn btn-primary">Demander un devis</a>
+                        <div class="header-masonry" aria-hidden="true">
+                            <div class="header-masonry-base"></div>
+                            <div class="header-masonry-fill"></div>
+                            <div class="header-trowel">
+                                <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+                                    <path fill="currentColor" d="M37 10c6 0 12 2 17 6L33 37 12 16c5-4 11-6 17-6h8Zm-7 31 24-24 6 6-24 24-11 7 5-13Zm-18-23 14 14-3 8-19-19 8-3Z"/>
+                                </svg>
+                            </div>
+                            <span class="header-masonry-label">RTB</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="header-progress" aria-hidden="true">
-            <div class="header-progress-track"></div>
-            <div class="header-trowel">
-                <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-                    <path fill="currentColor" d="M37 10c6 0 12 2 17 6L33 37 12 16c5-4 11-6 17-6h8Zm-7 31 24-24 6 6-24 24-11 7 5-13Zm-18-23 14 14-3 8-19-19 8-3Z"/>
-                </svg>
             </div>
         </div>
     </header>

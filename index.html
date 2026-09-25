@@ -3,11 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RTB | Réhabilitation &amp; Transformation du Bâtiment</title>
+    <title>RTB | Maçonnerie, Carrelage &amp; Rénovation à Lys-lez-Lannoy et Métropole Lilloise</title>
     <meta
         name="description"
-        content="RTB, entreprise de bâtiment à Lys-lez-Lannoy depuis 1998. Maçonnerie, carrelage, béton et transformation pour les particuliers autour de Roubaix, Tourcoing et Villeneuve-d'Ascq."
+        content="RTB, entreprise du bâtiment à Lys-lez-Lannoy depuis 1998. Travaux de maçonnerie, carrelage, dalles béton et ouvertures sur Lille, Roubaix, Tourcoing et périphérie. Garantie décennale MAAF."
     >
+    <link rel="canonical" href="https://rehabilitation-transformation-batiment.fr/">
+    
+    <!-- Open Graph / Réseaux sociaux -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rehabilitation-transformation-batiment.fr/">
+    <meta property="og:title" content="RTB | Entreprise de bâtiment - Lys-lez-Lannoy &amp; Métropole Lilloise">
+    <meta property="og:description" content="Maçonnerie générale, rénovation, carrelage et dalles béton pour les particuliers depuis 1998. Devis gratuit et garantie décennale MAAF.">
+    <meta property="og:image" content="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png">
+
+    <!-- Schema.org SEO Local -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "RTB - Réhabilitation & Transformation du Bâtiment",
+      "image": "https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png",
+      "telephone": "+33681327905",
+      "email": "contact@rtb.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "138 Rue Félix Berthelot",
+        "addressLocality": "Lys-lez-Lannoy",
+        "postalCode": "59390",
+        "addressCountry": "FR"
+      },
+      "areaServed": [
+        "Lille", "Roubaix", "Tourcoing", "Villeneuve-d'Ascq", 
+        "Lys-lez-Lannoy", "Croix", "Hem", "Marcq-en-Barœul", "Wasquehal"
+      ],
+      "foundingDate": "1998",
+      "priceRange": "€€"
+    }
+    </script>
+
     <style>
         :root {
             --bg: #f4f1eb;
@@ -42,7 +76,7 @@
             line-height: 1.6;
         }
         a { color: inherit; text-decoration: none; }
-        img { display: block; max-width: 100%; }
+        img { display: block; max-width: 100%; height: auto; }
         button,
         input,
         textarea { font: inherit; }
@@ -163,10 +197,6 @@
             color: var(--dark);
             box-shadow: inset 0 0 0 1px rgba(242, 154, 31, 0.2);
         }
-        .nav-link.is-service {
-            background: transparent;
-            border: 0;
-        }
         .header-cta {
             flex: 0 0 auto;
             margin-left: auto;
@@ -272,6 +302,8 @@
             background: rgba(255, 255, 255, 0.98);
             color: var(--text);
             box-shadow: 0 26px 44px rgba(0, 0, 0, 0.18);
+            border-radius: var(--radius);
+            overflow: hidden;
         }
         .hero-form-head {
             padding: 30px 30px 20px;
@@ -309,20 +341,21 @@
             background: #fff;
             color: var(--text);
             padding: 0 16px;
+            border-radius: 4px;
         }
         .field input,
-        .contact-form input { min-height: 54px; }
+        .contact-form input { min-height: 50px; }
         .field textarea,
         .contact-form textarea {
-            min-height: 128px;
-            padding: 14px 16px;
+            min-height: 110px;
+            padding: 12px 16px;
             resize: vertical;
         }
         .field input::placeholder,
         .field textarea::placeholder,
         .contact-form input::placeholder,
         .contact-form textarea::placeholder {
-            color: rgba(84, 94, 104, 0.42);
+            color: rgba(84, 94, 104, 0.5);
         }
         .hero-note {
             margin-top: 18px;
@@ -330,7 +363,7 @@
             border-left: 3px solid var(--orange);
             background: #f9f5ed;
             color: #5f656d;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .proof-strip {
@@ -381,6 +414,7 @@
             background: #fff;
             border: 1px solid rgba(31, 43, 53, 0.08);
             box-shadow: var(--shadow);
+            border-radius: var(--radius);
             overflow: hidden;
         }
         .showcase-card img {
@@ -433,15 +467,16 @@
             background: #fff;
             border: 1px solid rgba(31, 43, 53, 0.08);
             box-shadow: var(--shadow);
+            border-radius: var(--radius);
             overflow: hidden;
         }
         .service-card img {
             width: 100%;
-            height: 160px;
+            height: 180px;
             object-fit: cover;
             background: #e9e5de;
         }
-        .service-body { padding: 18px; }
+        .service-body { padding: 22px; }
         .service-tag {
             display: inline-flex;
             align-items: center;
@@ -555,9 +590,10 @@
             position: relative;
             min-height: 540px;
             overflow: hidden;
+            border-radius: var(--radius);
             background:
                 linear-gradient(rgba(20, 28, 35, 0.28), rgba(20, 28, 35, 0.28)),
-                url("https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png") center/cover no-repeat;
+                url("./images.jpg") center/cover no-repeat;
         }
         .about-badge {
             position: absolute;
@@ -566,6 +602,7 @@
             padding: 20px 22px;
             background: rgba(255, 255, 255, 0.96);
             box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
+            border-radius: 4px;
         }
         .about-badge strong {
             display: block;
@@ -576,6 +613,7 @@
             border: 1px solid rgba(31, 43, 53, 0.08);
             box-shadow: var(--shadow);
             padding: 32px;
+            border-radius: var(--radius);
         }
         .about-copy .section-title {
             font-size: clamp(28px, 2.6vw, 38px);
@@ -612,6 +650,7 @@
             background: #fff;
             border: 1px solid rgba(31, 43, 53, 0.08);
             box-shadow: var(--shadow);
+            border-radius: var(--radius);
         }
         .territory-map {
             padding: 28px;
@@ -646,25 +685,27 @@
             font-size: 13px;
             font-weight: 700;
         }
-        .map-visual {
-            position: relative;
-            overflow: hidden;
-            min-height: 420px;
-            background:
-                linear-gradient(180deg, #f8f6f2 0%, #f1ece2 100%);
-            border: 1px solid rgba(31, 43, 53, 0.06);
+        .city-chips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
         }
-        .map-visual iframe {
-            width: 100%;
-            min-height: 420px;
-            height: 100%;
-            border: 0;
-            display: block;
+        .city-chip {
+            padding: 10px 14px;
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dark-soft);
+            text-align: center;
         }
-        .map-visual svg {
-            display: block;
-            width: 100%;
-            height: 100%;
+        .territory-subtext {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
         }
         .territory-copy {
             padding: 30px;
@@ -685,6 +726,7 @@
             padding: 18px 20px;
             background: var(--dark);
             color: #fff;
+            border-radius: 4px;
         }
         .territory-note strong {
             display: block;
@@ -720,6 +762,7 @@
             color: #fff;
             padding: 30px;
             box-shadow: var(--shadow);
+            border-radius: var(--radius);
         }
         .contact-panel h3 {
             margin: 0 0 14px;
@@ -754,11 +797,12 @@
             background: linear-gradient(90deg, var(--orange) 0%, #d98816 100%);
             color: #1f1f1f;
             box-shadow: var(--shadow);
+            border-radius: var(--radius);
         }
         .cta-banner p {
             margin: 10px 0 0;
             max-width: 720px;
-            color: rgba(31, 31, 31, 0.8);
+            color: rgba(31, 31, 31, 0.85);
         }
 
         .legal-preview-grid {
@@ -933,7 +977,6 @@
             .hero-inner { padding: 52px 0 64px; }
             .hero-points { grid-template-columns: 1fr; }
             .brand img { width: 154px; }
-            .map-visual { min-height: 360px; }
         }
 
         @media (max-width: 680px) {
@@ -976,7 +1019,6 @@
                 padding-left: 22px;
                 padding-right: 22px;
             }
-            .map-visual { min-height: 300px; }
         }
     </style>
 </head>
@@ -984,14 +1026,18 @@
     <div class="topbar">
         <div class="container topbar-inner">
             <div>Entreprise de bâtiment à <strong>Lys-lez-Lannoy</strong> depuis 1998</div>
-            <div><strong>06 81 32 79 05</strong> - contact@rtb.fr</div>
+            <div>
+                <a href="tel:0681327905" style="color: inherit;"><strong>06 81 32 79 05</strong></a> 
+                - 
+                <a href="mailto:contact@rtb.fr" style="color: inherit;">contact@rtb.fr</a>
+            </div>
         </div>
     </div>
 
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="#top" aria-label="RTB">
-                <img src="rtb-logo.png" alt="RTB">
+            <a class="brand" href="#top" aria-label="Accueil RTB">
+                <img src="rtb-logo.png" alt="RTB Bâtiment" width="186" height="54">
             </a>
 
             <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
@@ -1001,10 +1047,10 @@
             <div class="nav-wrap" data-nav-wrap>
                 <div class="nav-shell">
                     <nav class="nav" aria-label="Navigation principale">
-                        <a class="nav-link" href="#top">Accueil</a>
-                        <a class="nav-link" href="#prestations">Prestations</a>
-                        <a class="nav-link" href="chantiers-recents.html">Chantiers récents</a>
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#top" data-scroll-target="#top">Accueil</a>
+                        <a class="nav-link" href="#prestations" data-scroll-target="#prestations">Prestations</a>
+                        <a class="nav-link" href="chantiers-recents.html" data-scroll-target="#chantiers">Chantiers récents</a>
+                        <a class="nav-link" href="#contact" data-scroll-target="#contact">Contact</a>
                     </nav>
                     <div class="header-cta">
                         <a href="#contact" class="btn btn-primary">Demander un devis</a>
@@ -1014,67 +1060,76 @@
         </div>
     </header>
 
-    <main id="top">
-        <section class="hero">
+    <main>
+<section class="hero" id="top">
             <div class="container hero-inner">
                 <div class="hero-copy">
                     <span class="eyebrow">Réhabilitation &amp; transformation du bâtiment</span>
                     <h1>Des travaux menés avec sérieux pour des particuliers qui veulent être rassurés avant de s'engager</h1>
                     <p>
-                        RTB intervient pour les travaux de maçonnerie, carrelage, béton et transformation
-                        du bâtiment avec une approche locale, directe et lisible.
+                        RTB intervient pour vos travaux de maçonnerie, carrelage, béton et transformation
+                        du bâtiment avec une approche locale, directe et un interlocuteur unique.
                     </p>
                     <p>
-                        Le site est pensé pour qu'un futur client identifie rapidement les prestations,
-                        la zone d'intervention, les coordonnées de l'entreprise et les éléments de confiance utiles.
+                        Devis détaillé sous 48h, respect des délais d'exécution et couverture décennale sur chaque chantier.
                     </p>
 
                     <div class="hero-points">
                         <div>Entreprise implantée à Lys-lez-Lannoy depuis plus de 25 ans</div>
-                        <div>Intervention autour de Roubaix, Tourcoing, Villeneuve-d'Ascq, Croix et Hem</div>
-                        <div>Maçonnerie, carrelage, béton, façade et création d'ouvertures</div>
-                        <div>Contact direct, suivi de proximité et responsabilité décennale visible</div>
+                        <div>Intervention à Lille, Roubaix, Tourcoing, Villeneuve-d'Ascq et métropole</div>
+                        <div>Maçonnerie, carrelage, béton armé, façade et ouvertures de murs porteurs</div>
+                        <div>Responsabilité décennale MAAF Pro clairement renseignée</div>
                     </div>
 
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="#contact">Demander un devis</a>
-                        <a class="btn btn-secondary" href="#prestations">Voir les prestations</a>
+                        <a class="btn btn-secondary" href="#prestations">Découvrir nos prestations</a>
                     </div>
                 </div>
 
-                <aside class="hero-form" aria-label="Formulaire de prise de contact">
+                <form class="hero-form" action="contact-process.php" method="POST" aria-label="Formulaire de prise de contact rapide">
+                    <!-- Champ Honeypot anti-spam -->
+                    <div style="display:none;" aria-hidden="true">
+                        <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                    </div>
+
                     <div class="hero-form-head">
                         <h2>Parlez-nous de votre projet</h2>
-                        <p>Une demande simple pour obtenir un premier échange clair et rapide.</p>
+                        <p>Une demande simple pour un premier échange technique rapide et sans engagement.</p>
                     </div>
                     <div class="hero-form-body">
                         <div class="field">
-                            <label for="hero-project">Votre projet</label>
-                            <input id="hero-project" type="text" placeholder="Maçonnerie, carrelage, béton, ouverture, façade...">
+                            <label for="hero-project">Type de travaux</label>
+                            <input id="hero-project" name="projet" type="text" placeholder="Maçonnerie, terrasse, ouverture, carrelage..." required>
                         </div>
                         <div class="field">
-                            <label for="hero-name">Nom</label>
-                            <input id="hero-name" type="text" placeholder="Nom et prénom">
+                            <label for="hero-name">Nom &amp; Prénom</label>
+                            <input id="hero-name" name="nom" type="text" placeholder="Votre nom" required autocomplete="name">
                         </div>
                         <div class="field">
                             <label for="hero-phone">Téléphone</label>
-                            <input id="hero-phone" type="tel" placeholder="06 00 00 00 00">
+                            <input id="hero-phone" name="telephone" type="tel" placeholder="06 00 00 00 00" required autocomplete="tel">
                         </div>
                         <div class="field">
                             <label for="hero-email">E-mail</label>
-                            <input id="hero-email" type="email" placeholder="nom@exemple.fr">
+                            <input id="hero-email" name="email" type="email" placeholder="nom@exemple.fr" required autocomplete="email">
                         </div>
                         <div class="field">
-                            <label for="hero-message">Votre message</label>
-                            <textarea id="hero-message" placeholder="Décrivez votre besoin, votre commune et le type de travaux."></textarea>
+                            <label for="hero-message">Détails de votre besoin</label>
+                            <textarea id="hero-message" name="message" placeholder="Commune du chantier, surface approximative, contraintes..."></textarea>
                         </div>
-                        <button class="btn btn-primary" type="button" style="width: 100%;">Être recontacté</button>
+
+                        <!-- Mention légale de consentement RGPD -->
+                        <p style="font-size: 11px; line-height: 1.45; color: var(--muted); margin: 6px 0 14px;">
+                            En soumettant ce formulaire, vous acceptez que les informations saisies soient exploitées par RTB exclusivement pour traiter votre demande de devis conformément à notre <a href="politique-confidentialite.html" style="color: var(--dark); text-decoration: underline;">politique de confidentialité</a>.
+                        </p>
+
+                        <button class="btn btn-primary" type="submit" style="width: 100%;">Être rappelé gratuitement</button>
                         <div class="hero-note">
-                            RTB intervient notamment autour de Roubaix, Tourcoing, Villeneuve-d'Ascq,
-                            Croix, Hem et dans les communes alentour.
+                            RTB intervient sur Lys-lez-Lannoy, Roubaix, Tourcoing, Villeneuve-d'Ascq et l'ensemble de la métropole lilloise.
                         </div>
                     </div>
-                </aside>
+                </form>
             </div>
         </section>
 
@@ -1082,19 +1137,19 @@
             <div class="container proof-grid">
                 <article class="proof-card">
                     <strong>Depuis 1998</strong>
-                    <span>Une présence locale inscrite dans le temps et dans le métier.</span>
+                    <span>Une présence locale inscrite dans le temps et l'artisanat de qualité.</span>
                 </article>
                 <article class="proof-card">
-                    <strong>Prestations principales</strong>
-                    <span>Maçonnerie, carrelage, béton, façade et création d'ouvertures.</span>
+                    <strong>Prestations complètes</strong>
+                    <span>Maçonnerie, carrelage intérieur/extérieur, dalles béton et ouvertures.</span>
                 </article>
                 <article class="proof-card">
-                    <strong>Intervention de proximité</strong>
-                    <span>Roubaix, Tourcoing, Villeneuve-d'Ascq, Croix, Hem et alentours.</span>
+                    <strong>Proximité immédiate</strong>
+                    <span>Rayon d'action maîtrisé sur la métropole lilloise pour un suivi régulier.</span>
                 </article>
                 <article class="proof-card">
                     <strong>Décennale MAAF Pro</strong>
-                    <span>Une garantie mise en avant pour apporter un repère concret avant tout devis.</span>
+                    <span>Attestation d'assurance fournie sur simple demande avec votre devis.</span>
                 </article>
             </div>
         </section>
@@ -1103,72 +1158,70 @@
             <div class="container">
                 <div class="services-head">
                     <div>
-                        <span class="eyebrow">Prestations</span>
-                        <h2 class="section-title">Des métiers présentés avec clarté pour rassurer un particulier</h2>
+                        <span class="eyebrow">Savoir-faire</span>
+                        <h2 class="section-title">Des compétences éprouvées pour sécuriser votre investissement</h2>
                         <p class="section-intro">
-                            La page donne une lecture rapide de ce que fait RTB, de la nature des travaux
-                            réalisés et du cadre dans lequel l'entreprise intervient.
+                            Chaque corps d'état est réalisé dans les règles de l'art (DTU), de la préparation du gros œuvre jusqu'aux finitions.
                         </p>
                     </div>
                     <p>
-                        Une lecture claire des savoir-faire, avec des repères simples pour comprendre
-                        rapidement si RTB correspond au besoin du projet.
+                        Une tarification transparente, sans sous-traitance opaque, avec des matériaux sélectionnés pour leur durabilité.
                     </p>
                 </div>
 
                 <div class="service-grid">
                     <article class="service-card" id="maconnerie">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-maconnerie-RTB.png" alt="Travaux de maçonnerie">
+                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-maconnerie-RTB.png" alt="Travaux de maçonnerie RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
-                            <span class="service-tag">Travaux de structure</span>
-                            <h3>Maçonnerie</h3>
-                            <p>Reprise de maçonnerie, transformation de l'existant et création d'ouvertures.</p>
+                            <span class="service-tag">Gros œuvre &amp; structure</span>
+                            <h3>Maçonnerie générale</h3>
+                            <p>Reprise sous œuvre, élévation de murs, réhabilitation de bâtis anciens et extensions.</p>
                             <ul>
-                                <li>Réhabilitation de maçonnerie</li>
-                                <li>Modification des volumes</li>
-                                <li>Création d'ouvertures</li>
+                                <li>Murs porteurs et reprises de charge</li>
+                                <li>Extension et surélévation</li>
+                                <li>Rénovation de briques et maçonneries anciennes</li>
                             </ul>
                         </div>
                     </article>
 
                     <article class="service-card" id="carrelage">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-carreau-RTB.png" alt="Travaux de carrelage">
+                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-carreau-RTB.png" alt="Travaux de carrelage RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
-                            <span class="service-tag">Finitions &amp; extérieurs</span>
-                            <h3>Carrelage</h3>
-                            <p>Des finitions soignées pour les espaces intérieurs comme extérieurs.</p>
+                            <span class="service-tag">Revêtements &amp; Extérieurs</span>
+                            <h3>Pose de Carrelage</h3>
+                            <p>Finitions durables et esthétiques pour pièces de vie, salles de bains et terrasses.</p>
                             <ul>
-                                <li>Terrasses et escaliers</li>
-                                <li>Contours de véranda</li>
-                                <li>Revêtements imitation bois</li>
+                                <li>Terrasses sur plots ou collées et marches extérieures</li>
+                                <li>Grès cérame grand format et imitation parquet</li>
+                                <li>Étanchéité préalable et ragréage soigné</li>
                             </ul>
                         </div>
                     </article>
 
                     <article class="service-card" id="beton">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png" alt="Travaux béton">
+                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png" alt="Travaux de béton armé RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
-                            <span class="service-tag">Dalles &amp; préparation</span>
-                            <h3>Béton</h3>
-                            <p>Dalles et réalisations techniques pour les projets d'aménagement et d'accès.</p>
+                            <span class="service-tag">Fondations &amp; Sols</span>
+                            <h3>Dalles &amp; Béton armé</h3>
+                            <p>Terrassement, ferraillage certifié et coulage d'ouvrages porteurs et de voirie d'accès.</p>
                             <ul>
-                                <li>Dalles béton armé</li>
-                                <li>Préparation et ferraillage</li>
-                                <li>Coulage et mise en oeuvre</li>
+                                <li>Dalles pour extension ou véranda</li>
+                                <li>Chapes traditionnelles et béton désactivé</li>
+                                <li>Ferraillage et respect des temps de séchage DTU</li>
                             </ul>
                         </div>
                     </article>
 
                     <article class="service-card" id="ouverture">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png" alt="Façade et ouverture">
+                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png" alt="Création d'ouverture mur porteur RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
-                            <span class="service-tag">Transformation bâtiment</span>
-                            <h3>Façade &amp; ouverture</h3>
-                            <p>Adaptation des façades et évolution des accès dans le respect de l'existant.</p>
+                            <span class="service-tag">Agencement technique</span>
+                            <h3>Ouvertures de murs porteurs</h3>
+                            <p>Pose de linteaux IPN / HEB pour agrandir vos espaces et moderniser l'éclairage naturel.</p>
                             <ul>
-                                <li>Ouvertures dans la maçonnerie</li>
-                                <li>Évolution de façade</li>
-                                <li>Travaux de transformation</li>
+                                <li>Ouverture dans brique, parpaing ou pierre</li>
+                                <li>Pose d'IPN avec sommiers d'appui sécurisés</li>
+                                <li>Étaiement rigoureux sans risque pour la structure</li>
                             </ul>
                         </div>
                     </article>
@@ -1177,19 +1230,17 @@
                 <div class="reassurance-band">
                     <article class="insurance-card">
                         <span class="eyebrow">Assurance</span>
-                        <h3>Responsabilité décennale MAAF Pro</h3>
+                        <h3>Garantie décennale MAAF Pro</h3>
                         <div class="insurance-inline">
-                            <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/MAAF-RTB.jpg" alt="MAAF Pro">
+                            <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/MAAF-RTB.jpg" alt="Logo MAAF Assurances Professionnelles" width="128" height="90" loading="lazy">
                             <div>
-                                <strong>Une garantie professionnelle clairement identifiable</strong>
+                                <strong>Une protection juridique et financière complète</strong>
                                 <p>
-                                    Les travaux présentés sur le site s'inscrivent dans un cadre professionnel
-                                    avec une assurance décennale mise en avant pour apporter un repère concret
-                                    avant toute prise de contact.
+                                    L'ensemble des réalisations structurelles engagées par RTB sont couvertes par une assurance responsabilité civile et décennale valide, délivrée par la MAAF.
                                 </p>
                             </div>
                         </div>
-                        <div class="insurance-note">La garantie décennale MAAF Pro apporte aux particuliers une sécurité claire sur les travaux relevant de cette couverture.</div>
+                        <div class="insurance-note">Une copie de l'attestation décennale en cours de validité est systématiquement jointe au devis final.</div>
                     </article>
                 </div>
             </div>
@@ -1205,22 +1256,20 @@
                 </div>
 
                 <article class="about-copy">
-                    <span class="eyebrow">Entreprise</span>
-                    <h2 class="section-title">Une entreprise de proximité pensée pour une clientèle de particuliers</h2>
+                    <span class="eyebrow">L'entreprise</span>
+                    <h2 class="section-title">Un artisan de confiance pour des travaux sans mauvaise surprise</h2>
                     <p>
-                        RTB s'adresse à des propriétaires qui veulent savoir rapidement à qui ils ont affaire,
-                        quels travaux sont proposés et comment échanger simplement avant un projet.
+                        Créée en 1998, RTB a fait le choix de rester une structure à taille humaine. Pas de commerciaux intermédiaires : vous échangez directement avec le responsable technique qui supervise vos travaux.
                     </p>
                     <p>
-                        L'accent est mis sur les repères qui comptent vraiment pour un particulier :
-                        ancienneté, zone d'intervention, coordonnées directes et responsabilité décennale.
+                        Cette proximité permet un contrôle permanent de la qualité d'exécution, le respect scrupuleux du devis initial et une réactivité optimale tout au long du chantier.
                     </p>
 
                     <div class="about-list">
-                        <div>Des prestations clairement identifiées dès l'arrivée sur le site</div>
-                        <div>Un parcours simple pour passer de la découverte au contact</div>
-                        <div>Des repères utiles pour situer l'entreprise et son secteur</div>
-                        <div>Une présentation plus rassurante pour des particuliers</div>
+                        <div>Interlocuteur unique du premier rendez-vous à la réception des travaux</div>
+                        <div>Devis détaillé par main propre ou mail, sans frais cachés</div>
+                        <div>Matériaux professionnels conformes aux normes CSTB et DTU</div>
+                        <div>Chantiers propres et protégés durant toute l'intervention</div>
                     </div>
                 </article>
             </div>
@@ -1230,53 +1279,52 @@
             <div class="container">
                 <div class="showcase-head">
                     <div>
-                        <span class="eyebrow">Aperçu des chantiers</span>
-                        <h2 class="section-title">Les derniers chantiers mis en avant sur le site</h2>
+                        <span class="eyebrow">Réalisations</span>
+                        <h2 class="section-title">Aperçu de nos chantiers récents</h2>
                         <p class="section-intro">
-                            La page d'accueil présente un aperçu des réalisations récentes, avec un renvoi
-                            vers une page dédiée qui pourra être enrichie chaque mois.
+                            Découvrez quelques exemples de transformations récentes réalisées pour des particuliers de la métropole lilloise.
                         </p>
                     </div>
                     <p>
-                        Chaque fiche affichée ici reprend le format de la page complète pour garder une lecture cohérente.
+                        Des photos avant/après documentées pour vous permettre de juger de la rigueur de nos finitions.
                     </p>
                 </div>
 
                 <div class="showcase-grid">
                     <article class="showcase-card">
-                        <img src="https://placehold.co/960x720/e8dfd1/1f2b35?text=Photo+chantier+01" alt="Emplacement pour une photo de chantier de maçonnerie">
+                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-maconnerie-RTB.png" alt="Chantier maçonnerie et baie vitrée" width="400" height="300" loading="lazy">
                         <div class="showcase-body">
-                            <h3>Chantier récent 01</h3>
-                            <p><strong>Date :</strong> Avril 2026</p>
-                            <p><strong>Travaux réalisés :</strong> Reprise de maçonnerie, création d'ouverture et finitions de façade.</p>
+                            <h3>Ouverture &amp; Reprise de façade</h3>
+                            <p><strong>Lieu :</strong> Croix (59)</p>
+                            <p><strong>Travaux :</strong> Pose d'un IPN 240, démolition mur brique et création d'une baie de 3m20.</p>
                         </div>
                     </article>
 
                     <article class="showcase-card">
-                        <img src="https://placehold.co/960x720/e6ddd0/1f2b35?text=Photo+chantier+02" alt="Emplacement pour une photo de chantier de carrelage">
+                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-carreau-RTB.png" alt="Chantier carrelage terrasse" width="400" height="300" loading="lazy">
                         <div class="showcase-body">
-                            <h3>Chantier récent 02</h3>
-                            <p><strong>Date :</strong> Juin 2026</p>
-                            <p><strong>Travaux réalisés :</strong> Pose de carrelage extérieur, terrasse et reprise des niveaux d'accès.</p>
+                            <h3>Terrasse carrelée grand format</h3>
+                            <p><strong>Lieu :</strong> Villeneuve-d'Ascq (59)</p>
+                            <p><strong>Travaux :</strong> Chape d'égalisation, étanchéité et pose d'un grès cérame 60x60 antidérapant.</p>
                         </div>
                     </article>
 
                     <article class="showcase-card">
-                        <img src="https://placehold.co/960x720/e5dccf/1f2b35?text=Photo+chantier+03" alt="Emplacement pour une photo de chantier béton">
+                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png" alt="Chantier dalle béton armé" width="400" height="300" loading="lazy">
                         <div class="showcase-body">
-                            <h3>Chantier récent 03</h3>
-                            <p><strong>Date :</strong> Septembre 2026</p>
-                            <p><strong>Travaux réalisés :</strong> Dalle béton armé, préparation du support et mise en oeuvre sur chantier.</p>
+                            <h3>Dalle béton armé pour véranda</h3>
+                            <p><strong>Lieu :</strong> Hem (59)</p>
+                            <p><strong>Travaux :</strong> Décaissement, isolation polyane, double treillis soudé et coulage à la pompe.</p>
                         </div>
                     </article>
                 </div>
 
                 <div class="showcase-note">
-                    Cette zone sert d'aperçu sur l'accueil. La page complète des chantiers récents pourra ensuite être mise à jour régulièrement.
+                    Consultez l'ensemble de notre portfolio pour voir plus d'exemples de réalisations et de techniques employées.
                 </div>
 
                 <div style="margin-top: 28px; display: flex; justify-content: flex-start;">
-                    <a class="btn btn-dark" href="chantiers-recents.html">Voir tous les chantiers récents</a>
+                    <a class="btn btn-dark" href="chantiers-recents.html">Voir l'ensemble des chantiers récents</a>
                 </div>
             </div>
         </section>
@@ -1287,36 +1335,48 @@
                     <div class="territory-map-head">
                         <div>
                             <span class="eyebrow">Zone d'intervention</span>
-                            <h3>Un secteur lisible autour de Lys-lez-Lannoy</h3>
-                            <p>Une carte simple permet de situer immédiatement la zone couverte autour de la métropole lilloise.</p>
+                            <h3>Lille &amp; métropole périphérique</h3>
+                            <p>Des déplacements réguliers et maîtrisés pour assurer des délais tenus et un suivi de chantier rigoureux.</p>
                         </div>
-                        <div class="territory-badge">Autour de Lys-lez-Lannoy</div>
+                        <div class="territory-badge">MEL &amp; Environs</div>
                     </div>
 
-                    <div class="map-visual" aria-label="Carte de la zone d'intervention RTB">
-                        <iframe
-                            title="Carte de la zone d'intervention RTB autour de Lys-lez-Lannoy"
-                            src="https://www.openstreetmap.org/export/embed.html?bbox=3.05%2C50.61%2C3.24%2C50.74&layer=mapnik&marker=50.6696%2C3.2164">
-                        </iframe>
+                    <div class="city-chips-grid">
+                        <span class="city-chip">Lille</span>
+                        <span class="city-chip">Roubaix</span>
+                        <span class="city-chip">Tourcoing</span>
+                        <span class="city-chip">Villeneuve-d'Ascq</span>
+                        <span class="city-chip">Croix</span>
+                        <span class="city-chip">Hem</span>
+                        <span class="city-chip">Wasquehal</span>
+                        <span class="city-chip">Marcq-en-Barœul</span>
+                        <span class="city-chip">Lys-lez-Lannoy</span>
+                        <span class="city-chip">Lannoy</span>
+                        <span class="city-chip">Mouvaux</span>
+                        <span class="city-chip">Toufflers</span>
                     </div>
+
+                    <p class="territory-subtext">
+                        Vous avez un projet en dehors de ces communes ? Nous étudions également les demandes sur l'ensemble de la métropole et de la périphérie selon la nature des travaux.
+                    </p>
                 </article>
 
                 <article class="territory-copy">
                     <div class="territory-copy-head">
                         <div>
-                            <span class="eyebrow">Présence locale</span>
-                            <h3>Un secteur de proximité clairement identifié</h3>
-                            <p>Le site montre immédiatement que RTB intervient dans un périmètre cohérent autour de Lys-lez-Lannoy.</p>
+                            <span class="eyebrow">Proximité</span>
+                            <h3>Un rayon d'action maîtrisé</h3>
+                            <p>Faire appel à un artisan local, c'est garantir une disponibilité rapide et un contact direct tout au long du chantier.</p>
                         </div>
                     </div>
                     <div class="territory-list">
-                        <div>Interventions régulières autour de Roubaix, Tourcoing, Villeneuve-d'Ascq et les communes alentour.</div>
-                        <div>Une implantation locale mise en avant pour rassurer les particuliers avant le premier échange.</div>
-                        <div>Une présentation sobre et facile à reprendre plus tard dans WordPress.</div>
+                        <div>Présence quotidienne sur le secteur lillois et les villes limitrophes.</div>
+                        <div>Déplacements rapides pour l'évaluation sur site et l'établissement des devis.</div>
+                        <div>Coordination sans intermédiaire, de la visite technique à la livraison.</div>
                     </div>
                     <div class="territory-note">
-                        <strong>Un repère local rassurant</strong>
-                        RTB intervient sur son secteur de proximité pour garder une relation directe, un suivi simple et une lecture claire pour les particuliers.
+                        <strong>Engagement de proximité</strong>
+                        Une couverture locale volontairement délimitée afin de garantir la tenue des plannings et la qualité d'exécution sur chaque chantier.
                     </div>
                 </article>
             </div>
@@ -1325,44 +1385,52 @@
         <section class="section" id="contact">
             <div class="container contact-shell">
                 <article class="contact-card">
-                    <span class="eyebrow">Contact</span>
-                    <h2 class="section-title">Un contact simple, lisible et rassurant</h2>
+                    <span class="eyebrow">Devis &amp; Conseils</span>
+                    <h2 class="section-title">Demandez votre devis gratuit</h2>
                     <p>
-                        Pour une demande de renseignements, un projet de transformation ou des travaux de
-                        maçonnerie, carrelage, béton, façade ou ouverture, le formulaire reste direct
-                        et utilisable sur tous les formats d'écran.
+                        Décrivez-nous votre projet. Nous intervenons rapidement chez vous pour une visite technique et l'établissement d'une offre chiffrée claire.
                     </p>
 
-                    <form class="contact-form">
-                        <div class="contact-form-row">
-                            <input type="text" placeholder="Nom">
-                            <input type="text" placeholder="Prénom">
+                    <form class="contact-form" action="contact-process.php" method="POST">
+                        <!-- Protection honeypot invisible pour les robots -->
+                        <div style="display:none;" aria-hidden="true">
+                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
                         </div>
                         <div class="contact-form-row">
-                            <input type="tel" placeholder="Téléphone">
-                            <input type="email" placeholder="E-mail">
+                            <input type="text" name="nom" placeholder="Votre Nom *" required autocomplete="family-name">
+                            <input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name">
                         </div>
-                        <input type="text" placeholder="Ville">
-                        <textarea placeholder="Décrivez votre demande."></textarea>
-                        <button class="btn btn-primary" type="button">Envoyer la demande</button>
+                        <div class="contact-form-row">
+                            <input type="tel" name="telephone" placeholder="Numéro de téléphone *" required autocomplete="tel">
+                            <input type="email" name="email" placeholder="Adresse e-mail *" required autocomplete="email">
+                        </div>
+                        <input type="text" name="ville" placeholder="Commune des travaux (ex: Lys-lez-Lannoy, Roubaix...)">
+                        <textarea name="message" placeholder="Décrivez votre besoin : nature des travaux, surface estimée, dates souhaitées..." required></textarea>
+
+                        <!-- Mention légale de consentement RGPD -->
+                        <p style="font-size: 11px; line-height: 1.45; color: var(--muted); margin: 6px 0 14px;">
+                            En soumettant ce formulaire, vous acceptez que les informations saisies soient exploitées par RTB exclusivement pour traiter votre demande de devis conformément à notre <a href="politique-confidentialite.html" style="color: var(--dark); text-decoration: underline;">politique de confidentialité</a>.
+                        </p>
+
+                        <button class="btn btn-primary" type="submit">Envoyer ma demande de devis</button>
                     </form>
                 </article>
 
                 <aside class="contact-panel">
                     <h3>RTB</h3>
-                    <p>Réhabilitation &amp; Transformation du Bâtiment.</p>
+                    <p>Réhabilitation &amp; Transformation du Bâtiment</p>
 
                     <div class="contact-line">
-                        <span>Adresse</span>
+                        <span>Siège social</span>
                         <strong>138 Rue Félix Berthelot<br>59390 Lys-lez-Lannoy</strong>
                     </div>
                     <div class="contact-line">
-                        <span>Téléphone</span>
-                        <strong>06 81 32 79 05</strong>
+                        <span>Téléphone direct</span>
+                        <strong><a href="tel:0681327905" style="color:#fff;">06 81 32 79 05</a></strong>
                     </div>
                     <div class="contact-line">
                         <span>E-mail</span>
-                        <strong>contact@rtb.fr</strong>
+                        <strong><a href="mailto:contact@rtb.fr" style="color:#fff;">contact@rtb.fr</a></strong>
                     </div>
                 </aside>
             </div>
@@ -1372,16 +1440,15 @@
             <div class="container">
                 <div class="cta-banner">
                     <div>
-                        <span class="eyebrow" style="color: rgba(31,31,31,0.74);">Projet</span>
+                        <span class="eyebrow" style="color: rgba(31,31,31,0.74);">Votre Projet</span>
                         <h2 class="section-title" style="margin-top: 12px;">
-                            Vous avez un projet de réhabilitation ou d'aménagement ?
+                            Vous prévoyez des travaux de transformation ou d'aménagement ?
                         </h2>
                         <p>
-                            RTB vous accompagne avec une présence locale, une approche directe
-                            et une interface plus rassurante pour préparer le premier contact.
+                            Prenez conseil auprès d'un professionnel local avant d'engager vos travaux. Déplacement et devis gratuits.
                         </p>
                     </div>
-                    <a class="btn btn-dark" href="#contact">Nous contacter</a>
+                    <a class="btn btn-dark" href="#contact">Prendre contact</a>
                 </div>
             </div>
         </section>
@@ -1389,30 +1456,16 @@
         <section class="section" style="padding-top: 0;">
             <div class="container legal-preview-grid">
                 <article class="legal-card">
-                    <span class="eyebrow">Mentions légales</span>
-                    <h3>Des informations légales complètes et prêtes à publier</h3>
-                    <p>
-                        Une page dédiée avec l'éditeur du site, l'hébergement, la responsabilité éditoriale,
-                        la propriété intellectuelle et les modalités de contact.
-                    </p>
-                    <p>
-                        La structure est pensée comme une vraie page de site vitrine et non comme un
-                        simple bloc de texte de bas de page.
-                    </p>
+                    <span class="eyebrow">Transparence</span>
+                    <h3>Mentions légales &amp; Entreprise</h3>
+                    <p>Consultez les informations administratives (SIREN, RCS, hébergeur) de l'entreprise RTB.</p>
                     <a class="legal-link" href="mentions-legales.html">Lire les mentions légales</a>
                 </article>
 
                 <article class="legal-card">
-                    <span class="eyebrow">Confidentialité</span>
-                    <h3>Une politique de protection des données plus crédible en 2026</h3>
-                    <p>
-                        Une page séparée détaille les données collectées, la finalité des formulaires,
-                        la durée de conservation, les droits des personnes et la gestion des cookies.
-                    </p>
-                    <p>
-                        La page est structurée pour rester claire, facile à mettre à jour et cohérente
-                        avec une future intégration WordPress.
-                    </p>
+                    <span class="eyebrow">Données personnelles</span>
+                    <h3>Politique de confidentialité</h3>
+                    <p>Découvrez comment sont traitées les informations transmises via nos formulaires dans le respect du RGPD.</p>
                     <a class="legal-link" href="politique-confidentialite.html">Lire la politique de confidentialité</a>
                 </article>
             </div>
@@ -1421,17 +1474,17 @@
 
     <footer class="site-footer">
         <div class="container footer-inner">
-            <div>RTB - Réhabilitation &amp; Transformation du Bâtiment</div>
+            <div>&copy; 1998 - 2026 RTB - Réhabilitation &amp; Transformation du Bâtiment</div>
             <div class="footer-links">
                 <a href="chantiers-recents.html">Chantiers récents</a>
                 <a href="mentions-legales.html">Mentions légales</a>
                 <a href="politique-confidentialite.html">Politique de confidentialité</a>
-                <span>Lys-lez-Lannoy - Maçonnerie, carrelage, béton, façade, ouverture</span>
+                <span>Lys-lez-Lannoy (59390)</span>
             </div>
         </div>
     </footer>
 
-    <button class="scroll-top" type="button" aria-label="Revenir en haut" data-scroll-top>
+    <button class="scroll-top" type="button" aria-label="Revenir en haut de la page" data-scroll-top>
         ↑
     </button>
 
@@ -1439,7 +1492,6 @@
         const toggle = document.querySelector("[data-menu-toggle]");
         const navWrap = document.querySelector("[data-nav-wrap]");
         const scrollTopButton = document.querySelector("[data-scroll-top]");
-        const navLinks = Array.from(document.querySelectorAll(".nav-link[href^='#']"));
 
         if (toggle && navWrap) {
             toggle.addEventListener("click", () => {
@@ -1455,10 +1507,19 @@
             });
         }
 
-        if (navLinks.length) {
-            const setCurrentLink = (id) => {
-                navLinks.forEach((link) => {
-                    const isCurrent = link.getAttribute("href") === `#${id}`;
+        const trackedLinks = Array.from(document.querySelectorAll(".nav-link[data-scroll-target]"));
+
+        if (trackedLinks.length) {
+            const sections = trackedLinks
+                .map((link) => {
+                    const target = document.querySelector(link.getAttribute("data-scroll-target"));
+                    return target ? { id: target.id, el: target } : null;
+                })
+                .filter(Boolean);
+
+            const setActiveLink = (activeId) => {
+                trackedLinks.forEach((link) => {
+                    const isCurrent = link.getAttribute("data-scroll-target") === `#${activeId}`;
                     link.classList.toggle("is-current", isCurrent);
                     if (isCurrent) {
                         link.setAttribute("aria-current", "page");
@@ -1468,26 +1529,35 @@
                 });
             };
 
-            const trackedSections = navLinks
-                .map((link) => document.querySelector(link.getAttribute("href")))
-                .filter(Boolean);
+            const updateScrollSpy = () => {
+                const scrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const fullHeight = document.documentElement.scrollHeight;
 
-            const updateCurrentSection = () => {
-                let currentId = "top";
-                const offset = window.innerHeight * 0.24;
-
-                trackedSections.forEach((section) => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= offset && rect.bottom >= offset) {
-                        currentId = section.id || "top";
+                if (windowHeight + scrollY >= fullHeight - 60) {
+                    const lastSection = sections[sections.length - 1];
+                    if (lastSection) {
+                        setActiveLink(lastSection.id);
+                        return;
                     }
-                });
+                }
 
-                setCurrentLink(currentId);
+                const targetLine = scrollY + 140;
+                let currentId = sections[0].id;
+
+                for (let i = 0; i < sections.length; i++) {
+                    if (targetLine >= sections[i].el.offsetTop) {
+                        currentId = sections[i].id;
+                    } else {
+                        break;
+                    }
+                }
+
+                setActiveLink(currentId);
             };
 
-            updateCurrentSection();
-            window.addEventListener("scroll", updateCurrentSection, { passive: true });
+            updateScrollSpy();
+            window.addEventListener("scroll", updateScrollSpy, { passive: true });
         }
 
         if (scrollTopButton) {
@@ -1500,7 +1570,7 @@
             };
 
             updateScrollButton();
-            window.addEventListener("scroll", updateScrollButton);
+            window.addEventListener("scroll", updateScrollButton, { passive: true });
             scrollTopButton.addEventListener("click", () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
             });

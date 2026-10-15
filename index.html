@@ -429,7 +429,9 @@
         .showcase-card img {
             width: 100%;
             aspect-ratio: 4 / 3;
+            height: auto;
             object-fit: cover;
+            object-position: center;
             display: block;
             background: #ece4d7;
         }
@@ -481,8 +483,11 @@
         }
         .service-card img {
             width: 100%;
-            height: 180px;
+            aspect-ratio: 16 / 10;
+            height: auto;
             object-fit: cover;
+            object-position: center;
+            display: block;
             background: #e9e5de;
         }
         .service-body { padding: 22px; }
@@ -912,7 +917,6 @@
 
         @media (min-width: 1440px) {
             .hero-inner { min-height: 800px; }
-            .service-card img { height: 220px; }
         }
 
         @media (max-width: 1280px) {
@@ -999,6 +1003,11 @@
             .insurance-meta {
                 grid-template-columns: 1fr;
             }
+            .service-card img,
+            .showcase-card img {
+                aspect-ratio: 16 / 10;
+                max-height: 340px;
+            }
             .section { padding: 76px 0; }
             .hero-inner { padding: 52px 0 64px; }
             .hero-points { grid-template-columns: 1fr; }
@@ -1006,6 +1015,11 @@
         }
 
         @media (max-width: 680px) {
+            .service-card img,
+            .showcase-card img {
+                aspect-ratio: 4 / 3;
+                max-height: none;
+            }
             .topbar-inner {
                 min-height: auto;
                 padding: 12px 0;

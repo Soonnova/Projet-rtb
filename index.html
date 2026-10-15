@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://rehabilitation-transformation-batiment.fr/">
     <meta property="og:title" content="RTB | Entreprise de bâtiment - MEL et environs">
     <meta property="og:description" content="Maçonnerie générale, rénovation, carrelage et dalles béton pour les particuliers depuis 1998. Devis gratuit et garantie décennale MAAF.">
-    <meta property="og:image" content="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png">
+    <meta property="og:image" content="https://soonnova.github.io/Projet-rtb/images/piece.jpg">
 
     <!-- Schema.org SEO Local -->
     <script type="application/ld+json">
@@ -23,7 +23,7 @@
       "@context": "https://schema.org",
       "@type": "HomeAndConstructionBusiness",
       "name": "RTB - Réhabilitation & Transformation du Bâtiment",
-      "image": "https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png",
+      "image": "https://soonnova.github.io/Projet-rtb/images/piece.jpg",
       "telephone": "+33681327905",
       "email": "contact@rtb.fr",
       "address": {
@@ -59,14 +59,10 @@
             --shadow-soft: 0 12px 24px rgba(27, 39, 49, 0.06);
             --radius: 8px;
             --content: 1240px;
-            --scroll-progress: 0%;
         }
 
         * { box-sizing: border-box; }
-        html {
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-        }
+        html { scroll-behavior: smooth; }
         section[id],
         article[id] { scroll-margin-top: 118px; }
         body {
@@ -75,12 +71,6 @@
             color: var(--text);
             background: var(--bg);
             line-height: 1.6;
-            -ms-overflow-style: none;
-        }
-        html::-webkit-scrollbar,
-        body::-webkit-scrollbar {
-            width: 0;
-            height: 0;
         }
         a { color: inherit; text-decoration: none; }
         img { display: block; max-width: 100%; height: auto; }
@@ -210,141 +200,6 @@
             display: flex;
             align-items: center;
         }
-        .scroll-wall {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 28px;
-            height: 100vh;
-            z-index: 60;
-            pointer-events: none;
-            background: transparent;
-        }
-        .scroll-wall-track {
-            position: absolute;
-            top: 26px;
-            bottom: 52px;
-            left: 5px;
-            right: 5px;
-            border-radius: 999px;
-            background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(227, 218, 205, 0.95) 100%);
-            box-shadow:
-                inset 0 0 0 1px rgba(31, 43, 53, 0.08),
-                inset 0 10px 18px rgba(255, 255, 255, 0.35);
-        }
-        .scroll-wall-fill {
-            position: absolute;
-            top: 26px;
-            left: 5px;
-            width: calc(100% - 10px);
-            height: var(--scroll-progress);
-            border-radius: 999px 999px 10px 10px;
-            background:
-                linear-gradient(rgba(120, 128, 136, 0.12), rgba(120, 128, 136, 0.12)),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent 0 14px,
-                    rgba(255, 255, 255, 0.18) 14px 16px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    #b44e35 0 8px,
-                    #8e3923 8px 9px,
-                    #cb6245 9px 17px,
-                    #8e3923 17px 18px
-                );
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.18),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.08);
-            transition: height 0.16s ease-out;
-        }
-        .scroll-wall-trowel {
-            position: absolute;
-            top: clamp(30px, calc(var(--scroll-progress) + 16px), calc(100% - 56px));
-            left: 50%;
-            width: 32px;
-            height: 32px;
-            transform: translate(-50%, -50%) rotate(90deg);
-            background: url("trowel.png") center/contain no-repeat;
-            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.18));
-            transition: top 0.16s ease-out;
-        }
-        .scroll-wall-trowel::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: -6px;
-            width: 10px;
-            height: 6px;
-            transform: translateX(-50%);
-            border-radius: 999px;
-            background: rgba(232, 221, 208, 0.95);
-        }
-        .header-masonry {
-            position: relative;
-            width: 224px;
-            height: 54px;
-            overflow: hidden;
-            border-radius: 8px;
-            border: 1px solid rgba(31, 43, 53, 0.1);
-            background: linear-gradient(180deg, #f5f1e8 0%, #ece5d7 100%);
-            box-shadow: var(--shadow-soft);
-        }
-        .header-masonry-base,
-        .header-masonry-fill {
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(rgba(86, 93, 100, 0.16), rgba(86, 93, 100, 0.16)),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent 0 15px,
-                    rgba(255, 255, 255, 0.18) 15px 17px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    #a65324 0 34px,
-                    #8f451d 34px 36px,
-                    #b8632f 36px 70px,
-                    #8f451d 70px 72px
-                );
-        }
-        .header-masonry-base {
-            opacity: 0.18;
-        }
-        .header-masonry-fill {
-            width: var(--scroll-progress);
-            transition: width 0.16s ease-out;
-        }
-        .header-masonry-label {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--dark);
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
-        }
-        .header-masonry .header-trowel {
-            position: absolute;
-            top: 50%;
-            left: clamp(16px, var(--scroll-progress), calc(100% - 22px));
-            width: 28px;
-            height: 28px;
-            transform: translate(-50%, -50%) rotate(-8deg);
-            color: #f29a1f;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
-            transition: left 0.16s ease-out;
-        }
-        .header-masonry .header-trowel svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
 
         .btn {
             display: inline-flex;
@@ -386,7 +241,7 @@
             color: #fff;
             background:
                 linear-gradient(101deg, rgba(20, 27, 35, 0.95) 0%, rgba(20, 27, 35, 0.88) 48%, rgba(20, 27, 35, 0.58) 100%),
-                url("https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png") center/cover no-repeat;
+                url("images/piece.jpg") center/cover no-repeat;
         }
         .hero::before {
             content: "";
@@ -747,7 +602,7 @@
             border-radius: var(--radius);
             background:
                 linear-gradient(rgba(20, 28, 35, 0.28), rgba(20, 28, 35, 0.28)),
-                url("./images.jpg") center/cover no-repeat;
+                url("images/piece.jpg") center/cover no-repeat;
         }
         .about-badge {
             position: absolute;
@@ -1126,28 +981,6 @@
                 justify-content: stretch;
                 margin-left: 0;
             }
-            .header-masonry {
-                width: 100%;
-            }
-            .scroll-wall {
-                width: 20px;
-            }
-            .scroll-wall-track {
-                top: 20px;
-                bottom: 36px;
-                left: 4px;
-                right: 4px;
-            }
-            .scroll-wall-fill {
-                top: 20px;
-                left: 4px;
-                width: calc(100% - 8px);
-            }
-            .scroll-wall-trowel {
-                width: 24px;
-                height: 24px;
-                top: clamp(24px, calc(var(--scroll-progress) + 12px), calc(100% - 42px));
-            }
         }
 
         @media (max-width: 900px) {
@@ -1364,7 +1197,7 @@
 
                 <div class="service-grid">
                     <article class="service-card" id="maconnerie">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-maconnerie-RTB.png" alt="Travaux de maçonnerie RTB" width="560" height="180" loading="lazy">
+                        <img src="images/enduit.jpg" alt="Reprise de maçonnerie et enduit réalisés par RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
                             <span class="service-tag">Gros œuvre &amp; structure</span>
                             <h3>Maçonnerie générale</h3>
@@ -1378,7 +1211,7 @@
                     </article>
 
                     <article class="service-card" id="carrelage">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-carreau-RTB.png" alt="Travaux de carrelage RTB" width="560" height="180" loading="lazy">
+                        <img src="images/terrasse.jpg" alt="Terrasse carrelée grand format réalisée par RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
                             <span class="service-tag">Revêtements &amp; Extérieurs</span>
                             <h3>Pose de Carrelage</h3>
@@ -1392,7 +1225,7 @@
                     </article>
 
                     <article class="service-card" id="beton">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png" alt="Travaux de béton armé RTB" width="560" height="180" loading="lazy">
+                        <img src="images/ragreage.jpg" alt="Préparation de sol et ragréage réalisés par RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
                             <span class="service-tag">Fondations &amp; Sols</span>
                             <h3>Dalles &amp; Béton armé</h3>
@@ -1406,7 +1239,7 @@
                     </article>
 
                     <article class="service-card" id="ouverture">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png" alt="Création d'ouverture mur porteur RTB" width="560" height="180" loading="lazy">
+                        <img src="images/veranda-2.jpg" alt="Ouverture et aménagement d'une pièce de vie réalisés par RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
                             <span class="service-tag">Agencement technique</span>
                             <h3>Ouvertures de murs porteurs</h3>
@@ -1475,7 +1308,7 @@
                         <span class="eyebrow">Réalisations</span>
                         <h2 class="section-title">Aperçu de nos chantiers récents</h2>
                         <p class="section-intro">
-                            Découvrez quelques exemples de transformations récentes réalisées pour des particuliers de la métropole lilloise.
+                            Découvrez quelques exemples de transformations récentes réalisées pour des particuliers dans la MEL et ses environs.
                         </p>
                     </div>
                     <p>
@@ -1485,29 +1318,29 @@
 
                 <div class="showcase-grid">
                     <article class="showcase-card">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-maconnerie-RTB.png" alt="Chantier maçonnerie et baie vitrée" width="400" height="300" loading="lazy">
+                        <img src="images/piece.jpg" alt="Pièce de vie avec mur de briques et carrelage imitation bois" width="400" height="300" loading="lazy">
                         <div class="showcase-body">
-                            <h3>Ouverture &amp; Reprise de façade</h3>
-                            <p><strong>Lieu :</strong> Croix (59)</p>
-                            <p><strong>Travaux :</strong> Pose d'un IPN 240, démolition mur brique et création d'une baie de 3m20.</p>
+                            <h3>Ouverture &amp; pièce de vie</h3>
+                            <p><strong>Zone :</strong> MEL et environs</p>
+                            <p><strong>Travaux :</strong> Reprise de maçonnerie, mur de briques et pose de carrelage imitation bois.</p>
                         </div>
                     </article>
 
                     <article class="showcase-card">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-carreau-RTB.png" alt="Chantier carrelage terrasse" width="400" height="300" loading="lazy">
+                        <img src="images/terrasse.jpg" alt="Terrasse carrelée grand format" width="400" height="300" loading="lazy">
                         <div class="showcase-body">
                             <h3>Terrasse carrelée grand format</h3>
-                            <p><strong>Lieu :</strong> Villeneuve-d'Ascq (59)</p>
-                            <p><strong>Travaux :</strong> Chape d'égalisation, étanchéité et pose d'un grès cérame 60x60 antidérapant.</p>
+                            <p><strong>Zone :</strong> MEL et environs</p>
+                            <p><strong>Travaux :</strong> Préparation du support et pose de grès cérame grand format en extérieur.</p>
                         </div>
                     </article>
 
                     <article class="showcase-card">
-                        <img src="https://rehabilitation-transformation-batiment.fr/wp-content/uploads/2019/11/img-beton-RTB.png" alt="Chantier dalle béton armé" width="400" height="300" loading="lazy">
+                        <img src="images/veranda.jpg" alt="Véranda avec mur de pierre et sol carrelé" width="400" height="300" loading="lazy">
                         <div class="showcase-body">
-                            <h3>Dalle béton armé pour véranda</h3>
-                            <p><strong>Lieu :</strong> Hem (59)</p>
-                            <p><strong>Travaux :</strong> Décaissement, isolation polyane, double treillis soudé et coulage à la pompe.</p>
+                            <h3>Aménagement de véranda</h3>
+                            <p><strong>Zone :</strong> MEL et environs</p>
+                            <p><strong>Travaux :</strong> Mur en pierre, sol carrelé et finitions pour une pièce ouverte sur le jardin.</p>
                         </div>
                     </article>
                 </div>
@@ -1663,11 +1496,6 @@
     </footer>
 
     <button class="scroll-top" type="button" aria-label="Revenir en haut de la page" data-scroll-top></button>
-    <div class="scroll-wall" aria-hidden="true">
-        <div class="scroll-wall-track"></div>
-        <div class="scroll-wall-fill"></div>
-        <div class="scroll-wall-trowel"></div>
-    </div>
 
     <script>
         const toggle = document.querySelector("[data-menu-toggle]");
@@ -1740,15 +1568,6 @@
             updateScrollSpy();
             window.addEventListener("scroll", updateScrollSpy, { passive: true });
         }
-
-        const updateScrollProgress = () => {
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = maxScroll > 0 ? Math.min(100, Math.max(0, (window.scrollY / maxScroll) * 100)) : 0;
-            document.documentElement.style.setProperty("--scroll-progress", `${progress}%`);
-        };
-
-        updateScrollProgress();
-        window.addEventListener("scroll", updateScrollProgress, { passive: true });
 
         const revealTargets = document.querySelectorAll(
             ".proof-card, .service-card, .showcase-card, .insurance-card, .about-copy, .territory-map, .territory-copy, .contact-card, .contact-panel, .legal-card, .cta-banner"

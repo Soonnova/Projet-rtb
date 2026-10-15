@@ -15,6 +15,7 @@
             --surface: #ffffff;
             --surface-alt: #f3efe7;
             --dark: #1f2b35;
+            --dark-soft: #314250;
             --text: #24313a;
             --muted: #69757f;
             --line: #d8d3ca;
@@ -22,7 +23,7 @@
             --orange: #f29a1f;
             --orange-dark: #d07c0c;
             --shadow: 0 18px 34px rgba(27, 39, 49, 0.08);
-            --content: 980px;
+            --content: 1240px;
         }
 
         * { box-sizing: border-box; }
@@ -47,39 +48,103 @@
             justify-content: space-between;
             gap: 16px;
         }
-        .header {
+        .site-header {
             position: sticky;
             top: 0;
-            z-index: 20;
-            background: rgba(255, 255, 255, 0.96);
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.97);
             border-bottom: 1px solid rgba(31, 43, 53, 0.08);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
         }
         .header-inner {
-            min-height: 84px;
+            min-height: 94px;
+            display: flex;
+            align-items: center;
+            gap: 26px;
+        }
+        .brand {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+        }
+        .brand img { width: 186px; height: auto; }
+        .menu-toggle {
+            display: none;
+            margin-left: auto;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(31, 43, 53, 0.12);
+            border-radius: 6px;
+            background: #fff;
+            color: var(--dark);
+            font-size: 26px;
+            cursor: pointer;
+        }
+        .nav-wrap {
+            flex: 1 1 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
+            gap: 18px;
+            min-width: 0;
         }
-        .brand img { width: 172px; }
+        .nav-shell {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            min-width: 0;
+        }
         .nav {
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 18px;
+            min-width: 0;
         }
-        .nav a {
+        .nav-link {
             display: inline-flex;
             align-items: center;
-            min-height: 42px;
-            padding: 0 15px;
-            border-radius: 999px;
-            color: var(--dark);
+            justify-content: center;
+            min-height: 36px;
+            padding: 0 12px;
+            white-space: nowrap;
+            color: var(--dark-soft);
             font-size: 14px;
             font-weight: 700;
+            border-radius: 999px;
+            letter-spacing: 0.01em;
+            transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
         }
-        .nav a:hover { background: var(--surface-alt); }
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            color: var(--dark);
+            outline: none;
+        }
+        .header-cta {
+            flex: 0 0 auto;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 22px;
+            border: 0;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+        }
+        .btn-primary { background: var(--orange); color: #1f1f1f; }
         main { padding: 58px 0 86px; }
+        main .container { width: min(980px, calc(100% - 32px)); }
         .hero {
             background: #fff;
             border: 1px solid rgba(31, 43, 53, 0.08);
@@ -163,13 +228,50 @@
             flex-wrap: wrap;
         }
 
+        @media (max-width: 1180px) {
+            .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+            .nav-wrap {
+                position: absolute;
+                top: 94px;
+                left: 0;
+                right: 0;
+                display: none;
+                padding: 0 20px 18px;
+                z-index: 12;
+            }
+            .nav-wrap.open { display: block; }
+            .nav-shell {
+                background: #fff;
+                border: 1px solid rgba(31, 43, 53, 0.08);
+                box-shadow: var(--shadow);
+                padding: 18px;
+            }
+            .nav {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+            .nav-link {
+                justify-content: flex-start;
+                min-height: 48px;
+                padding: 0 16px;
+            }
+            .header-cta {
+                margin-top: 14px;
+                justify-content: stretch;
+                margin-left: 0;
+            }
+        }
+
         @media (max-width: 720px) {
             .topbar-inner,
-            .header-inner,
             .footer-inner {
                 flex-direction: column;
                 align-items: flex-start;
             }
+            .header-inner { min-height: 82px; }
+            .nav-wrap { top: 82px; padding: 0 14px 14px; }
+            .nav { grid-template-columns: 1fr; }
             .hero,
             .card { padding: 22px; }
         }
@@ -178,26 +280,38 @@
 <body>
     <div class="topbar">
         <div class="container topbar-inner">
-            <div>RTB - Réhabilitation &amp; Transformation du Bâtiment</div>
+            <div>Entreprise de bâtiment à <strong>Lys-lez-Lannoy</strong> depuis 1998</div>
             <div>
-                <a href="tel:0681327905" style="color: inherit;"><strong>06 81 32 79 05</strong></a> 
-                - 
+                <a href="tel:0681327905" style="color: inherit;"><strong>06 81 32 79 05</strong></a>
+                -
                 <a href="mailto:contact@rtb.fr" style="color: inherit;">contact@rtb.fr</a>
             </div>
         </div>
     </div>
 
-    <header class="header">
+    <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="index.html" aria-label="Retour à l'accueil RTB">
-                <img src="rtb-logo.png" alt="RTB">
+            <a class="brand" href="index.html" aria-label="Accueil RTB">
+                <img src="rtb-logo.png" alt="RTB Bâtiment" width="186" height="54">
             </a>
-            <nav class="nav" aria-label="Navigation secondaire">
-                <a href="index.html">Accueil</a>
-                <a href="index.html#prestations">Prestations</a>
-                <a href="index.html#contact">Contact</a>
-                <a href="politique-confidentialite.html">Confidentialité</a>
-            </nav>
+
+            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
+                &#9776;
+            </button>
+
+            <div class="nav-wrap" data-nav-wrap>
+                <div class="nav-shell">
+                    <nav class="nav" aria-label="Navigation principale">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                        <a class="nav-link" href="index.html#prestations">Prestations</a>
+                        <a class="nav-link" href="chantiers-recents.html">Chantiers récents</a>
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </nav>
+                    <div class="header-cta">
+                        <a href="index.html#contact" class="btn btn-primary">Demander un devis</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -284,9 +398,29 @@
             <div>&copy; 1998 - 2026 RTB - Réhabilitation &amp; Transformation du Bâtiment</div>
             <div class="footer-links">
                 <a href="index.html">Accueil</a>
+                <a href="chantiers-recents.html">Chantiers récents</a>
                 <a href="politique-confidentialite.html">Politique de confidentialité</a>
             </div>
         </div>
     </footer>
+
+    <script>
+        const toggle = document.querySelector("[data-menu-toggle]");
+        const navWrap = document.querySelector("[data-nav-wrap]");
+
+        if (toggle && navWrap) {
+            toggle.addEventListener("click", () => {
+                const isOpen = navWrap.classList.toggle("open");
+                toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
+
+            navWrap.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    navWrap.classList.remove("open");
+                    toggle.setAttribute("aria-expanded", "false");
+                });
+            });
+        }
+    </script>
 </body>
 </html>

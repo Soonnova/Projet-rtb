@@ -69,6 +69,18 @@
             width: 186px;
             height: auto;
         }
+        .menu-toggle {
+            display: none;
+            margin-left: auto;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(31, 43, 53, 0.12);
+            border-radius: 6px;
+            background: #fff;
+            color: var(--dark);
+            font-size: 26px;
+            cursor: pointer;
+        }
         .nav-wrap {
             flex: 1 1 auto;
             display: flex;
@@ -358,6 +370,34 @@
             }
         }
 
+        @media (max-width: 1180px) {
+            .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+            .nav-wrap {
+                position: absolute;
+                top: 90px;
+                left: 0;
+                right: 0;
+                display: none;
+                padding: 0 20px 18px;
+                z-index: 12;
+            }
+            .nav-wrap.open { display: block; }
+            .nav-shell {
+                background: #fff;
+                border: 1px solid var(--line);
+                box-shadow: var(--shadow);
+                padding: 18px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .nav {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+            .header-cta { margin-left: 0; margin-top: 14px; }
+        }
+
         @media (max-width: 760px) {
             .container { width: min(var(--content), calc(100% - 28px)); }
             .topbar-inner,
@@ -368,17 +408,8 @@
             .header-inner {
                 padding: 18px 0;
             }
-            .nav-wrap,
-            .nav-shell {
-                width: 100%;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .nav {
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                gap: 14px;
-            }
+            .nav-wrap { top: 82px; padding: 0 14px 14px; }
+            .nav { grid-template-columns: 1fr; }
             .section {
                 padding: 64px 0;
             }
@@ -405,12 +436,16 @@
                 <img src="rtb-logo.png" alt="RTB">
             </a>
 
-            <div class="nav-wrap">
+            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
+                &#9776;
+            </button>
+
+            <div class="nav-wrap" data-nav-wrap>
                 <div class="nav-shell">
                     <nav class="nav" aria-label="Navigation principale">
                         <a href="index.html">Accueil</a>
                         <a href="index.html#prestations">Prestations</a>
-                        <a href="chantiers-recents.html">Chantiers récents</a>
+                        <a class="is-current" href="chantiers-recents.html" aria-current="page">Chantiers récents</a>
                         <a href="index.html#contact">Contact</a>
                     </nav>
                     <div class="header-cta">
@@ -441,27 +476,16 @@
                 </div>
 
                 <div class="timeline">
-                    <!--
-                        Bloc chantier duplicable :
-                        Copiez-collez un article.timeline-card complet ou réutilisez le template laissé plus bas.
-                        A modifier à chaque ajout :
-                        1. l'image
-                        2. la date
-                        3. le titre
-                        4. la description
-                        5. les 3 lignes de travaux réalisés
-                        6. la note de contexte
-                    -->
                     <article class="timeline-card">
                         <div class="timeline-media" data-carousel>
                             <div class="carousel-slide is-active">
-                                <img src="https://placehold.co/1200x900/e8dfd1/1f2b35?text=Photo+1+chantier+octobre+2026" alt="Emplacement pour une première photo de chantier récent">
+                                <img src="images/piece.jpg" alt="Pièce de vie avec muret de briques, carrelage imitation bois et ouvertures sur le jardin">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://placehold.co/1200x900/e5dccf/1f2b35?text=Photo+2+chantier+octobre+2026" alt="Emplacement pour une deuxième photo de chantier récent">
+                                <img src="images/couloir.jpg" alt="Couloir carrelé imitation bois entre deux murs de briques">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://placehold.co/1200x900/e2d7c8/1f2b35?text=Photo+3+chantier+octobre+2026" alt="Emplacement pour une troisième photo de chantier récent">
+                                <img src="images/veranda-2.jpg" alt="Véranda aménagée avec mur de pierre et sol carrelé">
                             </div>
                             <div class="carousel-controls">
                                 <button class="carousel-btn" type="button" data-carousel-prev aria-label="Photo précédente">‹</button>
@@ -474,64 +498,68 @@
                             </div>
                         </div>
                         <div class="timeline-body">
-                            <span class="timeline-date">Octobre 2026</span>
-                            <h3>Transformation d'ouverture et reprise de maçonnerie</h3>
+                            <span class="timeline-date">Chantier récent</span>
+                            <h3>Pièce de vie, maçonnerie et carrelage</h3>
                             <p>
-                                Exemple de fiche chantier à compléter avec une photo réelle, une commune
-                                d'intervention et une courte description du contexte.
+                                Transformation d'une pièce ouverte sur le jardin : muret de briques,
+                                pose de carrelage imitation bois et finitions soignées.
                             </p>
                             <ul class="timeline-list">
-                                <li>Commune : Lys-lez-Lannoy</li>
-                                <li>Travaux réalisés : création d'ouverture, linteau, reprise locale</li>
+                                <li>Zone : MEL et environs</li>
+                                <li>Travaux : maçonnerie, carrelage imitation bois, ouvertures</li>
                                 <li>Type de chantier : rénovation chez particulier</li>
                             </ul>
-                            <div class="timeline-meta">SI INFO A AJOUTER.</div>
+                            <div class="timeline-meta">Un interlocuteur unique, du premier rendez-vous à la réception.</div>
                         </div>
                     </article>
 
                     <article class="timeline-card">
                         <div class="timeline-media" data-carousel>
                             <div class="carousel-slide is-active">
-                                <img src="https://placehold.co/1200x900/e6ddd0/1f2b35?text=Photo+1+chantier+septembre+2026" alt="Emplacement pour une première photo de chantier de carrelage récent">
+                                <img src="images/terrasse.jpg" alt="Terrasse carrelée grand format le long d'un mur de briques">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://placehold.co/1200x900/e4d8ca/1f2b35?text=Photo+2+chantier+septembre+2026" alt="Emplacement pour une deuxième photo de chantier de carrelage récent">
+                                <img src="images/allee.jpg" alt="Allée gravillonnée avec bordure de jardin">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/bordure.jpg" alt="Bordure de jardin et transition vers la terrasse">
                             </div>
                             <div class="carousel-controls">
                                 <button class="carousel-btn" type="button" data-carousel-prev aria-label="Photo précédente">‹</button>
                                 <div class="carousel-dots" aria-hidden="true">
                                     <span class="carousel-dot is-active"></span>
                                     <span class="carousel-dot"></span>
+                                    <span class="carousel-dot"></span>
                                 </div>
                                 <button class="carousel-btn" type="button" data-carousel-next aria-label="Photo suivante">›</button>
                             </div>
                         </div>
                         <div class="timeline-body">
-                            <span class="timeline-date">Septembre 2026</span>
-                            <h3>Terrasse et carrelage extérieur</h3>
+                            <span class="timeline-date">Aménagement extérieur</span>
+                            <h3>Terrasse, allée et bordures</h3>
                             <p>
-                                Exemple de mise en avant pour montrer un chantier visuellement parlant
-                                avec une photo principale et des informations rapides à lire.
+                                Préparation des supports et pose de carrelage grand format, avec allée
+                                gravillonnée et bordures pour un extérieur propre et durable.
                             </p>
                             <ul class="timeline-list">
-                                <li>Commune : Roubaix</li>
-                                <li>Travaux réalisés : préparation, pose de carrelage, finitions</li>
+                                <li>Zone : MEL et environs</li>
+                                <li>Travaux : terrasse carrelée, allée, bordures</li>
                                 <li>Type de chantier : aménagement extérieur</li>
                             </ul>
-                            <div class="timeline-meta">SI INFO A AJOUTER.</div>
+                            <div class="timeline-meta">Des finitions pensées pour durer et rester simples à entretenir.</div>
                         </div>
                     </article>
 
                     <article class="timeline-card">
                         <div class="timeline-media" data-carousel>
                             <div class="carousel-slide is-active">
-                                <img src="https://placehold.co/1200x900/e5dccf/1f2b35?text=Photo+1+chantier+aout+2026" alt="Emplacement pour une première photo de chantier béton récent">
+                                <img src="images/veranda.jpg" alt="Véranda terminée avec mur de pierre et carrelage gris">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://placehold.co/1200x900/e3d8ca/1f2b35?text=Photo+2+chantier+aout+2026" alt="Emplacement pour une deuxième photo de chantier béton récent">
+                                <img src="images/veranda-3.jpg" alt="Véranda avec puits de lumière, mur de pierre et sol carrelé">
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://placehold.co/1200x900/dfd2c1/1f2b35?text=Photo+3+chantier+aout+2026" alt="Emplacement pour une troisième photo de chantier béton récent">
+                                <img src="images/ragreage.jpg" alt="Ragréage et préparation de sol avant pose de revêtement">
                             </div>
                             <div class="carousel-controls">
                                 <button class="carousel-btn" type="button" data-carousel-prev aria-label="Photo précédente">‹</button>
@@ -544,61 +572,26 @@
                             </div>
                         </div>
                         <div class="timeline-body">
-                            <span class="timeline-date">Août 2026</span>
-                            <h3>Dalle béton et préparation de support</h3>
+                            <span class="timeline-date">Finitions &amp; préparation</span>
+                            <h3>Véranda, ragréage et supports</h3>
                             <p>
-                                Ce format permet de publier des réalisations techniques sans surcharger la lecture,
-                                tout en gardant une présentation rassurante pour le visiteur.
+                                Aménagement d'une véranda et préparation soignée des sols : le travail
+                                invisible avant les finitions, aussi important que le rendu final.
                             </p>
                             <ul class="timeline-list">
-                                <li>Commune : Tourcoing</li>
-                                <li>Travaux réalisés : ferraillage, coffrage, coulage, finition</li>
-                                <li>Type de chantier : dalle pour aménagement ou accès</li>
+                                <li>Zone : MEL et environs</li>
+                                <li>Travaux : véranda, ragréage, préparation de support</li>
+                                <li>Type de chantier : transformation chez particulier</li>
                             </ul>
-                            <div class="timeline-meta">SI INFO A AJOUTER.</div>
+                            <div class="timeline-meta">Un sol bien préparé, c'est un carrelage qui tient dans le temps.</div>
                         </div>
                     </article>
                 </div>
 
                 <div class="update-note">
-                    Structure conseillée pour les futures mises à jour : 1 photo principale, 1 date, 1 titre chantier,
-                    3 points sur les travaux réalisés et 1 courte note de contexte. Ce format sera simple à reprendre ensuite dans WordPress.
+                    Cette page sera mise à jour au fil des chantiers. Pour un projet similaire,
+                    demandez un devis : rappel sous 48 h.
                 </div>
-
-                <template id="modele-chantier-duplicable">
-                    <article class="timeline-card">
-                        <div class="timeline-media" data-carousel>
-                            <div class="carousel-slide is-active">
-                                <img src="https://placehold.co/1200x900/e7ded1/1f2b35?text=Nouvelle+photo+1" alt="Emplacement pour une première photo de chantier">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://placehold.co/1200x900/e2d8ca/1f2b35?text=Nouvelle+photo+2" alt="Emplacement pour une deuxième photo de chantier">
-                            </div>
-                            <div class="carousel-controls">
-                                <button class="carousel-btn" type="button" data-carousel-prev aria-label="Photo précédente">‹</button>
-                                <div class="carousel-dots" aria-hidden="true">
-                                    <span class="carousel-dot is-active"></span>
-                                    <span class="carousel-dot"></span>
-                                </div>
-                                <button class="carousel-btn" type="button" data-carousel-next aria-label="Photo suivante">›</button>
-                            </div>
-                        </div>
-                        <div class="timeline-body">
-                            <span class="timeline-date">Mois 2026</span>
-                            <h3>Titre du chantier</h3>
-                            <p>
-                                Décrivez ici en quelques lignes le contexte du chantier pour aider le visiteur
-                                à comprendre rapidement le type d'intervention réalisée.
-                            </p>
-                            <ul class="timeline-list">
-                                <li>Commune : à remplacer</li>
-                                <li>Travaux réalisés : à remplacer</li>
-                                <li>Type de chantier : à remplacer</li>
-                            </ul>
-                            <div class="timeline-meta">SI INFO A AJOUTER.</div>
-                        </div>
-                    </article>
-                </template>
             </div>
         </section>
     </main>
@@ -615,6 +608,23 @@
     </footer>
 
     <script>
+        const toggle = document.querySelector("[data-menu-toggle]");
+        const navWrap = document.querySelector("[data-nav-wrap]");
+
+        if (toggle && navWrap) {
+            toggle.addEventListener("click", () => {
+                const isOpen = navWrap.classList.toggle("open");
+                toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
+
+            navWrap.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    navWrap.classList.remove("open");
+                    toggle.setAttribute("aria-expanded", "false");
+                });
+            });
+        }
+
         const pageLinks = Array.from(document.querySelectorAll(".nav a"));
         const currentPage = window.location.pathname.split("/").pop() || "index.html";
 

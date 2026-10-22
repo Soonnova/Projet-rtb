@@ -38,3 +38,13 @@ Le modèle à copier est dans le commentaire `TODO (client)` de la page. Une foi
 ## 6. Contacts
 
 - [ ] Confirmer que le 06 81 32 79 05 est joignable sur WhatsApp. Si oui, le lien reste tel quel ; sinon retirer le bouton WhatsApp (liste des contacts et lien sous le formulaire).
+
+## 7. Hébergeur : HTTPS (« formulaire non sécurisé » sur iPhone)
+
+Safari affiche cet avertissement quand la page est chargée en `http://`. Le code est prêt (voir `.htaccess` et la balise `upgrade-insecure-requests`), mais ces points dépendent de l'hébergeur :
+
+- [ ] Déployer le fichier `.htaccess` à la racine du site. S'il en existe déjà un sur le serveur (ancien WordPress), ne pas l'écraser : recopier le bloc « HTTPS » en haut du fichier existant.
+- [ ] Vérifier chez OVH qu'un certificat SSL valide est actif pour `rtb.fr` **et** `www.rtb.fr` (espace client OVH, hébergement, « Multisite », colonne SSL). Sans certificat valide, aucune redirection ne peut corriger l'avertissement.
+- [ ] Si l'ancien WordPress est encore en ligne, son adresse (`WP_HOME` / `WP_SITEURL`) est en `http://rtb.fr` dans `wp-config.remote.php` : à passer en `https://` ou à retirer.
+- [ ] Après mise en ligne, tester sur iPhone : `http://rtb.fr` doit rediriger vers `https://rtb.fr` et le cadenas doit apparaître sans avertissement.
+

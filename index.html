@@ -2,6 +2,11 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <script>
+        // Safari signale « non sécurisé » une page ou un formulaire en http. Sur le vrai domaine, on passe en https (pas en local).
+        if (location.protocol === "http:" && /^(www\.)?rtb\.fr$/i.test(location.hostname)) location.replace("https://rtb.fr" + location.pathname + location.search + location.hash);
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrelage et maçonnerie pour particuliers à Lys-lez-Lannoy | RTB</title>
     <meta

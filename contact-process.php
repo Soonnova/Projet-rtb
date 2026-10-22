@@ -9,7 +9,8 @@ declare(strict_types=1);
 $origine = isset($_POST['origine']) && $_POST['origine'] === 'contact' ? 'contact' : 'top';
 
 $redirect = static function (string $status) use ($origine): void {
-    header('Location: index.html?status=' . $status . '#' . $origine);
+    // Le formulaire de devis de l'accueil porte l'ancre #devis.
+    header('Location: index.html?status=' . $status . '#' . ($origine === 'contact' ? 'contact' : 'devis'));
     exit;
 };
 

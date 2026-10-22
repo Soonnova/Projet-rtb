@@ -100,7 +100,13 @@
             });
         });
 
-        document.querySelectorAll('a[href="#contact"], a[href="#top"], a[href="chantiers-recents.html"], .btn').forEach((link) => {
+        document.querySelectorAll('a[href^="https://wa.me/"]').forEach((link) => {
+            link.addEventListener("click", () => {
+                pushEvent("rtb_whatsapp_click", { page_type: getPageType() });
+            });
+        });
+
+        document.querySelectorAll('a[href="#contact"], a[href="#top"], a[href$="#devis"], a[href="chantiers-recents.html"], .btn, .mobile-bar-btn').forEach((link) => {
             link.addEventListener("click", () => {
                 pushEvent("rtb_cta_click", {
                     page_type: getPageType(),

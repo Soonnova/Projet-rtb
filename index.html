@@ -78,6 +78,7 @@
     </script>
 
     <script src="tracking.js" defer></script>
+    <script src="site.js" defer></script>
     <style>
         :root {
             --bg: #f4f1eb;
@@ -843,6 +844,33 @@
             color: var(--muted);
             font-size: 16px;
         }
+        .channel-list {
+            list-style: none;
+            margin: 24px 0 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .channel {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-height: 44px;
+            height: 100%;
+            padding: 16px 18px;
+            border: 1px solid rgba(31, 43, 53, 0.4);
+            border-left: 4px solid var(--orange);
+            border-radius: 6px;
+            background: var(--surface-soft);
+            color: var(--dark);
+            transition: background 0.2s ease;
+        }
+        .channel:hover { background: #fff; }
+        .channel-name { font-weight: 800; }
+        .channel-detail { color: var(--muted); }
+        .form-alt { margin-top: 10px; }
+        .form-alt a { text-decoration: underline; font-weight: 700; }
         .contact-form {
             display: grid;
             gap: 14px;
@@ -1154,6 +1182,7 @@
             .reviews-grid,
             .legal-preview-grid,
             .contact-form-row,
+            .channel-list,
             .insurance-meta {
                 grid-template-columns: 1fr;
             }
@@ -1218,8 +1247,9 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="ux.css">
 </head>
-<body>
+<body class="has-mobile-bar">
     <div class="topbar">
         <div class="container topbar-inner">
             <div>Entreprise de bâtiment à <strong>Lys-lez-Lannoy</strong> depuis 1998</div>
@@ -1237,7 +1267,7 @@
                 <img src="rtb-logo.png" alt="RTB Bâtiment" width="186" height="54">
             </a>
 
-            <div class="nav-wrap" data-nav-wrap>
+            <div class="nav-wrap" id="site-nav" data-nav-wrap>
                 <div class="nav-shell">
                     <nav class="nav" aria-label="Navigation principale">
                         <a class="nav-link" href="#top" data-scroll-target="#top">Accueil</a>
@@ -1249,10 +1279,10 @@
             </div>
 
             <div class="header-cta">
-                <a href="#top" class="btn btn-primary"><span class="cta-full">Demander un devis</span><span class="cta-short">Devis</span></a>
+                <a href="#devis" class="btn btn-primary"><span class="cta-full">Demander un devis</span><span class="cta-short">Devis</span></a>
             </div>
 
-            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
+            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
                 &#9776;
             </button>
         </div>
@@ -1279,7 +1309,7 @@
                     </div>
                 </div>
 
-                <form class="hero-form" action="contact-process.php" method="POST" aria-label="Formulaire de prise de contact rapide">
+                <form class="hero-form" id="devis" action="contact-process.php" method="POST" aria-labelledby="devis-titre">
                     <!-- Champ Honeypot anti-spam -->
                     <div style="display:none;" aria-hidden="true">
                         <input type="text" name="website_url" tabindex="-1" autocomplete="off">
@@ -1288,13 +1318,18 @@
                     <div class="form-alert" data-form-alert></div>
 
                     <div class="hero-form-head">
-                        <h2>Demander un devis</h2>
+                        <h2 id="devis-titre" tabindex="-1" data-devis-title>Demander un devis</h2>
                         <p>Gratuit. Rappel sous 48 h.</p>
+                        <p class="form-alt">
+                            Vous préférez nous parler ?
+                            <a href="tel:0681327905">Appelez le 06 81 32 79 05</a>
+                            ou <a href="https://wa.me/33681327905?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20des%20travaux." rel="noopener">écrivez-nous sur WhatsApp</a>.
+                        </p>
                     </div>
                     <div class="hero-form-body">
                         <div class="field">
                             <label for="hero-project">Type de travaux</label>
-                            <input id="hero-project" name="projet" type="text" placeholder="Carrelage, terrasse, ouverture..." required>
+                            <input id="hero-project" name="projet" type="text" placeholder="Carrelage, terrasse, ouverture..." required data-devis-first>
                         </div>
                         <div class="field">
                             <label for="hero-name">Nom &amp; Prénom</label>
@@ -1538,9 +1573,35 @@
                     <span class="eyebrow">Contact</span>
                     <h2 class="section-title">Un devis clair, sans engagement</h2>
                     <p>
-                        Remplissez le formulaire en haut de page. Nous venons ensuite sur place pour chiffrer les travaux.
+                        Choisissez le moyen de contact qui vous convient. Nous venons ensuite sur place pour préparer votre devis.
                     </p>
-                    <a class="btn btn-primary" href="#top">Remplir le formulaire</a>
+                    <ul class="channel-list">
+                        <li>
+                            <a class="channel" href="tel:0681327905">
+                                <span class="channel-name">Nous appeler</span>
+                                <span class="channel-detail">06 81 32 79 05</span>
+                            </a>
+                        </li>
+                        <!-- TODO (client) : confirmer que le 06 81 32 79 05 est bien utilisable sur WhatsApp ; sinon supprimer cet élément de liste. -->
+                        <li>
+                            <a class="channel" href="https://wa.me/33681327905?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20des%20travaux." rel="noopener">
+                                <span class="channel-name">Nous écrire sur WhatsApp</span>
+                                <span class="channel-detail">Un simple message pour démarrer</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="channel" href="#devis">
+                                <span class="channel-name">Être rappelé</span>
+                                <span class="channel-detail">Laissez votre numéro et choisissez un créneau</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="channel" href="mailto:contact@rtb.fr">
+                                <span class="channel-name">Nous envoyer un e-mail</span>
+                                <span class="channel-detail">contact@rtb.fr</span>
+                            </a>
+                        </li>
+                    </ul>
                 </article>
 
                 <aside class="contact-panel">
@@ -1586,27 +1647,19 @@
         </div>
     </footer>
 
+    <nav class="mobile-bar" aria-label="Actions rapides">
+        <a class="mobile-bar-btn mobile-bar-call" href="tel:0681327905">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+            <span>Appeler<span class="sr-only"> le 06 81 32 79 05</span></span>
+        </a>
+        <a class="mobile-bar-btn mobile-bar-devis" href="#devis">Devis</a>
+    </nav>
+
     <button class="scroll-top" type="button" aria-label="Revenir en haut de la page" data-scroll-top></button>
     <div class="form-toast" role="status" aria-live="polite" data-form-toast></div>
 
     <script>
-        const toggle = document.querySelector("[data-menu-toggle]");
-        const navWrap = document.querySelector("[data-nav-wrap]");
         const scrollTopButton = document.querySelector("[data-scroll-top]");
-
-        if (toggle && navWrap) {
-            toggle.addEventListener("click", () => {
-                const isOpen = navWrap.classList.toggle("open");
-                toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-            });
-
-            navWrap.querySelectorAll("a").forEach((link) => {
-                link.addEventListener("click", () => {
-                    navWrap.classList.remove("open");
-                    toggle.setAttribute("aria-expanded", "false");
-                });
-            });
-        }
 
         const trackedLinks = Array.from(document.querySelectorAll(".nav-link[data-scroll-target]"));
 

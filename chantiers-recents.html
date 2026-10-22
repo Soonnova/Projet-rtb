@@ -18,6 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="tracking.js" defer></script>
+    <script src="site.js" defer></script>
     <style>
         :root {
             --dark: #1f2b35;
@@ -463,8 +464,9 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="ux.css">
 </head>
-<body>
+<body class="has-mobile-bar">
     <div class="topbar">
         <div class="container topbar-inner">
             <div>Entreprise de bâtiment à <strong>Lys-lez-Lannoy</strong> depuis 1998</div>
@@ -478,7 +480,7 @@
                 <img src="rtb-logo.png" alt="RTB">
             </a>
 
-            <div class="nav-wrap" data-nav-wrap>
+            <div class="nav-wrap" id="site-nav" data-nav-wrap>
                 <div class="nav-shell">
                     <nav class="nav" aria-label="Navigation principale">
                         <a href="index.html">Accueil</a>
@@ -490,10 +492,10 @@
             </div>
 
             <div class="header-cta">
-                <a class="btn btn-primary" href="index.html#top"><span class="cta-full">Demander un devis</span><span class="cta-short">Devis</span></a>
+                <a class="btn btn-primary" href="index.html#devis"><span class="cta-full">Demander un devis</span><span class="cta-short">Devis</span></a>
             </div>
 
-            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
+            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
                 &#9776;
             </button>
         </div>
@@ -610,23 +612,16 @@
         </div>
     </footer>
 
+    <nav class="mobile-bar" aria-label="Actions rapides">
+        <a class="mobile-bar-btn mobile-bar-call" href="tel:0681327905">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+            <span>Appeler<span class="sr-only"> le 06 81 32 79 05</span></span>
+        </a>
+        <a class="mobile-bar-btn mobile-bar-devis" href="index.html#devis">Devis</a>
+    </nav>
+
+
     <script>
-        const toggle = document.querySelector("[data-menu-toggle]");
-        const navWrap = document.querySelector("[data-nav-wrap]");
-
-        if (toggle && navWrap) {
-            toggle.addEventListener("click", () => {
-                const isOpen = navWrap.classList.toggle("open");
-                toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-            });
-
-            navWrap.querySelectorAll("a").forEach((link) => {
-                link.addEventListener("click", () => {
-                    navWrap.classList.remove("open");
-                    toggle.setAttribute("aria-expanded", "false");
-                });
-            });
-        }
 
         const pageLinks = Array.from(document.querySelectorAll(".nav a"));
         const currentPage = window.location.pathname.split("/").pop() || "index.html";

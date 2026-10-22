@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://rtb.fr/</loc>
-  </url>
-  <url>
-    <loc>https://rtb.fr/chantiers-recents.html</loc>
-  </url>
-  <url>
-    <loc>https://rtb.fr/mentions-legales.html</loc>
-  </url>
-  <url>
-    <loc>https://rtb.fr/politique-confidentialite.html</loc>
-  </url>
+  <url><loc>https://rtb.fr/</loc></url>
+  <url><loc>https://rtb.fr/carrelage.html</loc></url>
+  <url><loc>https://rtb.fr/ouverture-mur.html</loc></url>
+  <url><loc>https://rtb.fr/dalles-terrasses.html</loc></url>
+  <url><loc>https://rtb.fr/maconnerie.html</loc></url>
+  <url><loc>https://rtb.fr/lys-lez-lannoy.html</loc></url>
+  <url><loc>https://rtb.fr/lannoy.html</loc></url>
+  <url><loc>https://rtb.fr/hem.html</loc></url>
+  <url><loc>https://rtb.fr/roubaix.html</loc></url>
+  <url><loc>https://rtb.fr/toufflers.html</loc></url>
+  <url><loc>https://rtb.fr/sailly-lez-lannoy.html</loc></url>
+  <url><loc>https://rtb.fr/chantiers-recents.html</loc></url>
+  <url><loc>https://rtb.fr/mentions-legales.html</loc></url>
+  <url><loc>https://rtb.fr/politique-confidentialite.html</loc></url>
 </urlset>

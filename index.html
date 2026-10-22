@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RTB | Maçonnerie, Carrelage &amp; Rénovation dans la MEL et ses environs</title>
+    <title>Carrelage et maçonnerie à Lys-lez-Lannoy | RTB</title>
     <meta
         name="description"
-        content="RTB, entreprise du bâtiment à Lys-lez-Lannoy depuis 1998. Travaux de maçonnerie, carrelage, dalles béton et ouvertures dans la MEL et ses environs. Garantie décennale MAAF."
+        content="RTB à Lys-lez-Lannoy depuis 1998. Carrelage, terrasse, ouverture de mur et petites reprises dans la MEL. Devis gratuit, rappel sous 48 h."
     >
     <link rel="canonical" href="https://rtb.fr/">
     <link rel="icon" href="favicon.ico" sizes="any">
@@ -16,8 +16,8 @@
     <!-- Open Graph / Réseaux sociaux -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rtb.fr/">
-    <meta property="og:title" content="RTB | Entreprise de bâtiment - MEL et environs">
-    <meta property="og:description" content="Maçonnerie générale, rénovation, carrelage et dalles béton pour les particuliers depuis 1998. Devis gratuit et garantie décennale MAAF.">
+    <meta property="og:title" content="Carrelage et maçonnerie à Lys-lez-Lannoy | RTB">
+    <meta property="og:description" content="Petits chantiers de particuliers : carrelage, terrasse, ouverture de mur. Entreprise locale depuis 1998. Devis gratuit.">
     <meta property="og:image" content="https://rtb.fr/images/piece.jpg">
 
     <!-- Schema.org SEO Local -->
@@ -25,7 +25,9 @@
     {
       "@context": "https://schema.org",
       "@type": "HomeAndConstructionBusiness",
-      "name": "RTB - Réhabilitation & Transformation du Bâtiment",
+      "name": "Réhabilitation Transformation Bâtiment Rtb",
+      "alternateName": ["RTB", "Réhabilitation & Transformation du Bâtiment"],
+      "url": "https://rtb.fr/",
       "image": "https://rtb.fr/images/piece.jpg",
       "telephone": "+33681327905",
       "email": "contact@rtb.fr",
@@ -35,9 +37,32 @@
         "postalCode": "59390",
         "addressCountry": "FR"
       },
-      "areaServed": "MEL et environs",
+      "areaServed": [
+        { "@type": "City", "name": "Lys-lez-Lannoy" },
+        { "@type": "City", "name": "Lannoy" },
+        { "@type": "City", "name": "Hem" },
+        { "@type": "City", "name": "Roubaix" },
+        { "@type": "City", "name": "Toufflers" },
+        { "@type": "City", "name": "Sailly-lez-Lannoy" }
+      ],
       "foundingDate": "1998-10-20",
-      "priceRange": "€€"
+      "priceRange": "€€",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Prestations RTB",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pose de carrelage", "url": "https://rtb.fr/carrelage.html" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ouverture de mur", "url": "https://rtb.fr/ouverture-mur.html" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dalles et terrasses", "url": "https://rtb.fr/dalles-terrasses.html" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maçonnerie", "url": "https://rtb.fr/maconnerie.html" } }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "6",
+        "bestRating": "5"
+      }
     }
     </script>
 
@@ -480,7 +505,49 @@
             box-shadow: var(--shadow);
             border-radius: var(--radius);
             overflow: hidden;
+            color: inherit;
         }
+        a.service-card { display: block; }
+        a.service-card:hover { transform: translateY(-2px); }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .review-card {
+            background: #fff;
+            border: 1px solid rgba(31, 43, 53, 0.08);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            padding: 22px 22px 18px;
+        }
+        .review-card p { margin: 0 0 14px; color: var(--text); font-size: 15px; }
+        .review-card footer { color: var(--muted); font-size: 13px; }
+        .review-card strong { color: var(--dark); }
+        .reviews-note { margin-top: 16px; font-size: 14px; color: var(--muted); }
+        .zone-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .zone-links a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 40px;
+            padding: 0 14px;
+            background: #f4ede0;
+            color: var(--dark);
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 6px;
+        }
+        .footer-zones {
+            width: 100%;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .footer-zones a { text-decoration: underline; }
         .service-card img {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -869,6 +936,7 @@
             justify-content: space-between;
             gap: 24px;
             align-items: center;
+            flex-wrap: wrap;
             color: #66717b;
             font-size: 14px;
         }
@@ -1006,6 +1074,7 @@
             .proof-grid,
             .service-grid,
             .showcase-grid,
+            .reviews-grid,
             .legal-preview-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -1071,6 +1140,7 @@
             .proof-grid,
             .service-grid,
             .showcase-grid,
+            .reviews-grid,
             .legal-preview-grid,
             .contact-form-row,
             .insurance-meta {
@@ -1182,15 +1252,15 @@
             <div class="container hero-inner">
                 <div class="hero-copy">
                     <span class="eyebrow">Entreprise de bâtiment à Lys-lez-Lannoy</span>
-                    <h1>Maçonnerie, carrelage et rénovation dans la MEL</h1>
+                    <h1>Carrelage, ouvertures et maçonnerie à Lys-lez-Lannoy</h1>
                     <p>
-                        Un interlocuteur unique depuis 1998. Devis gratuit, rappel sous 48 h.
+                        Petits chantiers de particuliers, un interlocuteur unique depuis 1998. Devis gratuit, rappel sous 48 h.
                     </p>
 
                     <div class="hero-points">
                         <div>28 ans d'activité à Lys-lez-Lannoy</div>
-                        <div>Maçonnerie, carrelage, dalles et ouvertures</div>
-                        <div>Garantie décennale MAAF</div>
+                        <div>Carrelage, terrasse, ouverture de mur</div>
+                        <div>Avis Google 5/5 — garantie décennale MAAF</div>
                     </div>
 
                     <div class="hero-actions">
@@ -1239,7 +1309,7 @@
 
                         <button class="btn btn-primary" type="submit" style="width: 100%;">Être rappelé gratuitement</button>
                         <div class="hero-note">
-                            RTB intervient dans la MEL et ses environs.
+                            RTB intervient depuis Lys-lez-Lannoy, dans la MEL.
                         </div>
                     </div>
                 </form>
@@ -1249,8 +1319,8 @@
         <section class="proof-strip" aria-label="Points de confiance">
             <div class="container proof-grid">
                 <article class="proof-card">
-                    <strong>Depuis 1998</strong>
-                    <span>Entreprise locale à Lys-lez-Lannoy.</span>
+                    <strong>Avis Google 5/5</strong>
+                    <span>Clients de Lys-lez-Lannoy et des communes proches.</span>
                 </article>
                 <article class="proof-card">
                     <strong>Rappel sous 48 h</strong>
@@ -1310,46 +1380,46 @@
                 <div class="services-head">
                     <div>
                         <span class="eyebrow">Prestations</span>
-                        <h2 class="section-title">Ce que nous réalisons</h2>
+                        <h2 class="section-title">Les chantiers que nous prenons en priorité</h2>
                     </div>
                 </div>
 
                 <div class="service-grid">
-                    <article class="service-card" id="maconnerie">
-                        <img src="images/enduit.jpg" alt="Reprise de maçonnerie et enduit réalisés par RTB" width="560" height="180" loading="lazy">
-                        <div class="service-body">
-                            <span class="service-tag">Gros œuvre</span>
-                            <h3>Maçonnerie</h3>
-                            <p>Murs, extensions, reprises de structure et rénovation de bâtis anciens.</p>
-                        </div>
-                    </article>
-
-                    <article class="service-card" id="carrelage">
+                    <a class="service-card" id="carrelage" href="carrelage.html">
                         <img src="images/terrasse.jpg" alt="Terrasse carrelée grand format réalisée par RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
-                            <span class="service-tag">Revêtements</span>
+                            <span class="service-tag">Le plus demandé</span>
                             <h3>Carrelage</h3>
-                            <p>Pièces de vie, salles de bains et terrasses, y compris préparation du support.</p>
+                            <p>Pièces de vie, salles de bains et terrasses, avec préparation du support.</p>
                         </div>
-                    </article>
+                    </a>
 
-                    <article class="service-card" id="beton">
+                    <a class="service-card" id="ouverture" href="ouverture-mur.html">
+                        <img src="images/veranda-2.jpg" alt="Ouverture et aménagement d'une pièce de vie réalisés par RTB" width="560" height="180" loading="lazy">
+                        <div class="service-body">
+                            <span class="service-tag">Chantier ciblé</span>
+                            <h3>Ouverture de mur</h3>
+                            <p>Agrandir une pièce ou créer une baie, avec pose de linteau.</p>
+                        </div>
+                    </a>
+
+                    <a class="service-card" id="beton" href="dalles-terrasses.html">
                         <img src="images/ragreage.jpg" alt="Préparation de sol et ragréage réalisés par RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
                             <span class="service-tag">Sols</span>
-                            <h3>Dalles et béton</h3>
-                            <p>Dalles, chapes et préparation de sol pour extensions, vérandas et accès.</p>
+                            <h3>Dalles et terrasses</h3>
+                            <p>Petites dalles, ragréage et terrasses carrelées.</p>
                         </div>
-                    </article>
+                    </a>
 
-                    <article class="service-card" id="ouverture">
-                        <img src="images/veranda-2.jpg" alt="Ouverture et aménagement d'une pièce de vie réalisés par RTB" width="560" height="180" loading="lazy">
+                    <a class="service-card" id="maconnerie" href="maconnerie.html">
+                        <img src="images/enduit.jpg" alt="Reprise de maçonnerie et enduit réalisés par RTB" width="560" height="180" loading="lazy">
                         <div class="service-body">
-                            <span class="service-tag">Structure</span>
-                            <h3>Ouvertures de murs</h3>
-                            <p>Agrandir une pièce ou créer une ouverture, avec pose de linteau en sécurité.</p>
+                            <span class="service-tag">Reprises</span>
+                            <h3>Maçonnerie</h3>
+                            <p>Murets, enduits et petites reprises de structure.</p>
                         </div>
-                    </article>
+                    </a>
                 </div>
 
                 <div class="reassurance-band">
@@ -1395,16 +1465,58 @@
             </div>
         </section>
 
+        <section class="section" id="avis">
+            <div class="container">
+                <div class="services-head">
+                    <div>
+                        <span class="eyebrow">Avis Google</span>
+                        <h2 class="section-title">Ce que disent les clients</h2>
+                    </div>
+                </div>
+                <div class="reviews-grid">
+                    <article class="review-card">
+                        <p>« Yann est très compétant, à l'écoute et disponible, travail propre et soigné, je recommande à 100%. »</p>
+                        <footer><strong>Sébinouche 1982</strong> — 5/5 · Google</footer>
+                    </article>
+                    <article class="review-card">
+                        <p>« Société sérieuse et personne agréable. Merci Mr Eeckeman pour votre sérieux et le suivi du chantier. »</p>
+                        <footer><strong>Claudia Deltombe</strong> — 5/5 · Google</footer>
+                    </article>
+                    <article class="review-card">
+                        <p>« Merci à Yann pour son travail soigné, sa gentillesse et son professionnalisme. Nous recommandons avec plaisir cet artisant honnête et sérieux. »</p>
+                        <footer><strong>Dolores Perche</strong> — 5/5 · Google</footer>
+                    </article>
+                    <article class="review-card">
+                        <p>« Terrasse extérieure faite dans les temps, respect du budget et super équipe. A recommander. »</p>
+                        <footer><strong>Roussos Jean-Christophe</strong> — 5/5 · Google</footer>
+                    </article>
+                </div>
+                <p class="reviews-note">
+                    Avis publiés sur Google, reproduits avec leur formulation d'origine.
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=R%C3%A9habilitation+Transformation+B%C3%A2timent+Rtb+Lys-lez-Lannoy" rel="noopener">Voir la fiche Google</a>
+                    — après un chantier, un avis nous aide à rester visibles dans le secteur.
+                </p>
+            </div>
+        </section>
+
         <section class="section territory" id="secteurs">
             <div class="container">
                 <article class="territory-map">
                     <div class="territory-map-head">
                         <div>
                             <span class="eyebrow">Zone d'intervention</span>
-                            <h3>MEL et environs</h3>
+                            <h3>Depuis Lys-lez-Lannoy, dans la MEL</h3>
                             <p>Nous restons dans un rayon proche pour garder des délais tenables et un suivi simple.</p>
                         </div>
                         <div class="territory-badge">MEL &amp; Environs</div>
+                    </div>
+                    <div class="zone-links">
+                        <a href="lys-lez-lannoy.html">Lys-lez-Lannoy</a>
+                        <a href="lannoy.html">Lannoy</a>
+                        <a href="hem.html">Hem</a>
+                        <a href="roubaix.html">Roubaix</a>
+                        <a href="toufflers.html">Toufflers</a>
+                        <a href="sailly-lez-lannoy.html">Sailly-lez-Lannoy</a>
                     </div>
                 </article>
             </div>
@@ -1423,7 +1535,7 @@
 
                 <aside class="contact-panel">
                     <h3>RTB</h3>
-                    <p>Réhabilitation &amp; Transformation du Bâtiment</p>
+                    <p>Réhabilitation Transformation Bâtiment Rtb</p>
 
                     <div class="contact-line">
                         <span>Siège social</span>
@@ -1445,12 +1557,21 @@
 
     <footer class="site-footer">
         <div class="container footer-inner">
-            <div>&copy; 1998 - 2026 RTB - Réhabilitation &amp; Transformation du Bâtiment</div>
+            <div>RTB - 59390 Lys-lez-Lannoy - 06 81 32 79 05</div>
             <div class="footer-links">
                 <a href="chantiers-recents.html">Chantiers récents</a>
                 <a href="mentions-legales.html">Mentions légales</a>
                 <a href="politique-confidentialite.html">Politique de confidentialité</a>
-                <span>MEL et environs</span>
+            </div>
+            <div class="footer-zones">
+                Interventions :
+                <a href="lys-lez-lannoy.html">Lys-lez-Lannoy</a>,
+                <a href="lannoy.html">Lannoy</a>,
+                <a href="hem.html">Hem</a>,
+                <a href="roubaix.html">Roubaix</a>,
+                <a href="toufflers.html">Toufflers</a>,
+                <a href="sailly-lez-lannoy.html">Sailly-lez-Lannoy</a>
+                et la MEL.
             </div>
         </div>
     </footer>

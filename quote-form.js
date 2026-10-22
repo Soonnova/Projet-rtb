@@ -151,7 +151,9 @@
         clearErrors();
         body.hidden = true;
         success.hidden = false;
-        if (live) live.textContent = "Votre demande a bien été envoyée. " + text;
+        // Une seule annonce : la confirmation reçoit le focus et c'est elle que le lecteur d'écran lit.
+        // La zone « envoi en cours » est déjà vidée par setSending(false) ; on ne la réutilise pas ici.
+        if (live) live.textContent = "";
         success.focus({ preventScroll: true });
         success.scrollIntoView({ block: "center", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 

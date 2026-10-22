@@ -134,6 +134,7 @@
             flex: 0 0 auto;
             margin-left: auto;
         }
+        .header-cta .cta-short { display: none; }
         .btn {
             display: inline-flex;
             align-items: center;
@@ -426,7 +427,11 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 10px;
             }
-            .header-cta { margin-left: 0; margin-top: 14px; }
+            .header-cta { margin-left: auto; margin-top: 0; }
+            .header-cta .btn { min-height: 44px; padding: 0 12px; font-size: 12px; }
+            .header-cta .cta-full { display: none; }
+            .header-cta .cta-short { display: inline; }
+            .menu-toggle { margin-left: 0; }
         }
 
         @media (max-width: 760px) {
@@ -467,10 +472,6 @@
                 <img src="rtb-logo.png" alt="RTB">
             </a>
 
-            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
-                &#9776;
-            </button>
-
             <div class="nav-wrap" data-nav-wrap>
                 <div class="nav-shell">
                     <nav class="nav" aria-label="Navigation principale">
@@ -479,11 +480,16 @@
                         <a class="is-current" href="chantiers-recents.html" aria-current="page">Chantiers récents</a>
                         <a href="index.html#contact">Contact</a>
                     </nav>
-                    <div class="header-cta">
-                        <a class="btn btn-primary" href="index.html#contact">Demander un devis</a>
-                    </div>
                 </div>
             </div>
+
+            <div class="header-cta">
+                <a class="btn btn-primary" href="index.html#top"><span class="cta-full">Demander un devis</span><span class="cta-short">Devis</span></a>
+            </div>
+
+            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
+                &#9776;
+            </button>
         </div>
     </header>
 
@@ -494,6 +500,9 @@
                 <p>
                     Photos de réalisations RTB. Les dates et le détail de chaque chantier
                     seront ajoutés dès qu'ils seront transmis.
+                </p>
+                <p>
+                    Photos publiées avec l'accord des clients. Un retrait est possible à tout moment sur simple demande à <a href="mailto:contact@rtb.fr">contact@rtb.fr</a>.
                 </p>
             </div>
         </section>

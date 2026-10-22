@@ -100,7 +100,7 @@
             });
         });
 
-        document.querySelectorAll('a[href="#contact"], a[href="chantiers-recents.html"], .btn').forEach((link) => {
+        document.querySelectorAll('a[href="#contact"], a[href="#top"], a[href="chantiers-recents.html"], .btn').forEach((link) => {
             link.addEventListener("click", () => {
                 pushEvent("rtb_cta_click", {
                     page_type: getPageType(),

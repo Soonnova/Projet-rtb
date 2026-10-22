@@ -133,6 +133,7 @@
             display: flex;
             align-items: center;
         }
+        .header-cta .cta-short { display: none; }
         .btn {
             display: inline-flex;
             align-items: center;
@@ -267,10 +268,17 @@
                 padding: 0 16px;
             }
             .header-cta {
-                margin-top: 14px;
-                justify-content: stretch;
-                margin-left: 0;
+                margin-top: 0;
+                margin-left: auto;
             }
+            .header-cta .btn {
+                min-height: 44px;
+                padding: 0 12px;
+                font-size: 12px;
+            }
+            .header-cta .cta-full { display: none; }
+            .header-cta .cta-short { display: inline; }
+            .menu-toggle { margin-left: 0; }
         }
 
         @media (max-width: 780px) {
@@ -306,10 +314,6 @@
                 <img src="rtb-logo.png" alt="RTB Bâtiment" width="186" height="54">
             </a>
 
-            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
-                &#9776;
-            </button>
-
             <div class="nav-wrap" data-nav-wrap>
                 <div class="nav-shell">
                     <nav class="nav" aria-label="Navigation principale">
@@ -318,11 +322,16 @@
                         <a class="nav-link" href="chantiers-recents.html">Chantiers récents</a>
                         <a class="nav-link" href="index.html#contact">Contact</a>
                     </nav>
-                    <div class="header-cta">
-                        <a href="index.html#contact" class="btn btn-primary">Demander un devis</a>
-                    </div>
                 </div>
             </div>
+
+            <div class="header-cta">
+                <a href="index.html#top" class="btn btn-primary"><span class="cta-full">Demander un devis</span><span class="cta-short">Devis</span></a>
+            </div>
+
+            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
+                &#9776;
+            </button>
         </div>
     </header>
 

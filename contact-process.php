@@ -6,6 +6,9 @@ declare(strict_types=1);
  * Compatible PHP 7.4 / 8.x
  */
 
+// Heure française pour la date affichée dans le courriel et l'en-tête Date (indépendant du réglage du serveur).
+date_default_timezone_set('Europe/Paris');
+
 $origine = isset($_POST['origine']) && $_POST['origine'] === 'contact' ? 'contact' : 'top';
 
 // Le formulaire de l'accueil envoie la demande sans recharger la page (fetch) : il attend alors du JSON.
@@ -66,27 +69,31 @@ if (
 
 $nomComplet = trim($nom . ($prenom !== '' ? ' ' . $prenom : ''));
 $dateEnvoi = date('d/m/Y') . ' - ' . date('H:i');
-$sourceFormulaire = $origine === 'contact' ? 'Formulaire de contact' : 'Formulaire d accueil';
-$details = $message !== '' ? $message : 'Aucun detail precise.';
+$sourceFormulaire = $origine === 'contact' ? 'Formulaire de contact' : 'Formulaire d\'accueil';
+$details = $message !== '' ? $message : 'Aucun détail précisé.';
 
 $destinataire = 'contact@rtb.fr';
-$sujet = 'Demande de devis RTB - ' . $nomComplet;
+$nomSujet = trim((string) preg_replace('/\s+/u', ' ', $nomComplet));
+if (preg_match('/^.{0,40}/us', $nomSujet, $coupe) === 1) {
+    $nomSujet = rtrim($coupe[0]);
+}
+$sujet = 'Demande de devis RTB - ' . $nomSujet;
 
 $lignesTexte = [
-    'RTB - Rehabilitation & Transformation du Batiment',
+    'RTB - Réhabilitation & Transformation du Bâtiment',
     'Nouvelle demande de devis',
     '',
-    'Recue le ' . $dateEnvoi,
+    'Reçue le ' . $dateEnvoi,
     'Source : ' . $sourceFormulaire,
     '',
-    'Coordonnees',
+    'Coordonnées',
     'Nom : ' . $nomComplet,
-    'Telephone : ' . ($telephone !== '' ? $telephone : 'Non renseigne'),
-    'E-mail : ' . ($email !== '' ? $email : 'Non renseigne'),
+    'Téléphone : ' . ($telephone !== '' ? $telephone : 'Non renseigné'),
+    'E-mail : ' . ($email !== '' ? $email : 'Non renseigné'),
 ];
 
 if ($creneau !== '') {
-    $lignesTexte[] = 'Creneau de rappel souhaite : ' . $creneau;
+    $lignesTexte[] = 'Créneau de rappel souhaité : ' . $creneau;
 }
 
 if ($ville !== '') {
@@ -102,8 +109,8 @@ $lignesTexte[] = 'Message';
 $lignesTexte[] = $details;
 $lignesTexte[] = '';
 $lignesTexte[] = $email !== ''
-    ? 'Repondre directement a cet e-mail pour contacter le demandeur.'
-    : 'Pas d e-mail laisse : rappeler le demandeur au ' . $telephone . '.';
+    ? 'Répondez directement à cet e-mail pour contacter le demandeur.'
+    : 'Pas d\'e-mail laissé : rappelez le demandeur au ' . $telephone . '.';
 
 $corpsTexte = implode("\n", $lignesTexte);
 
@@ -123,8 +130,8 @@ $ligneHtml = static function (string $libelle, string $valeur) use ($e): string 
 };
 
 $blocCoordonnees = $ligneHtml('Nom', $nomComplet)
-    . $ligneHtml('Telephone', $telephone !== '' ? $telephone : 'Non renseigne')
-    . $ligneHtml('E-mail', $email !== '' ? $email : 'Non renseigne');
+    . $ligneHtml('Téléphone', $telephone !== '' ? $telephone : 'Non renseigné')
+    . $ligneHtml('E-mail', $email !== '' ? $email : 'Non renseigné');
 
 if ($creneau !== '') {
     $blocCoordonnees .= $ligneHtml('Rappel souhaite', $creneau);
@@ -153,15 +160,15 @@ $corpsHtml = '<!DOCTYPE html>
                     <tr>
                         <td style="background:#1f2b35;padding:22px 28px;border-bottom:4px solid #f29a1f;">
                             <p style="margin:0 0 4px;color:#ffffff;font-size:20px;line-height:1.2;font-family:Arial,Helvetica,sans-serif;font-weight:700;">RTB</p>
-                            <p style="margin:0;color:#c9d4dc;font-size:13px;font-family:Arial,Helvetica,sans-serif;">Rehabilitation &amp; Transformation du Batiment</p>
+                            <p style="margin:0;color:#c9d4dc;font-size:13px;font-family:Arial,Helvetica,sans-serif;">Réhabilitation &amp; Transformation du Bâtiment</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding:26px 28px 10px;">
                             <p style="margin:0 0 6px;color:#d07c0c;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-weight:700;">Nouvelle demande de devis</p>
-                            <h1 style="margin:0 0 12px;color:#1f2b35;font-size:24px;line-height:1.2;font-family:Arial,Helvetica,sans-serif;">Demande recue depuis le site</h1>
+                            <h1 style="margin:0 0 12px;color:#1f2b35;font-size:24px;line-height:1.2;font-family:Arial,Helvetica,sans-serif;">Demande reçue depuis le site</h1>
                             <p style="margin:0 0 18px;color:#69757f;font-size:14px;font-family:Arial,Helvetica,sans-serif;">
-                                Recue le ' . $e($dateEnvoi) . ' &nbsp;|&nbsp; ' . $e($sourceFormulaire) . '
+                                Reçue le ' . $e($dateEnvoi) . ' &nbsp;|&nbsp; ' . $e($sourceFormulaire) . '
                             </p>
                         </td>
                     </tr>
@@ -182,7 +189,7 @@ $corpsHtml = '<!DOCTYPE html>
                     </tr>
                     <tr>
                         <td style="padding:16px 28px;background:#f8f5ef;border-top:1px solid #e6e1d8;color:#69757f;font-size:12px;font-family:Arial,Helvetica,sans-serif;">
-                            ' . ($email !== '' ? 'Vous pouvez repondre directement a cet e-mail pour contacter ' . $e($nomComplet) . '.' : 'Cette personne n a pas laisse d e-mail : rappelez-la au ' . $e($telephone) . '.') . '
+                            ' . ($email !== '' ? 'Vous pouvez répondre directement à cet e-mail pour contacter ' . $e($nomComplet) . '.' : 'Cette personne n\'a pas laissé d\'e-mail : rappelez-la au ' . $e($telephone) . '.') . '
                         </td>
                     </tr>
                 </table>
@@ -192,28 +199,69 @@ $corpsHtml = '<!DOCTYPE html>
 </body>
 </html>';
 
+$domaineExpediteur = 'rtb.fr';
+$expediteur = 'contact@' . $domaineExpediteur;
+
+// Les lignes de courriel doivent se terminer par CRLF ; le contenu UTF-8 est encodé en quoted-printable
+// (lignes courtes, accepté par tous les serveurs, contrairement à 8bit qui dépend du relais).
+$versCrlf = static function (string $texte): string {
+    return str_replace("\n", "\r\n", str_replace(["\r\n", "\r"], "\n", $texte));
+};
+
+// Encode un en-tête non ASCII en mots RFC 2047 de moins de 75 caractères, sans couper un caractère UTF-8.
+$enTeteEncode = static function (string $valeur): string {
+    $valeur = trim((string) preg_replace('/[\r\n]+/', ' ', $valeur));
+    if (preg_match('/^[\x20-\x7E]*$/', $valeur) === 1) {
+        return $valeur;
+    }
+    $mots = [];
+    $courant = '';
+    foreach ((array) preg_split('//u', $valeur, -1, PREG_SPLIT_NO_EMPTY) as $caractere) {
+        if (strlen($courant . $caractere) > 42) {
+            $mots[] = '=?UTF-8?B?' . base64_encode($courant) . '?=';
+            $courant = '';
+        }
+        $courant .= $caractere;
+    }
+    if ($courant !== '') {
+        $mots[] = '=?UTF-8?B?' . base64_encode($courant) . '?=';
+    }
+    return implode("\r\n ", $mots);
+};
+
 $frontiere = 'rtb_' . bin2hex(random_bytes(12));
 $cleanEmail = str_replace(["\r", "\n"], '', $email);
 
-$enTetes = ['From: RTB <contact@rtb.fr>'];
+$enTetes = [
+    'From: RTB <' . $expediteur . '>',
+];
 if ($cleanEmail !== '') {
     $enTetes[] = 'Reply-To: ' . $cleanEmail;
 }
+$enTetes[] = 'Date: ' . date('r');
+$enTetes[] = 'Message-ID: <' . bin2hex(random_bytes(16)) . '@' . $domaineExpediteur . '>';
 $enTetes[] = 'MIME-Version: 1.0';
 $enTetes[] = 'Content-Type: multipart/alternative; boundary="' . $frontiere . '"';
 $headers = implode("\r\n", $enTetes);
 
 $corpsMessage = '--' . $frontiere . "\r\n"
     . "Content-Type: text/plain; charset=UTF-8\r\n"
-    . "Content-Transfer-Encoding: 8bit\r\n\r\n"
-    . $corpsTexte . "\r\n\r\n"
+    . "Content-Transfer-Encoding: quoted-printable\r\n\r\n"
+    . quoted_printable_encode($versCrlf($corpsTexte)) . "\r\n\r\n"
     . '--' . $frontiere . "\r\n"
     . "Content-Type: text/html; charset=UTF-8\r\n"
-    . "Content-Transfer-Encoding: 8bit\r\n\r\n"
-    . $corpsHtml . "\r\n\r\n"
+    . "Content-Transfer-Encoding: quoted-printable\r\n\r\n"
+    . quoted_printable_encode($versCrlf($corpsHtml)) . "\r\n\r\n"
     . '--' . $frontiere . '--';
 
-$envoi = @mail($destinataire, '=?UTF-8?B?' . base64_encode($sujet) . '?=', $corpsMessage, $headers);
+$sujetEncode = $enTeteEncode($sujet);
+
+// 5e paramètre : adresse d'enveloppe (-f), celle du domaine, pour que SPF/DKIM et les retours d'erreur
+// portent sur rtb.fr. Si l'hébergeur refuse ce paramètre, on réessaie une fois sans lui.
+$envoi = @mail($destinataire, $sujetEncode, $corpsMessage, $headers, '-f' . $expediteur);
+if (!$envoi) {
+    $envoi = @mail($destinataire, $sujetEncode, $corpsMessage, $headers);
+}
 
 if ($envoi) {
     $redirect('success');

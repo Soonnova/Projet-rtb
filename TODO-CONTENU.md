@@ -48,3 +48,14 @@ Safari affiche cet avertissement quand la page est chargée en `http://`. Le cod
 - [ ] Si l'ancien WordPress est encore en ligne, son adresse (`WP_HOME` / `WP_SITEURL`) est en `http://rtb.fr` dans `wp-config.remote.php` : à passer en `https://` ou à retirer.
 - [ ] Après mise en ligne, tester sur iPhone : `http://rtb.fr` doit rediriger vers `https://rtb.fr` et le cadenas doit apparaître sans avertissement.
 
+## 8. E-mails du formulaire classés en indésirables (à régler chez l'hébergeur et dans la messagerie)
+
+Le code de `contact-process.php` est déjà amélioré (adresse d'enveloppe `contact@rtb.fr`, en-têtes `Date` et `Message-ID` au nom de `rtb.fr`, encodage correct, sujet sobre). Il ne peut **pas** prouver à Gmail, Outlook ou autre que le message vient bien de `rtb.fr` : cela dépend de la configuration du domaine, qui se fait hors du code.
+
+- [ ] **SPF** : enregistrement DNS de type TXT sur `rtb.fr`, qui liste les serveurs autorisés à envoyer pour le domaine. Exemple générique, à adapter : `v=spf1 include:mx.ovh.com ~all`. Vérifier chez OVH la valeur exacte correspondant à l'offre du client (hébergement web, MX Plan, Email Pro…), et qu'il n'existe qu'un seul enregistrement SPF.
+- [ ] **DKIM** : signature des messages. À activer depuis l'espace client OVH (zone DNS / e-mails du domaine) ; OVH ajoute alors les enregistrements nécessaires. Le code ne peut pas le faire.
+- [ ] **DMARC** : enregistrement TXT sur `_dmarc.rtb.fr`. Exemple de départ, sans rien bloquer : `v=DMARC1; p=none; rua=mailto:contact@rtb.fr`. À durcir plus tard seulement, une fois SPF et DKIM validés.
+- [ ] **Côté boîte du patron** : ouvrir un message du dossier « Indésirables », le marquer « Non indésirable » et ajouter `contact@rtb.fr` à ses contacts. Le message arrive de `contact@rtb.fr` vers `contact@rtb.fr` : certains filtres s'en méfient, d'où l'intérêt d'un filtre « ne jamais classer en indésirable » sur cette adresse.
+- [ ] **Si cela ne suffit pas** : envoyer via un serveur SMTP authentifié (compte de la boîte `contact@rtb.fr` chez OVH) plutôt que via la fonction `mail()` du serveur web. Cela demande d'ajouter une bibliothèque d'envoi ou du code SMTP : à décider avec le client.
+- [ ] Après chaque changement DNS (propagation : de quelques minutes à 24 h), envoyer un message de test depuis le formulaire et vérifier dans les en-têtes reçus que SPF, DKIM et DMARC indiquent « pass ».
+

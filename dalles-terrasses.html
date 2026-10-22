@@ -48,7 +48,9 @@
     </script>
 </head>
 <body class="has-mobile-bar">
-    <div class="topbar">
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+    <div class="topbar" role="region" aria-label="Coordonnées de l'entreprise">
         <div class="container topbar-inner">
             <div>Entreprise de bâtiment à <strong>Lys-lez-Lannoy</strong> depuis 1998</div>
             <div>
@@ -79,7 +81,7 @@
             <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>&#9776;</button>
         </div>
     </header>
-    <main class="page-main">
+    <main id="main" tabindex="-1" class="page-main">
         <div class="container">
             <section class="page-hero">
                 <span class="eyebrow">Prestation</span>

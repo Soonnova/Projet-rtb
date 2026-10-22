@@ -3,6 +3,91 @@
  * Chargée après le CSS propre à chaque page pour ne modifier que ce qui est nécessaire.
  */
 
+/* ---------- Texte : base 16 px, tout en unités relatives ---------- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { font-size: 1rem; overflow-wrap: break-word; }
+
+/* ---------- Lien d'évitement ---------- */
+.skip-link {
+    position: absolute;
+    top: -5rem;
+    left: 0.75rem;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    background: #1f2b35;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: underline;
+}
+.skip-link:focus { top: 0.75rem; }
+main:focus, main:focus-visible { outline: none; }
+
+/* ---------- Focus clavier visible ---------- */
+:focus-visible {
+    outline: 3px solid #1f2b35;
+    outline-offset: 2px;
+}
+/* Sur fonds sombres, l'anneau passe en blanc pour rester visible (≥ 3:1). */
+.topbar :focus-visible,
+.hero-copy :focus-visible,
+.contact-panel :focus-visible,
+.territory-note :focus-visible { outline-color: #fff; }
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline-offset: 0;
+    border-color: #1f2b35;
+}
+
+/* ---------- Liens reconnaissables sans la couleur : soulignés ---------- */
+p a:not(.btn),
+li a:not(.channel):not(.btn),
+.card > a:not(.btn),
+.photo-rights a,
+.reviews-note a,
+.footer-links a,
+.footer-zones a,
+.topbar a { text-decoration: underline; text-underline-offset: 0.18em; }
+
+/* ---------- Cibles tactiles d'au moins 44 x 44 px ---------- */
+.nav-link,
+.nav a { min-height: 2.75rem; }
+.menu-toggle { min-width: 2.75rem; min-height: 2.75rem; border-color: rgba(31, 43, 53, 0.55); }
+.topbar a,
+.footer-links a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+.footer-zones a { display: inline-block; min-width: 2.75rem; padding: 0.7rem 0.2rem; text-align: center; }
+.brand { min-height: 2.75rem; }
+.contact-line a,
+.card div > a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+.zone-links a { min-width: 2.75rem; justify-content: center; }
+.nav-link.is-current,
+.nav a.is-current {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+}
+
+/* Très petits écrans (320 px, zoom 400 %) : l'en-tête reste sur une ligne sans débordement. */
+@media (max-width: 22.5rem) {
+    .header-inner { gap: 0.25rem; }
+    .brand img { width: 6rem; }
+    .header-cta .btn { padding: 0 0.5rem; }
+}
+
+/* ---------- Mouvement réduit ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto !important; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .btn:hover,
+    a.service-card:hover { transform: none !important; }
+}
+
 /* ---------- Utilitaires ---------- */
 .sr-only {
     position: absolute;

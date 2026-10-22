@@ -5,11 +5,12 @@
     --dark: #1f2b35;
     --dark-soft: #314250;
     --text: #24313a;
-    --muted: #69757f;
+    --muted: #55616b;
     --line: #d8d3ca;
     --blue: #1495c9;
     --orange: #f29a1f;
-    --orange-dark: #d07c0c;
+    --orange-dark: #8a5200; /* orange foncé : texte (≥ 5:1) ; --orange reste réservé aux aplats */
+    --blue-text: #0a6590;
     --shadow: 0 18px 34px rgba(27, 39, 49, 0.08);
     --content: 1240px;
 }
@@ -30,7 +31,7 @@ img { display: block; max-width: 100%; height: auto; }
 .topbar {
     background: var(--dark);
     color: rgba(255, 255, 255, 0.86);
-    font-size: 13px;
+    font-size: 0.875rem;
 }
 .topbar-inner {
     min-height: 44px;
@@ -62,11 +63,11 @@ img { display: block; max-width: 100%; height: auto; }
     margin-left: auto;
     width: 48px;
     height: 48px;
-    border: 1px solid rgba(31, 43, 53, 0.12);
+    border: 1px solid rgba(31, 43, 53, 0.55);
     border-radius: 6px;
     background: #fff;
     color: var(--dark);
-    font-size: 26px;
+    font-size: 1.625rem;
     cursor: pointer;
 }
 .nav-wrap {
@@ -96,11 +97,11 @@ img { display: block; max-width: 100%; height: auto; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 36px;
+    min-height: 2.75rem;
     padding: 0 12px;
     white-space: nowrap;
     color: var(--dark-soft);
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 700;
     border-radius: 999px;
 }
@@ -126,7 +127,7 @@ img { display: block; max-width: 100%; height: auto; }
     padding: 0 22px;
     border: 0;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 1rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -147,14 +148,14 @@ img { display: block; max-width: 100%; height: auto; }
 .eyebrow {
     display: inline-block;
     color: var(--orange-dark);
-    font-size: 12px;
+    font-size: 0.875rem;
     font-weight: 800;
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 .page-hero h1 {
     margin: 14px 0 12px;
-    font-size: clamp(30px, 5vw, 46px);
+    font-size: clamp(1.875rem, 5vw, 2.875rem);
     line-height: 1.05;
     letter-spacing: -0.03em;
     color: var(--dark);
@@ -163,7 +164,7 @@ img { display: block; max-width: 100%; height: auto; }
     margin: 0;
     max-width: 760px;
     color: var(--muted);
-    font-size: 17px;
+    font-size: 1.0625rem;
 }
 .card {
     background: #fff;
@@ -175,11 +176,11 @@ img { display: block; max-width: 100%; height: auto; }
 .card h2 {
     margin: 0 0 14px;
     color: var(--dark);
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 .card p,
-.card li { color: var(--muted); font-size: 15px; }
-.card a { color: var(--blue); text-decoration: underline; }
+.card li { color: var(--muted); font-size: 1rem; }
+.card a { color: var(--blue-text); text-decoration: underline; }
 .card ul { margin: 14px 0 0; padding-left: 18px; }
 .related-grid {
     display: grid;
@@ -195,7 +196,7 @@ img { display: block; max-width: 100%; height: auto; }
     color: var(--dark);
     text-decoration: none;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 1rem;
 }
 .cta-row { margin-top: 8px; }
 
@@ -205,7 +206,7 @@ img { display: block; max-width: 100%; height: auto; }
     background: #fff;
     border-top: 1px solid rgba(31, 43, 53, 0.08);
     color: var(--muted);
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 .footer-inner {
     display: flex;
@@ -223,7 +224,7 @@ img { display: block; max-width: 100%; height: auto; }
     width: 100%;
     margin-top: 8px;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 0.875rem;
 }
 .footer-zones a { text-decoration: underline; }
 
@@ -256,7 +257,7 @@ img { display: block; max-width: 100%; height: auto; }
         padding: 0 16px;
     }
     .header-cta { margin-left: auto; }
-    .header-cta .btn { min-height: 44px; padding: 0 12px; font-size: 12px; }
+    .header-cta .btn { min-height: 44px; padding: 0 12px; font-size: 0.9375rem; }
     .header-cta .cta-full { display: none; }
     .header-cta .cta-short { display: inline; }
 }

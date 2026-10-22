@@ -918,6 +918,58 @@
             pointer-events: auto;
             transform: translateY(0);
         }
+        .form-toast {
+            position: fixed;
+            top: 112px;
+            left: 50%;
+            z-index: 80;
+            width: min(560px, calc(100% - 28px));
+            transform: translate(-50%, -12px);
+            padding: 16px 18px;
+            border-radius: 8px;
+            box-shadow: 0 18px 40px rgba(16, 26, 34, 0.18);
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.45;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .form-toast.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, 0);
+        }
+        .form-toast.is-success {
+            background: #e8f6ee;
+            color: #1d5a38;
+            border: 1px solid #8fcead;
+        }
+        .form-toast.is-error {
+            background: #fdecea;
+            color: #8a1f16;
+            border: 1px solid #f0b4ad;
+        }
+        .form-alert {
+            display: none;
+            margin: 0 0 16px;
+            padding: 14px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.45;
+        }
+        .form-alert.is-visible { display: block; }
+        .form-alert.is-success {
+            background: #e8f6ee;
+            color: #1d5a38;
+            border: 1px solid #8fcead;
+        }
+        .form-alert.is-error {
+            background: #fdecea;
+            color: #8a1f16;
+            border: 1px solid #f0b4ad;
+        }
 
         @media (min-width: 1440px) {
             .hero-inner { min-height: 800px; }
@@ -1035,6 +1087,9 @@
             .header-inner {
                 min-height: 82px;
             }
+            .form-toast {
+                top: 96px;
+            }
             .nav-wrap {
                 top: 82px;
                 padding: 0 14px 14px;
@@ -1139,6 +1194,8 @@
                     <div style="display:none;" aria-hidden="true">
                         <input type="text" name="website_url" tabindex="-1" autocomplete="off">
                     </div>
+                    <input type="hidden" name="origine" value="hero">
+                    <div class="form-alert" data-form-alert></div>
 
                     <div class="hero-form-head">
                         <h2>Parlez-nous de votre projet</h2>
@@ -1428,6 +1485,8 @@
                         <div style="display:none;" aria-hidden="true">
                             <input type="text" name="website_url" tabindex="-1" autocomplete="off">
                         </div>
+                        <input type="hidden" name="origine" value="contact">
+                        <div class="form-alert" data-form-alert></div>
                         <div class="contact-form-row">
                             <input type="text" name="nom" placeholder="Votre Nom *" required autocomplete="family-name">
                             <input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name">
@@ -1517,6 +1576,7 @@
     </footer>
 
     <button class="scroll-top" type="button" aria-label="Revenir en haut de la page" data-scroll-top></button>
+    <div class="form-toast" role="status" aria-live="polite" data-form-toast></div>
 
     <script>
         const toggle = document.querySelector("[data-menu-toggle]");
@@ -1623,6 +1683,47 @@
             scrollTopButton.addEventListener("click", () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
             });
+        }
+
+        const formStatus = new URLSearchParams(window.location.search).get("status");
+        const formToast = document.querySelector("[data-form-toast]");
+        const formMessages = {
+            success: "Votre demande a bien été envoyée. Nous vous rappelons sous 48 h.",
+            error: "Merci de vérifier votre nom, votre téléphone et votre e-mail, puis de renvoyer le formulaire.",
+            server_error: "L'envoi n'a pas abouti. Appelez-nous au 06 81 32 79 05 ou réessayez dans quelques instants."
+        };
+
+        if (formStatus && formMessages[formStatus] && formToast) {
+            const isError = formStatus !== "success";
+            const message = formMessages[formStatus];
+            const targetId = window.location.hash.replace("#", "") || "top";
+            const target = document.getElementById(targetId);
+            const alertBox = target
+                ? target.querySelector("[data-form-alert]")
+                : document.querySelector("[data-form-alert]");
+
+            formToast.textContent = message;
+            formToast.classList.add("is-visible", isError ? "is-error" : "is-success");
+
+            if (alertBox) {
+                alertBox.textContent = message;
+                alertBox.classList.add("is-visible", isError ? "is-error" : "is-success");
+            }
+
+            if (target) {
+                window.setTimeout(() => {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 80);
+            }
+
+            window.setTimeout(() => {
+                formToast.classList.remove("is-visible");
+            }, 9000);
+
+            if (window.history && window.history.replaceState) {
+                const cleanUrl = window.location.pathname + (window.location.hash || "");
+                window.history.replaceState({}, document.title, cleanUrl);
+            }
         }
     </script>
 </body>

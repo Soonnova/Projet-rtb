@@ -6,6 +6,13 @@ declare(strict_types=1);
  * Compatible PHP 7.4 / 8.x
  */
 
+$origine = isset($_POST['origine']) && $_POST['origine'] === 'contact' ? 'contact' : 'top';
+
+$redirect = static function (string $status) use ($origine): void {
+    header('Location: index.html?status=' . $status . '#' . $origine);
+    exit;
+};
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.html');
     exit;
@@ -13,8 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Honeypot anti-spam : un robot qui remplit ce champ est ignore silencieusement.
 if (!empty($_POST['website_url'])) {
-    header('Location: index.html?status=success');
-    exit;
+    $redirect('success');
 }
 
 $nom = isset($_POST['nom']) ? trim(strip_tags((string) $_POST['nom'])) : '';
@@ -26,8 +32,7 @@ $projet = isset($_POST['projet']) ? trim(strip_tags((string) $_POST['projet'])) 
 $message = isset($_POST['message']) ? trim(strip_tags((string) $_POST['message'])) : '';
 
 if ($nom === '' || $telephone === '' || $email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header('Location: index.html?status=error');
-    exit;
+    $redirect('error');
 }
 
 $destinataire = 'contact@rtb.fr';
@@ -61,9 +66,7 @@ $headers = implode("\r\n", [
 $envoi = @mail($destinataire, $sujet, $corpsMessage, $headers);
 
 if ($envoi) {
-    header('Location: index.html?status=success');
-    exit;
+    $redirect('success');
 }
 
-header('Location: index.html?status=server_error');
-exit;
+$redirect('server_error');

@@ -775,6 +775,7 @@
             gap: 18px;
             margin-bottom: 20px;
         }
+        .territory-map-head h2,
         .territory-map-head h3,
         .territory-copy-head h3 {
             margin: 10px 0 0;
@@ -886,6 +887,93 @@
         .channel-detail { color: var(--muted); }
         .form-alt { margin-top: 10px; }
         .form-alt a { text-decoration: underline; font-weight: 700; }
+        .coverage {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+        .coverage > div {
+            padding: 18px 20px;
+            background: var(--surface-soft);
+            border: 1px solid rgba(31, 43, 53, 0.25);
+            border-radius: 6px;
+        }
+        .coverage h4 { margin: 0 0 10px; color: var(--dark); font-size: 1.0625rem; }
+        .coverage ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+        .coverage li { position: relative; padding-left: 1.75rem; color: var(--text); }
+        .coverage li::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: 800;
+        }
+        .coverage-yes li::before { content: "\2713"; color: var(--success); }
+        .coverage-no li::before { content: "\2715"; color: #8a1f16; }
+        .insurance-card .insurance-lead { margin-top: 18px; }
+        .steps {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            counter-reset: none;
+        }
+        .step {
+            padding: 22px;
+            background: #fff;
+            border: 1px solid rgba(31, 43, 53, 0.08);
+            border-top: 4px solid var(--orange);
+            box-shadow: var(--shadow-soft);
+            border-radius: var(--radius);
+        }
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: var(--dark);
+            color: #fff;
+            font-size: 1.125rem;
+            font-weight: 800;
+        }
+        .step h3 { margin: 14px 0 8px; color: var(--dark); font-size: 1.1875rem; }
+        .step p { margin: 0; color: var(--muted); }
+        .person-card {
+            display: grid;
+            grid-template-columns: 5.5rem 1fr;
+            gap: 18px;
+            align-items: center;
+            margin-top: 22px;
+            padding: 18px;
+            background: var(--surface-alt);
+            border-radius: var(--radius);
+        }
+        .person-photo {
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .person-initial {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark);
+            color: #fff;
+            font-size: 2.25rem;
+            font-weight: 800;
+        }
+        .person-name { display: block; color: var(--dark); font-size: 1.25rem; font-weight: 800; }
+        .person-role { display: block; color: var(--muted); font-weight: 600; }
+        .person-card p { margin: 6px 0 0; }
+        .zone-title { margin: 22px 0 0; color: var(--dark); font-size: 1.1875rem; }
+        ul.zone-links { list-style: none; padding: 0; }
+        .zone-help { margin: 14px 0 0; color: var(--muted); }
+        .reviews-grid { list-style: none; padding: 0; margin: 0; }
         .contact-form {
             display: grid;
             gap: 14px;
@@ -1129,6 +1217,7 @@
             .service-grid,
             .showcase-grid,
             .reviews-grid,
+            .steps,
             .legal-preview-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -1219,6 +1308,8 @@
 
         @media (max-width: 680px) {
             .insurance-inline { grid-template-columns: 1fr; }
+            .coverage,
+            .steps { grid-template-columns: 1fr; }
             .territory-map-head,
             .territory-copy-head { flex-wrap: wrap; }
             .service-card img,
@@ -1502,7 +1593,7 @@
                 <div class="reassurance-band">
                     <article class="insurance-card">
                         <span class="eyebrow">Assurance</span>
-                        <h3>Garantie décennale MAAF Pro</h3>
+                        <h3>Garantie décennale MAAF Pro : ce qu'elle couvre</h3>
                         <div class="insurance-inline">
                             <img src="images/maaf.jpg" alt="Logo MAAF Assurances Professionnelles" width="128" height="90" loading="lazy">
                             <div>
@@ -1512,9 +1603,63 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="insurance-note">L'attestation est jointe au devis.</div>
+                        <p class="insurance-lead">
+                            La garantie décennale est une assurance obligatoire pour les entreprises du bâtiment. Pendant 10 ans après la réception des travaux (le jour où vous acceptez le chantier terminé), elle protège le propriétaire contre les malfaçons les plus graves.
+                        </p>
+                        <div class="coverage">
+                            <div class="coverage-yes">
+                                <h4>Elle couvre</h4>
+                                <ul>
+                                    <li>Les dommages qui touchent la solidité de l'ouvrage : mur, dalle, structure.</li>
+                                    <li>Les dommages qui rendent le logement, ou une partie du logement, impropre à son usage : par exemple une fissure importante dans un mur porteur ou une dalle qui s'affaisse.</li>
+                                </ul>
+                            </div>
+                            <div class="coverage-no">
+                                <h4>Elle ne couvre pas</h4>
+                                <ul>
+                                    <li>L'usure normale et le manque d'entretien.</li>
+                                    <li>Les petits défauts d'aspect sans gravité : ils relèvent d'autres garanties, plus courtes.</li>
+                                    <li>Les dommages causés par un usage anormal du bien.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- TODO (client) : vérifier avec l'attestation MAAF en cours les activités réellement couvertes, puis valider ce texte. Ne mentionner aucun montant. -->
+                        <div class="insurance-note">L'attestation d'assurance est jointe au devis : c'est elle qui précise les activités couvertes.</div>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <section class="section" id="etapes" aria-labelledby="etapes-titre">
+            <div class="container">
+                <div class="services-head">
+                    <div>
+                        <span class="eyebrow">Comment ça se passe</span>
+                        <h2 class="section-title" id="etapes-titre">De votre demande au chantier, en 4 étapes</h2>
+                    </div>
+                </div>
+                <ol class="steps" role="list">
+                    <li class="step">
+                        <span class="step-num" aria-hidden="true">1</span>
+                        <h3><span class="sr-only">Étape 1 : </span>Vous nous contactez</h3>
+                        <p>Par le formulaire, par téléphone ou sur WhatsApp. Vous pouvez aussi choisir un créneau pour être rappelé.</p>
+                    </li>
+                    <li class="step">
+                        <span class="step-num" aria-hidden="true">2</span>
+                        <h3><span class="sr-only">Étape 2 : </span>Nous venons voir le chantier</h3>
+                        <p>Nous vous rappelons sous 48 h, puis nous venons chez vous pour bien comprendre votre projet.</p>
+                    </li>
+                    <li class="step">
+                        <span class="step-num" aria-hidden="true">3</span>
+                        <h3><span class="sr-only">Étape 3 : </span>Vous recevez un devis détaillé</h3>
+                        <p>Il décrit précisément les travaux prévus. L'attestation d'assurance y est jointe. Vous décidez sans engagement.</p>
+                    </li>
+                    <li class="step">
+                        <span class="step-num" aria-hidden="true">4</span>
+                        <h3><span class="sr-only">Étape 4 : </span>Le chantier</h3>
+                        <p>Vous gardez le même interlocuteur jusqu'à la fin des travaux et à la réception du chantier.</p>
+                    </li>
+                </ol>
             </div>
         </section>
 
@@ -1534,6 +1679,20 @@
                         Créée en 1998 à Lys-lez-Lannoy, RTB reste une structure à taille humaine. Vous parlez directement à celui qui suit le chantier, du premier rendez-vous à la réception.
                     </p>
 
+                    <!-- TODO (client) : PRÉSENTATION DU DIRIGEANT.
+                         - Fournir une vraie photo (carrée, 400 x 400 px minimum, visage bien visible) et la déposer dans /images (ex. images/yann.jpg).
+                         - Remplacer <div class="person-photo person-initial" aria-hidden="true">Y</div> par :
+                           <img class="person-photo" src="images/yann.jpg" alt="Yann, dirigeant de RTB" width="88" height="88" loading="lazy">
+                         - Confirmer le prénom, le rôle exact et la phrase de présentation ci-dessous. -->
+                    <div class="person-card">
+                        <div class="person-photo person-initial" aria-hidden="true">Y</div>
+                        <div>
+                            <span class="person-name">Yann</span>
+                            <span class="person-role">Dirigeant de RTB, votre interlocuteur unique</span>
+                            <p>C'est lui que vous avez au téléphone, qui vient sur place et qui suit votre chantier jusqu'à la fin.</p>
+                        </div>
+                    </div>
+
                     <div class="about-list">
                         <div>Devis détaillé, sans frais cachés</div>
                         <div>Chantier suivi et tenu propre</div>
@@ -1550,6 +1709,7 @@
                         <h2 class="section-title">Ce que disent les clients</h2>
                     </div>
                 </div>
+                <!-- TODO (client) : ajouter ici d'autres avis réels (copier un bloc <article class="review-card">), avec l'accord de leurs auteurs. N'inventer ni avis ni note. -->
                 <div class="reviews-grid">
                     <article class="review-card">
                         <p>« Yann est très compétant, à l'écoute et disponible, travail propre et soigné, je recommande à 100%. »</p>
@@ -1581,19 +1741,22 @@
                     <div class="territory-map-head">
                         <div>
                             <span class="eyebrow">Zone d'intervention</span>
-                            <h3>Depuis Lys-lez-Lannoy, dans la Métropole Européenne de Lille</h3>
+                            <h2 class="zone-heading">Depuis Lys-lez-Lannoy, dans la Métropole Européenne de Lille</h2>
                             <p>La Métropole Européenne de Lille (MEL) regroupe Lille et les communes voisines. Nous restons dans un rayon proche de Lys-lez-Lannoy pour garder des délais tenables et un suivi simple.</p>
                         </div>
                         <div class="territory-badge">Métropole Européenne de Lille (MEL)</div>
                     </div>
-                    <div class="zone-links">
-                        <a href="lys-lez-lannoy.html">Lys-lez-Lannoy</a>
-                        <a href="lannoy.html">Lannoy</a>
-                        <a href="hem.html">Hem</a>
-                        <a href="roubaix.html">Roubaix</a>
-                        <a href="toufflers.html">Toufflers</a>
-                        <a href="sailly-lez-lannoy.html">Sailly-lez-Lannoy</a>
-                    </div>
+                    <h3 class="zone-title" id="communes-titre">Communes desservies</h3>
+                    <!-- TODO (client) : compléter cette liste avec toutes les communes où RTB accepte réellement d'intervenir (une ligne <li> par commune). -->
+                    <ul class="zone-links" aria-labelledby="communes-titre">
+                        <li><a href="lys-lez-lannoy.html">Lys-lez-Lannoy</a></li>
+                        <li><a href="lannoy.html">Lannoy</a></li>
+                        <li><a href="hem.html">Hem</a></li>
+                        <li><a href="roubaix.html">Roubaix</a></li>
+                        <li><a href="toufflers.html">Toufflers</a></li>
+                        <li><a href="sailly-lez-lannoy.html">Sailly-lez-Lannoy</a></li>
+                    </ul>
+                    <p class="zone-help">Votre commune n'est pas dans la liste ? <a href="#devis">Demandez un devis</a> ou appelez le <a href="tel:0681327905">06 81 32 79 05</a> : nous vous dirons si nous pouvons intervenir.</p>
                 </article>
             </div>
         </section>

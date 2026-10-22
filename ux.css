@@ -179,3 +179,16 @@ li a:not(.channel):not(.btn),
     body.has-mobile-bar .footer { padding-bottom: 2rem; }
     body.has-mobile-bar .scroll-top { bottom: 1rem; }
 }
+
+/* Formulaire : les messages restent visibles sous l'en-tete collant lors du deplacement du focus. */
+.form-success,
+.form-summary,
+.form-alert {
+    scroll-margin-top: 7rem;
+    scroll-margin-bottom: 6rem;
+}
+
+select,
+select option {
+    font-size: 1rem;
+}

@@ -8,7 +8,17 @@ declare(strict_types=1);
 
 $origine = isset($_POST['origine']) && $_POST['origine'] === 'contact' ? 'contact' : 'top';
 
-$redirect = static function (string $status) use ($origine): void {
+// Le formulaire de l'accueil envoie la demande sans recharger la page (fetch) : il attend alors du JSON.
+$wantsJson = isset($_SERVER['HTTP_ACCEPT']) && strpos((string) $_SERVER['HTTP_ACCEPT'], 'application/json') !== false;
+
+$redirect = static function (string $status) use ($origine, $wantsJson): void {
+    if ($wantsJson) {
+        http_response_code($status === 'success' ? 200 : ($status === 'error' ? 422 : 500));
+        header('Content-Type: application/json; charset=UTF-8');
+        echo json_encode(['ok' => $status === 'success', 'error' => $status === 'success' ? null : $status]);
+        exit;
+    }
+
     // Le formulaire de devis de l'accueil porte l'ancre #devis.
     header('Location: index.html?status=' . $status . '#' . ($origine === 'contact' ? 'contact' : 'devis'));
     exit;
@@ -31,8 +41,26 @@ $email = isset($_POST['email']) ? filter_var(trim((string) $_POST['email']), FIL
 $ville = isset($_POST['ville']) ? trim(strip_tags((string) $_POST['ville'])) : '';
 $projet = isset($_POST['projet']) ? trim(strip_tags((string) $_POST['projet'])) : '';
 $message = isset($_POST['message']) ? trim(strip_tags((string) $_POST['message'])) : '';
+$creneau = isset($_POST['creneau']) ? trim(strip_tags((string) $_POST['creneau'])) : '';
 
-if ($nom === '' || $telephone === '' || $email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+// Creneaux de rappel proposes par le formulaire : toute autre valeur est ignoree.
+$creneauxAutorises = ['Le matin', 'Le midi', "L'apr\u{E8}s-midi", "En fin de journ\u{E9}e"];
+if (!in_array($creneau, $creneauxAutorises, true)) {
+    $creneau = '';
+}
+
+// Il faut un nom et au moins un moyen de contact valide : telephone OU e-mail.
+$telephoneValide = $telephone !== '' && preg_match('/^\+?[0-9 .\-()]+$/', $telephone) === 1
+    && strlen((string) preg_replace('/\D/', '', $telephone)) >= 9
+    && strlen((string) preg_replace('/\D/', '', $telephone)) <= 15;
+$emailValide = $email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+
+if (
+    $nom === ''
+    || ($telephone === '' && $email === '')
+    || ($telephone !== '' && !$telephoneValide)
+    || ($email !== '' && !$emailValide)
+) {
     $redirect('error');
 }
 
@@ -53,9 +81,13 @@ $lignesTexte = [
     '',
     'Coordonnees',
     'Nom : ' . $nomComplet,
-    'Telephone : ' . $telephone,
-    'E-mail : ' . $email,
+    'Telephone : ' . ($telephone !== '' ? $telephone : 'Non renseigne'),
+    'E-mail : ' . ($email !== '' ? $email : 'Non renseigne'),
 ];
+
+if ($creneau !== '') {
+    $lignesTexte[] = 'Creneau de rappel souhaite : ' . $creneau;
+}
 
 if ($ville !== '') {
     $lignesTexte[] = 'Commune : ' . $ville;
@@ -69,7 +101,9 @@ $lignesTexte[] = '';
 $lignesTexte[] = 'Message';
 $lignesTexte[] = $details;
 $lignesTexte[] = '';
-$lignesTexte[] = 'Repondre directement a cet e-mail pour contacter le demandeur.';
+$lignesTexte[] = $email !== ''
+    ? 'Repondre directement a cet e-mail pour contacter le demandeur.'
+    : 'Pas d e-mail laisse : rappeler le demandeur au ' . $telephone . '.';
 
 $corpsTexte = implode("\n", $lignesTexte);
 
@@ -89,8 +123,12 @@ $ligneHtml = static function (string $libelle, string $valeur) use ($e): string 
 };
 
 $blocCoordonnees = $ligneHtml('Nom', $nomComplet)
-    . $ligneHtml('Telephone', $telephone)
-    . $ligneHtml('E-mail', $email);
+    . $ligneHtml('Telephone', $telephone !== '' ? $telephone : 'Non renseigne')
+    . $ligneHtml('E-mail', $email !== '' ? $email : 'Non renseigne');
+
+if ($creneau !== '') {
+    $blocCoordonnees .= $ligneHtml('Rappel souhaite', $creneau);
+}
 
 if ($ville !== '') {
     $blocCoordonnees .= $ligneHtml('Commune', $ville);
@@ -144,7 +182,7 @@ $corpsHtml = '<!DOCTYPE html>
                     </tr>
                     <tr>
                         <td style="padding:16px 28px;background:#f8f5ef;border-top:1px solid #e6e1d8;color:#69757f;font-size:12px;font-family:Arial,Helvetica,sans-serif;">
-                            Vous pouvez repondre directement a cet e-mail pour contacter ' . $e($nomComplet) . '.
+                            ' . ($email !== '' ? 'Vous pouvez repondre directement a cet e-mail pour contacter ' . $e($nomComplet) . '.' : 'Cette personne n a pas laisse d e-mail : rappelez-la au ' . $e($telephone) . '.') . '
                         </td>
                     </tr>
                 </table>
@@ -157,12 +195,13 @@ $corpsHtml = '<!DOCTYPE html>
 $frontiere = 'rtb_' . bin2hex(random_bytes(12));
 $cleanEmail = str_replace(["\r", "\n"], '', $email);
 
-$headers = implode("\r\n", [
-    'From: RTB <contact@rtb.fr>',
-    'Reply-To: ' . $cleanEmail,
-    'MIME-Version: 1.0',
-    'Content-Type: multipart/alternative; boundary="' . $frontiere . '"',
-]);
+$enTetes = ['From: RTB <contact@rtb.fr>'];
+if ($cleanEmail !== '') {
+    $enTetes[] = 'Reply-To: ' . $cleanEmail;
+}
+$enTetes[] = 'MIME-Version: 1.0';
+$enTetes[] = 'Content-Type: multipart/alternative; boundary="' . $frontiere . '"';
+$headers = implode("\r\n", $enTetes);
 
 $corpsMessage = '--' . $frontiere . "\r\n"
     . "Content-Type: text/plain; charset=UTF-8\r\n"

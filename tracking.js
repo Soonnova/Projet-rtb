@@ -118,7 +118,7 @@
     };
 
     const bindFormTracking = () => {
-        document.querySelectorAll('form[action*="contact-process.php"]').forEach((form) => {
+        document.querySelectorAll('form[action*="contact-process.php"]:not([data-quote-form])').forEach((form) => {
             form.addEventListener("submit", () => {
                 const formData = new FormData(form);
 

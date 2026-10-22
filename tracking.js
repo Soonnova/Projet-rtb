@@ -1,4 +1,6 @@
 (function () {
+    // TODO (client) : renseigner l'identifiant Google (gtmId « GTM-… » ou ga4Id « G-… ») une fois reçu,
+    // via window.RTB_TRACKING avant ce script. Voir TODO-CONTENU.md. Sans identifiant, aucun suivi n'est chargé.
     const config = Object.assign({
         gtmId: "",
         ga4Id: "",

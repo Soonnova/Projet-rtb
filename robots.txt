@@ -4,5 +4,6 @@ Disallow: /wp-admin/
 Disallow: /wp-login.php
 Disallow: /xmlrpc.php
 Disallow: /wp-includes/
+Disallow: /apercu-selection/
 
 Sitemap: https://rtb.fr/sitemap.xml

@@ -88,6 +88,21 @@ li a:not(.channel):not(.btn),
     a.service-card:hover { transform: none !important; }
 }
 
+/* ---------- Explications du jargon, toujours visibles (aucune infobulle au survol) ---------- */
+.plain-note {
+    margin: 0.75rem 0 0;
+    padding: 0.625rem 0.75rem;
+    border-left: 4px solid #1495c9;
+    background: #eef6fa;
+    color: #24313a;
+    font-size: 1rem;
+}
+.service-body .plain-note { margin-top: 0.75rem; }
+.glossary { margin: 1rem 0 0; }
+.glossary dt { margin-top: 0.875rem; color: #1f2b35; font-weight: 800; }
+.glossary dt:first-child { margin-top: 0; }
+.glossary dd { margin: 0.125rem 0 0; color: #55616b; font-size: 1rem; }
+
 /* ---------- Utilitaires ---------- */
 .sr-only {
     position: absolute;

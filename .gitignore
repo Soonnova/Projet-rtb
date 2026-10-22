@@ -4,3 +4,4 @@ wp-config.remote.php
 maintenance-index.php
 live-home.html
 .DS_Store
+.wp-deploy/

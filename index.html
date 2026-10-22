@@ -9,6 +9,9 @@
         content="RTB, entreprise du bâtiment à Lys-lez-Lannoy depuis 1998. Travaux de maçonnerie, carrelage, dalles béton et ouvertures dans la MEL et ses environs. Garantie décennale MAAF."
     >
     <link rel="canonical" href="https://rtb.fr/">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
     <!-- Open Graph / Réseaux sociaux -->
     <meta property="og:type" content="website">
@@ -1477,34 +1480,9 @@
                     <span class="eyebrow">Devis &amp; Conseils</span>
                     <h2 class="section-title">Demandez votre devis gratuit</h2>
                     <p>
-                        Décrivez-nous votre projet. Nous intervenons rapidement chez vous pour une visite technique et l'établissement d'une offre chiffrée claire.
+                        Décrivez-nous votre projet via le formulaire en haut de page. Nous intervenons ensuite chez vous pour une visite technique et un devis clair.
                     </p>
-
-                    <form class="contact-form" action="contact-process.php" method="POST">
-                        <!-- Protection honeypot invisible pour les robots -->
-                        <div style="display:none;" aria-hidden="true">
-                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
-                        </div>
-                        <input type="hidden" name="origine" value="contact">
-                        <div class="form-alert" data-form-alert></div>
-                        <div class="contact-form-row">
-                            <input type="text" name="nom" placeholder="Votre Nom *" required autocomplete="family-name">
-                            <input type="text" name="prenom" placeholder="Prénom" autocomplete="given-name">
-                        </div>
-                        <div class="contact-form-row">
-                            <input type="tel" name="telephone" placeholder="Numéro de téléphone *" required autocomplete="tel">
-                            <input type="email" name="email" placeholder="Adresse e-mail *" required autocomplete="email">
-                        </div>
-                        <input type="text" name="ville" placeholder="Commune des travaux">
-                        <textarea name="message" placeholder="Décrivez votre besoin : nature des travaux, surface estimée, dates souhaitées..." required></textarea>
-
-                        <!-- Mention légale de consentement RGPD -->
-                        <p style="font-size: 11px; line-height: 1.45; color: var(--muted); margin: 6px 0 14px;">
-                            En soumettant ce formulaire, vous acceptez que les informations saisies soient exploitées par RTB exclusivement pour traiter votre demande de devis conformément à notre <a href="politique-confidentialite.html" style="color: var(--dark); text-decoration: underline;">politique de confidentialité</a>.
-                        </p>
-
-                        <button class="btn btn-primary" type="submit">Envoyer ma demande de devis</button>
-                    </form>
+                    <a class="btn btn-primary" href="#top">Remplir le formulaire de devis</a>
                 </article>
 
                 <aside class="contact-panel">
@@ -1539,7 +1517,7 @@
                             Prenez conseil auprès d'un professionnel local avant d'engager vos travaux. Déplacement et devis gratuits.
                         </p>
                     </div>
-                    <a class="btn btn-dark" href="#contact">Prendre contact</a>
+                    <a class="btn btn-dark" href="#top">Prendre contact</a>
                 </div>
             </div>
         </section>

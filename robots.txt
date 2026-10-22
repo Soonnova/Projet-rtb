@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /xmlrpc.php
+Disallow: /wp-includes/
+
+Sitemap: https://rtb.fr/sitemap.xml

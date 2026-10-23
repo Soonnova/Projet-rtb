@@ -103,6 +103,66 @@ li a:not(.channel):not(.btn),
 .glossary dt:first-child { margin-top: 0; }
 .glossary dd { margin: 0.125rem 0 0; color: #55616b; font-size: 1rem; }
 
+/* ---------- Bandeau cookies (consentement) ---------- */
+.cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    max-height: 80vh;
+    overflow: auto;
+    padding: 1rem max(1rem, env(safe-area-inset-right)) calc(1rem + env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    background: #fff;
+    color: #24313a;
+    border-top: 3px solid #1f2b35;
+    box-shadow: 0 -10px 30px rgba(27, 39, 49, 0.2);
+}
+.cookie-banner[hidden] { display: none; }
+.cookie-banner-inner {
+    width: min(1240px, 100%);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+}
+.cookie-banner-text { flex: 1 1 26rem; margin: 0; font-size: 1rem; line-height: 1.5; }
+.cookie-banner-text a { color: #0a6590; text-decoration: underline; text-underline-offset: 0.18em; }
+.cookie-actions { display: flex; flex: 0 1 auto; flex-wrap: wrap; gap: 0.75rem; }
+/* « Tout refuser » et « Tout accepter » ont exactement le même aspect (recommandation CNIL). */
+.cookie-btn {
+    min-width: 8.5rem;
+    min-height: 2.75rem;
+    padding: 0 1.25rem;
+    border: 2px solid #1f2b35;
+    border-radius: 6px;
+    background: #1f2b35;
+    color: #fff;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+.cookie-btn:hover { background: #314250; }
+.cookie-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 0.25rem;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    cursor: pointer;
+}
+@media (max-width: 760px) {
+    .cookie-actions { width: 100%; }
+    .cookie-btn { flex: 1 1 0; }
+}
+
 /* ---------- Utilitaires ---------- */
 .sr-only {
     position: absolute;

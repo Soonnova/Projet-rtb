@@ -157,8 +157,13 @@
         success.focus({ preventScroll: true });
         success.scrollIntoView({ block: "center", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: "rtb_lead_form_submit", page_type: "accueil", projet: fields.projet.value.slice(0, 100), ville: "" });
+        var lead = { page_type: "accueil", projet: fields.projet.value.slice(0, 100), ville: "" };
+        if (typeof window.rtbTrack === "function") {
+            window.rtbTrack("rtb_lead_form_submit", lead);
+        } else {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(Object.assign({ event: "rtb_lead_form_submit" }, lead));
+        }
     }
 
     function interpret(response) {

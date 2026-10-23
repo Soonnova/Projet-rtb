@@ -23,7 +23,7 @@ Le modèle à copier est dans le commentaire `TODO (client)` de la page. Une foi
 
 ## 3. Identifiants Google
 
-- [ ] Identifiant de suivi (Google Tag Manager `GTM-…` ou Google Analytics 4 `G-…`) : à renseigner dans `window.RTB_TRACKING` (`gtmId` / `ga4Id`), voir `tracking.js`. Sans identifiant, aucun suivi n'est chargé.
+- [x] Google Analytics 4 : ID de mesure `G-7J694X3GQN` renseigné dans `tracking.js`, chargé uniquement après consentement (bandeau cookies). À faire dans Google Analytics : marquer l'événement `generate_lead` comme « événement clé » (Administration > Événements).
 - [ ] Fiche Google de l'entreprise (identifiant de lieu ou lien direct vers les avis), pour remplacer la recherche Google Maps actuellement utilisée dans le lien « Voir les avis sur Google ».
 
 ## 4. Avis clients
@@ -44,7 +44,7 @@ Le modèle à copier est dans le commentaire `TODO (client)` de la page. Une foi
 Safari affiche cet avertissement quand la page est chargée en `http://`. Le code est prêt (voir `.htaccess` et la balise `upgrade-insecure-requests`), mais ces points dépendent de l'hébergeur :
 
 - [ ] Déployer le fichier `.htaccess` à la racine du site. S'il en existe déjà un sur le serveur (ancien WordPress), ne pas l'écraser : recopier le bloc « HTTPS » en haut du fichier existant.
-- [ ] Vérifier chez OVH qu'un certificat SSL valide est actif pour `rtb.fr` **et** `www.rtb.fr` (espace client OVH, hébergement, « Multisite », colonne SSL). Sans certificat valide, aucune redirection ne peut corriger l'avertissement.
+- [x] Certificats SSL Let's Encrypt actifs chez OVH pour `rtb.fr` et `www.rtb.fr` (renouvellement automatique). Reste à publier le fichier `.htaccess` à la racine du site pour forcer la redirection vers https://rtb.fr.
 - [ ] Si l'ancien WordPress est encore en ligne, son adresse (`WP_HOME` / `WP_SITEURL`) est en `http://rtb.fr` dans `wp-config.remote.php` : à passer en `https://` ou à retirer.
 - [ ] Après mise en ligne, tester sur iPhone : `http://rtb.fr` doit rediriger vers `https://rtb.fr` et le cadenas doit apparaître sans avertissement.
 
@@ -54,7 +54,7 @@ Le code de `contact-process.php` est déjà amélioré (adresse d'enveloppe `con
 
 - [ ] **SPF** : enregistrement DNS de type TXT sur `rtb.fr`, qui liste les serveurs autorisés à envoyer pour le domaine. Exemple générique, à adapter : `v=spf1 include:mx.ovh.com ~all`. Vérifier chez OVH la valeur exacte correspondant à l'offre du client (hébergement web, MX Plan, Email Pro…), et qu'il n'existe qu'un seul enregistrement SPF.
 - [ ] **DKIM** : signature des messages. À activer depuis l'espace client OVH (zone DNS / e-mails du domaine) ; OVH ajoute alors les enregistrements nécessaires. Le code ne peut pas le faire.
-- [ ] **DMARC** : enregistrement TXT sur `_dmarc.rtb.fr`. Exemple de départ, sans rien bloquer : `v=DMARC1; p=none; rua=mailto:contact@rtb.fr`. À durcir plus tard seulement, une fois SPF et DKIM validés.
+- [ ] **DMARC** : enregistrement TXT sur `_dmarc.rtb.fr`, valeur de départ `v=DMARC1; p=none` (sans rapports automatiques par e-mail). SPF et DKIM sont déjà présents chez OVH. Le courrier de `contact@rtb.fr` est reçu par Microsoft 365 (enregistrements MX Outlook) : si le message du formulaire reste en indésirables, il faut une règle d'autorisation dans l'administration Microsoft 365 (en-têtes du message à analyser).
 - [ ] **Côté boîte du patron** : ouvrir un message du dossier « Indésirables », le marquer « Non indésirable » et ajouter `contact@rtb.fr` à ses contacts. Le message arrive de `contact@rtb.fr` vers `contact@rtb.fr` : certains filtres s'en méfient, d'où l'intérêt d'un filtre « ne jamais classer en indésirable » sur cette adresse.
 - [ ] **Si cela ne suffit pas** : envoyer via un serveur SMTP authentifié (compte de la boîte `contact@rtb.fr` chez OVH) plutôt que via la fonction `mail()` du serveur web. Cela demande d'ajouter une bibliothèque d'envoi ou du code SMTP : à décider avec le client.
 - [ ] Après chaque changement DNS (propagation : de quelques minutes à 24 h), envoyer un message de test depuis le formulaire et vérifier dans les en-têtes reçus que SPF, DKIM et DMARC indiquent « pass ».

@@ -1,4 +1,6 @@
 (function () {
+    // TODO (client) : renseigner l'identifiant Google (gtmId « GTM-… » ou ga4Id « G-… ») une fois reçu,
+    // via window.RTB_TRACKING avant ce script. Voir TODO-CONTENU.md. Sans identifiant, aucun suivi n'est chargé.
     const config = Object.assign({
         gtmId: "",
         ga4Id: "",
@@ -100,7 +102,13 @@
             });
         });
 
-        document.querySelectorAll('a[href="#contact"], a[href="#top"], a[href="chantiers-recents.html"], .btn').forEach((link) => {
+        document.querySelectorAll('a[href^="https://wa.me/"]').forEach((link) => {
+            link.addEventListener("click", () => {
+                pushEvent("rtb_whatsapp_click", { page_type: getPageType() });
+            });
+        });
+
+        document.querySelectorAll('a[href="#contact"], a[href="#top"], a[href$="#devis"], a[href="chantiers-recents.html"], .btn, .mobile-bar-btn').forEach((link) => {
             link.addEventListener("click", () => {
                 pushEvent("rtb_cta_click", {
                     page_type: getPageType(),
@@ -112,7 +120,7 @@
     };
 
     const bindFormTracking = () => {
-        document.querySelectorAll('form[action*="contact-process.php"]').forEach((form) => {
+        document.querySelectorAll('form[action*="contact-process.php"]:not([data-quote-form])').forEach((form) => {
             form.addEventListener("submit", () => {
                 const formData = new FormData(form);
 

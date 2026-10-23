@@ -2,11 +2,16 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <script>
+        // Safari signale « non sécurisé » une page ou un formulaire en http. Sur le vrai domaine, on passe en https (pas en local).
+        if (location.protocol === "http:" && /^(www\.)?rtb\.fr$/i.test(location.hostname)) location.replace("https://rtb.fr" + location.pathname + location.search + location.hash);
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrelage et maçonnerie à Lys-lez-Lannoy | RTB</title>
+    <title>Carrelage et maçonnerie pour particuliers à Lys-lez-Lannoy | RTB</title>
     <meta
         name="description"
-        content="RTB à Lys-lez-Lannoy depuis 1998. Carrelage, terrasse, ouverture de mur et petites reprises dans la MEL. Devis gratuit, rappel sous 48 h."
+        content="RTB, entreprise du bâtiment à Lys-lez-Lannoy depuis 1998. Carrelage, terrasse, ouverture de mur et maçonnerie pour particuliers, dans toute la Métropole Européenne de Lille (MEL). Devis gratuit, rappel sous 48 h."
     >
     <link rel="canonical" href="https://rtb.fr/">
     <link rel="icon" href="favicon.ico" sizes="any">
@@ -53,7 +58,8 @@
         { "@type": "City", "name": "Hem" },
         { "@type": "City", "name": "Roubaix" },
         { "@type": "City", "name": "Toufflers" },
-        { "@type": "City", "name": "Sailly-lez-Lannoy" }
+        { "@type": "City", "name": "Sailly-lez-Lannoy" },
+        { "@type": "AdministrativeArea", "name": "Métropole Européenne de Lille" }
       ],
       "foundingDate": "1998-10-20",
       "priceRange": "€€",
@@ -69,15 +75,17 @@
       },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "5",
-        "ratingCount": "6",
-        "reviewCount": "6",
+        "ratingValue": "4.4",
+        "ratingCount": "7",
+        "reviewCount": "7",
         "bestRating": "5"
       }
     }
     </script>
 
     <script src="tracking.js" defer></script>
+    <script src="site.js" defer></script>
+    <script src="quote-form.js" defer></script>
     <style>
         :root {
             --bg: #f4f1eb;
@@ -87,12 +95,14 @@
             --dark: #1f2b35;
             --dark-soft: #314250;
             --text: #24313a;
-            --muted: #69757f;
+            --muted: #55616b;
             --line: #d8d3ca;
             --blue: #1495c9;
+            --blue-text: #0a6590; /* bleu pour le texte (contraste ≥ 5:1) */
+            --field-border: #66717b; /* bordure des champs (≥ 3:1) */
             --blue-soft: #dceef5;
             --orange: #f29a1f;
-            --orange-dark: #d07c0c;
+            --orange-dark: #8a5200; /* orange foncé : texte (≥ 5:1 sur fonds clairs) ; --orange reste réservé aux aplats et filets */
             --success: #3c6853;
             --shadow: 0 20px 42px rgba(27, 39, 49, 0.08);
             --shadow-soft: 0 12px 24px rgba(27, 39, 49, 0.06);
@@ -121,7 +131,7 @@
         .eyebrow {
             display: inline-block;
             color: var(--orange-dark);
-            font-size: 12px;
+            font-size: 0.875rem;
             font-weight: 800;
             letter-spacing: 0.14em;
             text-transform: uppercase;
@@ -129,7 +139,7 @@
         .section-title {
             margin: 14px 0 0;
             color: var(--dark);
-            font-size: clamp(30px, 3.6vw, 46px);
+            font-size: clamp(1.875rem, 3.6vw, 2.875rem);
             line-height: 1.04;
             letter-spacing: -0.035em;
         }
@@ -137,13 +147,13 @@
             margin: 16px 0 0;
             max-width: 760px;
             color: var(--muted);
-            font-size: 17px;
+            font-size: 1.0625rem;
         }
 
         .topbar {
             background: var(--dark);
             color: rgba(255, 255, 255, 0.82);
-            font-size: 13px;
+            font-size: 0.875rem;
         }
         .topbar-inner {
             min-height: 44px;
@@ -179,11 +189,11 @@
             margin-left: auto;
             width: 48px;
             height: 48px;
-            border: 1px solid rgba(31, 43, 53, 0.12);
+            border: 1px solid rgba(31, 43, 53, 0.55);
             border-radius: 6px;
             background: #fff;
             color: var(--dark);
-            font-size: 26px;
+            font-size: 1.625rem;
             cursor: pointer;
         }
         .nav-wrap {
@@ -213,11 +223,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 36px;
+            min-height: 2.75rem;
             padding: 0 12px;
             white-space: nowrap;
             color: var(--dark-soft);
-            font-size: 14px;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 999px;
             letter-spacing: 0.01em;
@@ -226,11 +236,15 @@
         .nav-link:hover,
         .nav-link:focus-visible {
             color: var(--dark);
-            outline: none;
+            text-decoration: underline;
+            text-underline-offset: 6px;
         }
         .nav-link.is-current {
             background: #f4ede0;
             color: var(--dark);
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 6px;
             box-shadow: inset 0 0 0 1px rgba(242, 154, 31, 0.2);
         }
         .header-cta {
@@ -249,7 +263,7 @@
             padding: 0 22px;
             border: 0;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 1rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -262,7 +276,7 @@
         .btn-secondary {
             background: transparent;
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.75);
         }
         .btn-dark {
             background: var(--dark);
@@ -272,7 +286,7 @@
         .btn-outline {
             background: transparent;
             color: var(--dark);
-            border: 1px solid rgba(31, 43, 53, 0.16);
+            border: 1px solid rgba(31, 43, 53, 0.55);
         }
 
         .hero {
@@ -302,10 +316,12 @@
             align-items: center;
             padding: 48px 0 56px;
         }
+        /* Sur le fond sombre du bandeau, on garde l'orange vif (le texte orange foncé y serait illisible). */
+        .hero .eyebrow { color: var(--orange); }
         .hero-copy h1 {
             margin: 12px 0 16px;
             max-width: 780px;
-            font-size: clamp(32px, 4vw, 50px);
+            font-size: clamp(2rem, 4vw, 3.125rem);
             line-height: 1.05;
             letter-spacing: -0.035em;
         }
@@ -313,7 +329,7 @@
             max-width: 690px;
             margin: 0 0 14px;
             color: rgba(255, 255, 255, 0.84);
-            font-size: 18px;
+            font-size: 1.125rem;
         }
         .hero-points {
             display: grid;
@@ -329,7 +345,7 @@
             padding: 10px 14px;
             background: rgba(255, 255, 255, 0.08);
             border-left: 3px solid var(--orange);
-            font-size: 14px;
+            font-size: 1rem;
             font-weight: 600;
         }
         .reveal-on-scroll,
@@ -357,14 +373,14 @@
         }
         .hero-form-head h2 {
             margin: 0 0 8px;
-            font-size: 28px;
+            font-size: 1.75rem;
             line-height: 1.08;
             color: var(--dark);
         }
         .hero-form-head p {
             margin: 0;
             color: var(--muted);
-            font-size: 15px;
+            font-size: 1rem;
         }
         .hero-form-body { padding: 24px 30px 30px; }
         .field { margin-bottom: 14px; }
@@ -372,7 +388,7 @@
             display: block;
             margin-bottom: 8px;
             color: #5f6972;
-            font-size: 12px;
+            font-size: 0.875rem;
             font-weight: 800;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -382,7 +398,7 @@
         .contact-form input,
         .contact-form textarea {
             width: 100%;
-            border: 1px solid var(--line);
+            border: 1px solid var(--field-border);
             background: #fff;
             color: var(--text);
             padding: 0 16px;
@@ -400,15 +416,92 @@
         .field textarea::placeholder,
         .contact-form input::placeholder,
         .contact-form textarea::placeholder {
-            color: rgba(84, 94, 104, 0.5);
+            color: #5f6972;
         }
+        .field select {
+            width: 100%;
+            min-height: 50px;
+            padding: 0 16px;
+            border: 1px solid var(--field-border);
+            border-radius: 4px;
+            background: #fff;
+            color: var(--text);
+        }
+        .field-group {
+            margin: 0 0 14px;
+            padding: 0;
+            border: 0;
+            min-width: 0;
+        }
+        .field-group legend {
+            padding: 0;
+            margin-bottom: 4px;
+            color: #5f6972;
+            font-size: 0.875rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .field-hint { margin: 6px 0 0; color: var(--muted); font-size: 0.875rem; line-height: 1.45; }
+        .field-group > .field-hint { margin: 0 0 12px; }
+        .form-required { margin: 0 0 16px; color: var(--muted); font-size: 0.875rem; }
+        .req { color: #8a1f16; font-weight: 800; }
+        .field-error {
+            margin: 6px 0 0;
+            color: #8a1f16;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        .field-error::before { content: "\26A0\FE0E  Erreur : "; }
+        .field input[aria-invalid="true"],
+        .field textarea[aria-invalid="true"],
+        .field select[aria-invalid="true"] {
+            border: 2px solid #8a1f16;
+            background: #fff8f7;
+        }
+        .form-summary {
+            margin: 0 0 16px;
+            padding: 14px 16px;
+            border: 2px solid #8a1f16;
+            border-radius: 6px;
+            background: #fdecea;
+            color: #5c140e;
+            font-size: 1rem;
+        }
+        .form-summary strong { display: block; margin-bottom: 6px; }
+        .form-summary ul { margin: 0; padding-left: 1.25rem; }
+        .form-summary a { color: #5c140e; font-weight: 700; text-decoration: underline; }
+        .form-success {
+            padding: 30px;
+            background: #e8f6ee;
+            border-top: 4px solid #1d5a38;
+            color: #14402a;
+        }
+        .form-success[hidden] { display: none; }
+        .form-success h3 { margin: 0 0 10px; font-size: 1.5rem; line-height: 1.2; }
+        .form-success h3::before { content: "\2713  "; }
+        .form-success p { margin: 0 0 12px; font-size: 1.0625rem; }
+        .form-success a { text-decoration: underline; font-weight: 700; }
+        .hero-form-body[hidden] { display: none; }
+        .form-alert[tabindex="-1"]:focus { outline-offset: 2px; }
+        .form-alert.is-error::before { content: "Erreur : "; }
+        .form-alert.is-success::before { content: "Envoyé : "; }
+        .btn[aria-disabled="true"] { opacity: 0.75; cursor: progress; }
+        .form-consent {
+            margin: 6px 0 14px;
+            color: var(--muted);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        .form-consent a { color: var(--dark); text-decoration: underline; }
         .hero-note {
             margin-top: 18px;
             padding: 14px 16px;
             border-left: 3px solid var(--orange);
             background: #f9f5ed;
             color: #5f656d;
-            font-size: 13px;
+            font-size: 1rem;
         }
 
         .proof-strip {
@@ -424,7 +517,7 @@
         .photo-rights {
             margin-top: 16px;
             color: var(--muted);
-            font-size: 13px;
+            font-size: 0.875rem;
             line-height: 1.5;
         }
         .proof-card {
@@ -434,11 +527,11 @@
             display: block;
             margin-bottom: 8px;
             color: var(--dark);
-            font-size: 17px;
+            font-size: 1.0625rem;
         }
         .proof-card span {
             color: var(--muted);
-            font-size: 14px;
+            font-size: 1rem;
         }
 
         .showcase {
@@ -451,7 +544,7 @@
         .showcase-head p {
             margin: 0;
             color: var(--muted);
-            font-size: 16px;
+            font-size: 1rem;
         }
         .showcase-grid {
             display: grid;
@@ -479,13 +572,13 @@
         }
         .showcase-body h3 {
             margin: 0 0 8px;
-            font-size: 19px;
+            font-size: 1.1875rem;
             color: var(--dark);
         }
         .showcase-body p {
             margin: 0;
             color: var(--muted);
-            font-size: 14px;
+            font-size: 1rem;
         }
         .showcase-note {
             margin-top: 20px;
@@ -493,7 +586,7 @@
             border-left: 3px solid var(--orange);
             background: #f8f4ec;
             color: var(--dark-soft);
-            font-size: 14px;
+            font-size: 1rem;
         }
 
         .services-head {
@@ -503,7 +596,7 @@
         .services-head p {
             margin: 0;
             color: var(--muted);
-            font-size: 16px;
+            font-size: 1rem;
         }
         .service-grid {
             display: grid;
@@ -532,10 +625,10 @@
             border-radius: var(--radius);
             padding: 22px 22px 18px;
         }
-        .review-card p { margin: 0 0 14px; color: var(--text); font-size: 15px; }
-        .review-card footer { color: var(--muted); font-size: 13px; }
+        .review-card p { margin: 0 0 14px; color: var(--text); font-size: 1rem; }
+        .review-card footer { color: var(--muted); font-size: 0.875rem; }
         .review-card strong { color: var(--dark); }
-        .reviews-note { margin-top: 16px; font-size: 14px; color: var(--muted); }
+        .reviews-note { margin-top: 16px; font-size: 1rem; color: var(--muted); }
         .zone-links {
             display: flex;
             flex-wrap: wrap;
@@ -545,20 +638,21 @@
         .zone-links a {
             display: inline-flex;
             align-items: center;
-            min-height: 40px;
+            min-height: 2.75rem;
             padding: 0 14px;
             background: #f4ede0;
             color: var(--dark);
-            font-size: 13px;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 6px;
         }
         .footer-zones {
             width: 100%;
             margin-top: 10px;
-            font-size: 13px;
+            font-size: 0.875rem;
         }
         .footer-zones a { text-decoration: underline; }
+        .site-footer a[href^="tel"] { text-decoration: underline; }
         .service-card img {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -575,20 +669,20 @@
             padding: 6px 10px;
             background: #f0e4d0;
             color: var(--orange-dark);
-            font-size: 11px;
+            font-size: 0.875rem;
             font-weight: 800;
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
         .service-body h3 {
             margin: 8px 0 6px;
-            font-size: 17px;
+            font-size: 1.0625rem;
             color: var(--dark);
         }
         .service-body p {
             margin: 0;
             color: var(--muted);
-            font-size: 13px;
+            font-size: 1rem;
         }
         .service-body ul {
             list-style: none;
@@ -600,7 +694,7 @@
         .service-body li {
             position: relative;
             padding-left: 18px;
-            font-size: 13px;
+            font-size: 1rem;
         }
         .service-body li::before {
             content: "";
@@ -628,13 +722,13 @@
         }
         .insurance-card h3 {
             margin: 12px 0 12px;
-            font-size: 24px;
+            font-size: 1.5rem;
             color: var(--dark);
         }
         .insurance-card p {
             margin: 0;
             color: var(--muted);
-            font-size: 15px;
+            font-size: 1rem;
         }
         .insurance-inline {
             margin-top: 18px;
@@ -662,7 +756,7 @@
             display: block;
             margin-bottom: 6px;
             color: var(--dark);
-            font-size: 17px;
+            font-size: 1.0625rem;
         }
         .insurance-note {
             margin-top: 18px;
@@ -670,7 +764,7 @@
             background: var(--surface-soft);
             border-left: 3px solid var(--blue);
             color: var(--dark-soft);
-            font-size: 14px;
+            font-size: 1rem;
             font-weight: 600;
         }
 
@@ -702,7 +796,7 @@
         }
         .about-badge strong {
             display: block;
-            font-size: 30px;
+            font-size: 1.875rem;
         }
         .about-copy {
             background: #fff;
@@ -712,11 +806,11 @@
             border-radius: var(--radius);
         }
         .about-copy .section-title {
-            font-size: clamp(28px, 2.6vw, 38px);
+            font-size: clamp(1.75rem, 2.6vw, 2.375rem);
         }
         .about-copy p {
             color: var(--muted);
-            font-size: 15px;
+            font-size: 1rem;
         }
         .about-list {
             display: grid;
@@ -759,17 +853,18 @@
             gap: 18px;
             margin-bottom: 20px;
         }
+        .territory-map-head h2,
         .territory-map-head h3,
         .territory-copy-head h3 {
             margin: 10px 0 0;
             color: var(--dark);
-            font-size: 28px;
+            font-size: 1.75rem;
         }
         .territory-map-head p,
         .territory-copy-head p {
             margin: 10px 0 0;
             color: var(--muted);
-            font-size: 15px;
+            font-size: 1rem;
         }
         .territory-badge {
             flex: 0 0 auto;
@@ -778,7 +873,7 @@
             padding: 10px 14px;
             background: var(--blue-soft);
             color: var(--dark);
-            font-size: 13px;
+            font-size: 0.875rem;
             font-weight: 700;
         }
         .city-chips-grid {
@@ -792,14 +887,14 @@
             background: var(--surface-soft);
             border: 1px solid var(--line);
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 0.875rem;
             font-weight: 700;
             color: var(--dark-soft);
             text-align: center;
         }
         .territory-subtext {
             color: var(--muted);
-            font-size: 14px;
+            font-size: 1rem;
             line-height: 1.5;
             margin: 0;
         }
@@ -827,7 +922,7 @@
         .territory-note strong {
             display: block;
             margin-bottom: 6px;
-            font-size: 17px;
+            font-size: 1.0625rem;
         }
 
         .contact-shell {
@@ -841,8 +936,122 @@
         }
         .contact-card p {
             color: var(--muted);
-            font-size: 16px;
+            font-size: 1rem;
         }
+        .channel-list {
+            list-style: none;
+            margin: 24px 0 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .channel {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-height: 44px;
+            height: 100%;
+            padding: 16px 18px;
+            border: 1px solid rgba(31, 43, 53, 0.4);
+            border-left: 4px solid var(--orange);
+            border-radius: 6px;
+            background: var(--surface-soft);
+            color: var(--dark);
+            transition: background 0.2s ease;
+        }
+        .channel:hover { background: #fff; }
+        .channel-name { font-weight: 800; }
+        .channel-detail { color: var(--muted); }
+        .form-alt { margin-top: 10px; }
+        .form-alt a { text-decoration: underline; font-weight: 700; }
+        .coverage {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+        .coverage > div {
+            padding: 18px 20px;
+            background: var(--surface-soft);
+            border: 1px solid rgba(31, 43, 53, 0.25);
+            border-radius: 6px;
+        }
+        .coverage h4 { margin: 0 0 10px; color: var(--dark); font-size: 1.0625rem; }
+        .coverage ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+        .coverage li { position: relative; padding-left: 1.75rem; color: var(--text); }
+        .coverage li::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: 800;
+        }
+        .coverage-yes li::before { content: "\2713"; color: var(--success); }
+        .coverage-no li::before { content: "\2715"; color: #8a1f16; }
+        .insurance-card .insurance-lead { margin-top: 18px; }
+        .steps {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            counter-reset: none;
+        }
+        .step {
+            padding: 22px;
+            background: #fff;
+            border: 1px solid rgba(31, 43, 53, 0.08);
+            border-top: 4px solid var(--orange);
+            box-shadow: var(--shadow-soft);
+            border-radius: var(--radius);
+        }
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: var(--dark);
+            color: #fff;
+            font-size: 1.125rem;
+            font-weight: 800;
+        }
+        .step h3 { margin: 14px 0 8px; color: var(--dark); font-size: 1.1875rem; }
+        .step p { margin: 0; color: var(--muted); }
+        .person-card {
+            display: grid;
+            grid-template-columns: 5.5rem 1fr;
+            gap: 18px;
+            align-items: center;
+            margin-top: 22px;
+            padding: 18px;
+            background: var(--surface-alt);
+            border-radius: var(--radius);
+        }
+        .person-photo {
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .person-initial {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark);
+            color: #fff;
+            font-size: 2.25rem;
+            font-weight: 800;
+        }
+        .person-name { display: block; color: var(--dark); font-size: 1.25rem; font-weight: 800; }
+        .person-role { display: block; color: var(--muted); font-weight: 600; }
+        .person-card p { margin: 6px 0 0; }
+        .zone-title { margin: 22px 0 0; color: var(--dark); font-size: 1.1875rem; }
+        ul.zone-links { list-style: none; padding: 0; }
+        .zone-help { margin: 14px 0 0; color: var(--muted); }
+        .reviews-grid { list-style: none; padding: 0; margin: 0; }
         .contact-form {
             display: grid;
             gap: 14px;
@@ -862,7 +1071,7 @@
         }
         .contact-panel h3 {
             margin: 0 0 14px;
-            font-size: 28px;
+            font-size: 1.75rem;
         }
         .contact-panel p {
             margin: 0 0 22px;
@@ -877,12 +1086,12 @@
             display: block;
             margin-bottom: 6px;
             color: rgba(255, 255, 255, 0.62);
-            font-size: 12px;
+            font-size: 0.875rem;
             font-weight: 800;
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
-        .contact-line strong { font-size: 18px; }
+        .contact-line strong { font-size: 1.125rem; }
 
         .cta-banner {
             display: flex;
@@ -917,21 +1126,21 @@
         }
         .legal-card h3 {
             margin: 12px 0;
-            font-size: 25px;
+            font-size: 1.5625rem;
             color: var(--dark);
         }
         .legal-card p {
             margin: 0 0 12px;
             color: var(--muted);
-            font-size: 15px;
+            font-size: 1rem;
         }
         .legal-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             margin-top: 12px;
-            color: var(--blue);
-            font-size: 14px;
+            color: var(--blue-text);
+            font-size: 0.875rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.04em;
@@ -949,7 +1158,7 @@
             align-items: center;
             flex-wrap: wrap;
             color: #66717b;
-            font-size: 14px;
+            font-size: 0.875rem;
         }
         .footer-links {
             display: flex;
@@ -964,7 +1173,7 @@
             bottom: 28px;
             width: 58px;
             height: 58px;
-            border: 1px solid rgba(31, 43, 53, 0.1);
+            border: 1px solid rgba(31, 43, 53, 0.45);
             border-radius: 50%;
             background: linear-gradient(180deg, #ffffff 0%, #f4ede0 100%);
             color: var(--dark);
@@ -997,44 +1206,12 @@
             pointer-events: auto;
             transform: translateY(0);
         }
-        .form-toast {
-            position: fixed;
-            top: 112px;
-            left: 50%;
-            z-index: 80;
-            width: min(560px, calc(100% - 28px));
-            transform: translate(-50%, -12px);
-            padding: 16px 18px;
-            border-radius: 8px;
-            box-shadow: 0 18px 40px rgba(16, 26, 34, 0.18);
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 1.45;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-        .form-toast.is-visible {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translate(-50%, 0);
-        }
-        .form-toast.is-success {
-            background: #e8f6ee;
-            color: #1d5a38;
-            border: 1px solid #8fcead;
-        }
-        .form-toast.is-error {
-            background: #fdecea;
-            color: #8a1f16;
-            border: 1px solid #f0b4ad;
-        }
         .form-alert {
             display: none;
             margin: 0 0 16px;
             padding: 14px 16px;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 1rem;
             font-weight: 700;
             line-height: 1.45;
         }
@@ -1056,7 +1233,7 @@
 
         @media (max-width: 1280px) {
             .nav { gap: 14px; }
-            .nav-link { font-size: 13px; }
+            .nav-link { font-size: 1rem; }
             .hero-inner {
                 grid-template-columns: minmax(0, 1fr) minmax(320px, 390px);
                 gap: 30px;
@@ -1086,12 +1263,18 @@
             .service-grid,
             .showcase-grid,
             .reviews-grid,
+            .steps,
             .legal-preview-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
         @media (max-width: 1180px) {
+            .hero {
+                background:
+                    linear-gradient(rgba(20, 27, 35, 0.9), rgba(20, 27, 35, 0.9)),
+                    url("images/piece.jpg") center/cover no-repeat;
+            }
             .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
             .nav-wrap {
                 position: absolute;
@@ -1131,7 +1314,7 @@
             .header-cta .btn {
                 min-height: 44px;
                 padding: 0 12px;
-                font-size: 12px;
+                font-size: 0.9375rem;
             }
             .header-cta .cta-full { display: none; }
             .header-cta .cta-short { display: inline; }
@@ -1154,6 +1337,7 @@
             .reviews-grid,
             .legal-preview-grid,
             .contact-form-row,
+            .channel-list,
             .insurance-meta {
                 grid-template-columns: 1fr;
             }
@@ -1169,6 +1353,11 @@
         }
 
         @media (max-width: 680px) {
+            .insurance-inline { grid-template-columns: 1fr; }
+            .coverage,
+            .steps { grid-template-columns: 1fr; }
+            .territory-map-head,
+            .territory-copy-head { flex-wrap: wrap; }
             .service-card img,
             .showcase-card img {
                 aspect-ratio: 4 / 3;
@@ -1182,9 +1371,6 @@
             .header-inner {
                 min-height: 82px;
             }
-            .form-toast {
-                top: 96px;
-            }
             .nav-wrap {
                 top: 82px;
                 padding: 0 14px 14px;
@@ -1193,13 +1379,13 @@
                 grid-template-columns: 1fr;
             }
             .section-title {
-                font-size: clamp(26px, 8vw, 34px);
+                font-size: clamp(1.625rem, 8vw, 2.125rem);
             }
             .hero-copy p,
             .section-intro,
             .contact-card p,
             .sector-copy p {
-                font-size: 16px;
+                font-size: 1rem;
             }
             .hero-form-head,
             .hero-form-body,
@@ -1218,9 +1404,12 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="ux.css">
 </head>
-<body>
-    <div class="topbar">
+<body class="has-mobile-bar">
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+    <div class="topbar" role="region" aria-label="Coordonnées de l'entreprise">
         <div class="container topbar-inner">
             <div>Entreprise de bâtiment à <strong>Lys-lez-Lannoy</strong> depuis 1998</div>
             <div>
@@ -1237,7 +1426,7 @@
                 <img src="rtb-logo.png" alt="RTB Bâtiment" width="186" height="54">
             </a>
 
-            <div class="nav-wrap" data-nav-wrap>
+            <div class="nav-wrap" id="site-nav" data-nav-wrap>
                 <div class="nav-shell">
                     <nav class="nav" aria-label="Navigation principale">
                         <a class="nav-link" href="#top" data-scroll-target="#top">Accueil</a>
@@ -1249,29 +1438,31 @@
             </div>
 
             <div class="header-cta">
-                <a href="#top" class="btn btn-primary"><span class="cta-full">Demander un devis</span><span class="cta-short">Devis</span></a>
+                <a href="#devis" class="btn btn-primary"><span class="cta-full">Demander un devis</span><span class="cta-short">Devis</span></a>
             </div>
 
-            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-toggle>
+            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
                 &#9776;
             </button>
         </div>
     </header>
 
-    <main>
+    <main id="main" tabindex="-1">
 <section class="hero" id="top">
             <div class="container hero-inner">
                 <div class="hero-copy">
                     <span class="eyebrow">Entreprise de bâtiment à Lys-lez-Lannoy</span>
-                    <h1>Carrelage, ouvertures et maçonnerie à Lys-lez-Lannoy</h1>
+                    <h1>Carrelage, maçonnerie et ouverture de mur pour particuliers</h1>
                     <p>
-                        Petits chantiers de particuliers, un interlocuteur unique depuis 1998. Devis gratuit, rappel sous 48 h.
+                        RTB, entreprise du bâtiment installée à Lys-lez-Lannoy depuis 1998, réalise vos travaux chez vous dans toute la Métropole Européenne de Lille (MEL), avec un seul interlocuteur du premier appel à la fin du chantier.
                     </p>
+                    <p>Devis gratuit, rappel sous 48 h.</p>
 
                     <div class="hero-points">
                         <div>28 ans d'activité à Lys-lez-Lannoy</div>
                         <div>Carrelage, terrasse, ouverture de mur</div>
-                        <div>Avis Google 5/5 — garantie décennale MAAF</div>
+                        <div>Avis clients Google : 5/5</div>
+                        <div>Garantie décennale MAAF : vos travaux sont assurés pendant 10 ans</div>
                     </div>
 
                     <div class="hero-actions">
@@ -1279,48 +1470,90 @@
                     </div>
                 </div>
 
-                <form class="hero-form" action="contact-process.php" method="POST" aria-label="Formulaire de prise de contact rapide">
+                <form class="hero-form" id="devis" action="contact-process.php" method="POST" aria-labelledby="devis-titre" novalidate data-quote-form>
                     <!-- Champ Honeypot anti-spam -->
                     <div style="display:none;" aria-hidden="true">
                         <input type="text" name="website_url" tabindex="-1" autocomplete="off">
                     </div>
                     <input type="hidden" name="origine" value="hero">
-                    <div class="form-alert" data-form-alert></div>
+                    <div class="form-alert" data-form-alert tabindex="-1"></div>
 
                     <div class="hero-form-head">
-                        <h2>Demander un devis</h2>
+                        <h2 id="devis-titre" tabindex="-1" data-devis-title>Demander un devis</h2>
                         <p>Gratuit. Rappel sous 48 h.</p>
+                        <p class="form-alt">
+                            Vous préférez nous parler ?
+                            <a href="tel:0681327905">Appelez le 06 81 32 79 05</a>
+                            ou <a href="https://wa.me/33681327905?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20des%20travaux." rel="noopener">écrivez-nous sur WhatsApp</a>.
+                        </p>
                     </div>
-                    <div class="hero-form-body">
+
+                    <!-- Confirmation d'envoi : affichée par quote-form.js, le focus lui est donné. -->
+                    <div class="form-success" tabindex="-1" data-form-success hidden>
+                        <h3>Merci, votre demande est bien envoyée</h3>
+                        <p data-form-success-detail>Nous vous rappelons sous 48 h.</p>
+                        <p>Une question en attendant ? Appelez le <a href="tel:0681327905">06 81 32 79 05</a>.</p>
+                        <button class="btn btn-dark" type="button" data-form-again>Faire une autre demande</button>
+                    </div>
+
+                    <div class="hero-form-body" data-form-body>
+                        <!-- Résumé des erreurs : le focus lui est donné quand le formulaire est incorrect. -->
+                        <div class="form-summary" role="alert" tabindex="-1" data-form-summary hidden></div>
+                        <p class="form-required">Les champs marqués d'une étoile <span aria-hidden="true">*</span> sont obligatoires.</p>
+
                         <div class="field">
-                            <label for="hero-project">Type de travaux</label>
-                            <input id="hero-project" name="projet" type="text" placeholder="Carrelage, terrasse, ouverture..." required>
+                            <label for="hero-project">Type de travaux <span class="req" aria-hidden="true">*</span></label>
+                            <input id="hero-project" name="projet" type="text" placeholder="Carrelage, terrasse, ouverture de mur..." required autocomplete="off" aria-describedby="hero-project-error" data-devis-first>
+                            <p class="field-error" id="hero-project-error" data-error-for="hero-project" hidden></p>
                         </div>
+
                         <div class="field">
-                            <label for="hero-name">Nom &amp; Prénom</label>
-                            <input id="hero-name" name="nom" type="text" placeholder="Votre nom" required autocomplete="name">
+                            <label for="hero-name">Nom et prénom <span class="req" aria-hidden="true">*</span></label>
+                            <input id="hero-name" name="nom" type="text" placeholder="Votre nom et votre prénom" required autocomplete="name" autocapitalize="words" aria-describedby="hero-name-error">
+                            <p class="field-error" id="hero-name-error" data-error-for="hero-name" hidden></p>
                         </div>
+
+                        <fieldset class="field-group">
+                            <legend>Comment vous joindre ? <span class="req" aria-hidden="true">*</span></legend>
+                            <p class="field-hint" id="contact-hint">Indiquez au moins un téléphone ou une adresse e-mail. L'un des deux suffit.</p>
+                            <div class="field">
+                                <label for="hero-phone">Téléphone</label>
+                                <input id="hero-phone" name="telephone" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel" aria-describedby="contact-hint hero-phone-error">
+                                <p class="field-error" id="hero-phone-error" data-error-for="hero-phone" hidden></p>
+                            </div>
+                            <div class="field">
+                                <label for="hero-email">E-mail</label>
+                                <input id="hero-email" name="email" type="email" inputmode="email" placeholder="nom@exemple.fr" autocomplete="email" autocapitalize="none" spellcheck="false" aria-describedby="contact-hint hero-email-error">
+                                <p class="field-error" id="hero-email-error" data-error-for="hero-email" hidden></p>
+                            </div>
+                        </fieldset>
+
                         <div class="field">
-                            <label for="hero-phone">Téléphone</label>
-                            <input id="hero-phone" name="telephone" type="tel" placeholder="06 00 00 00 00" required autocomplete="tel">
+                            <label for="hero-slot">Être rappelé : créneau souhaité (facultatif)</label>
+                            <select id="hero-slot" name="creneau" autocomplete="off" aria-describedby="hero-slot-hint">
+                                <option value="">Peu importe</option>
+                                <option value="Le matin">Le matin</option>
+                                <option value="Le midi">Le midi</option>
+                                <option value="L'après-midi">L'après-midi</option>
+                                <option value="En fin de journée">En fin de journée</option>
+                            </select>
+                            <p class="field-hint" id="hero-slot-hint">Nous vous rappelons sous 48 h, si possible sur ce créneau.</p>
                         </div>
+
                         <div class="field">
-                            <label for="hero-email">E-mail</label>
-                            <input id="hero-email" name="email" type="email" placeholder="nom@exemple.fr" required autocomplete="email">
-                        </div>
-                        <div class="field">
-                            <label for="hero-message">Détails de votre besoin</label>
+                            <label for="hero-message">Détails de votre besoin (facultatif)</label>
                             <textarea id="hero-message" name="message" placeholder="Commune, surface, précisions utiles..."></textarea>
                         </div>
 
                         <!-- Mention légale de consentement RGPD -->
-                        <p style="font-size: 11px; line-height: 1.45; color: var(--muted); margin: 6px 0 14px;">
-                            Vos coordonnées servent uniquement à traiter votre demande. <a href="politique-confidentialite.html" style="color: var(--dark); text-decoration: underline;">Confidentialité</a>
+                        <p class="form-consent">
+                            Vos coordonnées servent uniquement à traiter votre demande. <a href="politique-confidentialite.html">Confidentialité</a>
                         </p>
 
-                        <button class="btn btn-primary" type="submit" style="width: 100%;">Être rappelé gratuitement</button>
+                        <button class="btn btn-primary" type="submit" style="width: 100%;" data-form-submit>Être rappelé gratuitement</button>
+                        <p class="sr-only" role="status" aria-live="polite" data-form-live></p>
                         <div class="hero-note">
-                            RTB intervient depuis Lys-lez-Lannoy, dans la MEL.
+                            RTB intervient depuis Lys-lez-Lannoy, dans toute la MEL.
                         </div>
                     </div>
                 </form>
@@ -1397,38 +1630,42 @@
 
                 <div class="service-grid">
                     <a class="service-card" id="carrelage" href="carrelage.html">
-                        <img src="images/terrasse.jpg" alt="Terrasse carrelée grand format réalisée par RTB" width="560" height="180" loading="lazy">
+                        <img src="images/terrasse.jpg" alt="" width="560" height="180" loading="lazy">
                         <div class="service-body">
                             <span class="service-tag">Le plus demandé</span>
                             <h3>Carrelage</h3>
                             <p>Pièces de vie, salles de bains et terrasses, avec préparation du support.</p>
+                            <p class="plain-note"><strong>En clair :</strong> le support est le sol ou le mur sur lequel le carrelage est collé. Il doit être plat et propre pour que la pose tienne dans le temps.</p>
                         </div>
                     </a>
 
                     <a class="service-card" id="ouverture" href="ouverture-mur.html">
-                        <img src="images/veranda-2.jpg" alt="Ouverture et aménagement d'une pièce de vie réalisés par RTB" width="560" height="180" loading="lazy">
+                        <img src="images/veranda-2.jpg" alt="" width="560" height="180" loading="lazy">
                         <div class="service-body">
                             <span class="service-tag">Chantier ciblé</span>
                             <h3>Ouverture de mur</h3>
                             <p>Agrandir une pièce ou créer une baie, avec pose de linteau.</p>
+                            <p class="plain-note"><strong>En clair :</strong> une baie est une grande ouverture dans un mur. Le linteau est la poutre qui soutient le mur au-dessus de cette ouverture.</p>
                         </div>
                     </a>
 
                     <a class="service-card" id="beton" href="dalles-terrasses.html">
-                        <img src="images/ragreage.jpg" alt="Préparation de sol et ragréage réalisés par RTB" width="560" height="180" loading="lazy">
+                        <img src="images/ragreage.jpg" alt="" width="560" height="180" loading="lazy">
                         <div class="service-body">
                             <span class="service-tag">Sols</span>
                             <h3>Dalles et terrasses</h3>
                             <p>Petites dalles, ragréage et terrasses carrelées.</p>
+                            <p class="plain-note"><strong>En clair :</strong> une dalle est une plaque de béton coulée au sol. La chape est la couche de mortier qui met le sol à niveau. Le ragréage est une fine couche lissante qui rattrape les petits défauts avant la pose.</p>
                         </div>
                     </a>
 
                     <a class="service-card" id="maconnerie" href="maconnerie.html">
-                        <img src="images/enduit.jpg" alt="Reprise de maçonnerie et enduit réalisés par RTB" width="560" height="180" loading="lazy">
+                        <img src="images/enduit.jpg" alt="" width="560" height="180" loading="lazy">
                         <div class="service-body">
                             <span class="service-tag">Reprises</span>
                             <h3>Maçonnerie</h3>
                             <p>Murets, enduits et petites reprises de structure.</p>
+                            <p class="plain-note"><strong>En clair :</strong> l'enduit est la couche de mortier qui recouvre un mur pour le protéger et le lisser. Une reprise de structure consiste à réparer ou consolider un mur existant.</p>
                         </div>
                     </a>
                 </div>
@@ -1436,7 +1673,7 @@
                 <div class="reassurance-band">
                     <article class="insurance-card">
                         <span class="eyebrow">Assurance</span>
-                        <h3>Garantie décennale MAAF Pro</h3>
+                        <h3>Garantie décennale MAAF Pro : ce qu'elle couvre</h3>
                         <div class="insurance-inline">
                             <img src="images/maaf.jpg" alt="Logo MAAF Assurances Professionnelles" width="128" height="90" loading="lazy">
                             <div>
@@ -1446,9 +1683,63 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="insurance-note">L'attestation est jointe au devis.</div>
+                        <p class="insurance-lead">
+                            La garantie décennale est une assurance obligatoire pour les entreprises du bâtiment. Pendant 10 ans après la réception des travaux (le jour où vous acceptez le chantier terminé), elle protège le propriétaire contre les malfaçons les plus graves.
+                        </p>
+                        <div class="coverage">
+                            <div class="coverage-yes">
+                                <h4>Elle couvre</h4>
+                                <ul>
+                                    <li>Les dommages qui touchent la solidité de l'ouvrage : mur, dalle, structure.</li>
+                                    <li>Les dommages qui rendent le logement, ou une partie du logement, impropre à son usage : par exemple une fissure importante dans un mur porteur ou une dalle qui s'affaisse.</li>
+                                </ul>
+                            </div>
+                            <div class="coverage-no">
+                                <h4>Elle ne couvre pas</h4>
+                                <ul>
+                                    <li>L'usure normale et le manque d'entretien.</li>
+                                    <li>Les petits défauts d'aspect sans gravité : ils relèvent d'autres garanties, plus courtes.</li>
+                                    <li>Les dommages causés par un usage anormal du bien.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- TODO (client) : vérifier avec l'attestation MAAF en cours les activités réellement couvertes, puis valider ce texte. Ne mentionner aucun montant. -->
+                        <div class="insurance-note">L'attestation d'assurance est jointe au devis : c'est elle qui précise les activités couvertes.</div>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <section class="section" id="etapes" aria-labelledby="etapes-titre">
+            <div class="container">
+                <div class="services-head">
+                    <div>
+                        <span class="eyebrow">Comment ça se passe</span>
+                        <h2 class="section-title" id="etapes-titre">De votre demande au chantier, en 4 étapes</h2>
+                    </div>
+                </div>
+                <ol class="steps" role="list">
+                    <li class="step">
+                        <span class="step-num" aria-hidden="true">1</span>
+                        <h3><span class="sr-only">Étape 1 : </span>Vous nous contactez</h3>
+                        <p>Par le formulaire, par téléphone ou sur WhatsApp. Vous pouvez aussi choisir un créneau pour être rappelé.</p>
+                    </li>
+                    <li class="step">
+                        <span class="step-num" aria-hidden="true">2</span>
+                        <h3><span class="sr-only">Étape 2 : </span>Nous venons voir le chantier</h3>
+                        <p>Nous vous rappelons sous 48 h, puis nous venons chez vous pour bien comprendre votre projet.</p>
+                    </li>
+                    <li class="step">
+                        <span class="step-num" aria-hidden="true">3</span>
+                        <h3><span class="sr-only">Étape 3 : </span>Vous recevez un devis détaillé</h3>
+                        <p>Il décrit précisément les travaux prévus. L'attestation d'assurance y est jointe. Vous décidez sans engagement.</p>
+                    </li>
+                    <li class="step">
+                        <span class="step-num" aria-hidden="true">4</span>
+                        <h3><span class="sr-only">Étape 4 : </span>Le chantier</h3>
+                        <p>Vous gardez le même interlocuteur jusqu'à la fin des travaux et à la réception du chantier.</p>
+                    </li>
+                </ol>
             </div>
         </section>
 
@@ -1468,6 +1759,20 @@
                         Créée en 1998 à Lys-lez-Lannoy, RTB reste une structure à taille humaine. Vous parlez directement à celui qui suit le chantier, du premier rendez-vous à la réception.
                     </p>
 
+                    <!-- TODO (client) : PRÉSENTATION DU DIRIGEANT.
+                         - Fournir une vraie photo (carrée, 400 x 400 px minimum, visage bien visible) et la déposer dans /images (ex. images/yann.jpg).
+                         - Remplacer <div class="person-photo person-initial" aria-hidden="true">Y</div> par :
+                           <img class="person-photo" src="images/yann.jpg" alt="Yann, dirigeant de RTB" width="88" height="88" loading="lazy">
+                         - Confirmer le prénom, le rôle exact et la phrase de présentation ci-dessous. -->
+                    <div class="person-card">
+                        <div class="person-photo person-initial" aria-hidden="true">Y</div>
+                        <div>
+                            <span class="person-name">Yann</span>
+                            <span class="person-role">Dirigeant de RTB, votre interlocuteur unique</span>
+                            <p>C'est lui que vous avez au téléphone, qui vient sur place et qui suit votre chantier jusqu'à la fin.</p>
+                        </div>
+                    </div>
+
                     <div class="about-list">
                         <div>Devis détaillé, sans frais cachés</div>
                         <div>Chantier suivi et tenu propre</div>
@@ -1484,22 +1789,23 @@
                         <h2 class="section-title">Ce que disent les clients</h2>
                     </div>
                 </div>
+                <!-- TODO (client) : ajouter ici d'autres avis réels (copier un bloc <article class="review-card">), avec l'accord de leurs auteurs. N'inventer ni avis ni note. -->
                 <div class="reviews-grid">
                     <article class="review-card">
                         <p>« Yann est très compétant, à l'écoute et disponible, travail propre et soigné, je recommande à 100%. »</p>
-                        <footer><strong>Sébinouche 1982</strong> — 5/5 · Google</footer>
+                        <footer><strong>Sébinouche 1982</strong> — 5/5 · il y a 3 jours · Google</footer>
                     </article>
                     <article class="review-card">
                         <p>« Société sérieuse et personne agréable. Merci Mr Eeckeman pour votre sérieux et le suivi du chantier. »</p>
-                        <footer><strong>Claudia Deltombe</strong> — 5/5 · Google</footer>
+                        <footer><strong>Claudia Deltombe</strong> — 5/5 · il y a une semaine · Google</footer>
                     </article>
                     <article class="review-card">
                         <p>« Merci à Yann pour son travail soigné, sa gentillesse et son professionnalisme. Nous recommandons avec plaisir cet artisant honnête et sérieux. »</p>
-                        <footer><strong>Dolores Perche</strong> — 5/5 · Google</footer>
+                        <footer><strong>Dolores Perche</strong> — 5/5 · il y a une semaine · Google</footer>
                     </article>
                     <article class="review-card">
                         <p>« Terrasse extérieure faite dans les temps, respect du budget et super équipe. A recommander. »</p>
-                        <footer><strong>Roussos Jean-Christophe</strong> — 5/5 · Google</footer>
+                        <footer><strong>Roussos Jean-Christophe</strong> — 5/5 · il y a 6 ans · Google</footer>
                     </article>
                 </div>
                 <p class="reviews-note">
@@ -1515,19 +1821,22 @@
                     <div class="territory-map-head">
                         <div>
                             <span class="eyebrow">Zone d'intervention</span>
-                            <h3>Depuis Lys-lez-Lannoy, dans la MEL</h3>
-                            <p>Nous restons dans un rayon proche pour garder des délais tenables et un suivi simple.</p>
+                            <h2 class="zone-heading">Depuis Lys-lez-Lannoy, dans toute la Métropole Européenne de Lille</h2>
+                            <p>RTB intervient dans l'ensemble de la Métropole Européenne de Lille (MEL), qui regroupe Lille et les communes voisines. Le siège est à Lys-lez-Lannoy ; les communes ci-dessous sont des exemples, chacune avec sa page.</p>
                         </div>
-                        <div class="territory-badge">MEL &amp; Environs</div>
+                        <div class="territory-badge">Métropole Européenne de Lille (MEL)</div>
                     </div>
-                    <div class="zone-links">
-                        <a href="lys-lez-lannoy.html">Lys-lez-Lannoy</a>
-                        <a href="lannoy.html">Lannoy</a>
-                        <a href="hem.html">Hem</a>
-                        <a href="roubaix.html">Roubaix</a>
-                        <a href="toufflers.html">Toufflers</a>
-                        <a href="sailly-lez-lannoy.html">Sailly-lez-Lannoy</a>
-                    </div>
+                    <h3 class="zone-title" id="communes-titre">Quelques communes, avec leur page</h3>
+                    <!-- Zone confirmée par le client : toute la MEL. Cette liste ne sert que d'exemples et de pages locales ; ajouter une ligne <li> chaque fois qu'une nouvelle page de commune est créée. -->
+                    <ul class="zone-links" aria-labelledby="communes-titre">
+                        <li><a href="lys-lez-lannoy.html">Lys-lez-Lannoy</a></li>
+                        <li><a href="lannoy.html">Lannoy</a></li>
+                        <li><a href="hem.html">Hem</a></li>
+                        <li><a href="roubaix.html">Roubaix</a></li>
+                        <li><a href="toufflers.html">Toufflers</a></li>
+                        <li><a href="sailly-lez-lannoy.html">Sailly-lez-Lannoy</a></li>
+                    </ul>
+                    <p class="zone-help">Votre commune n'est pas dans la liste ? Si elle fait partie de la MEL, nous intervenons aussi chez vous : <a href="#devis">demandez un devis</a> ou appelez le <a href="tel:0681327905">06 81 32 79 05</a>.</p>
                 </article>
             </div>
         </section>
@@ -1538,9 +1847,35 @@
                     <span class="eyebrow">Contact</span>
                     <h2 class="section-title">Un devis clair, sans engagement</h2>
                     <p>
-                        Remplissez le formulaire en haut de page. Nous venons ensuite sur place pour chiffrer les travaux.
+                        Choisissez le moyen de contact qui vous convient. Nous venons ensuite sur place pour préparer votre devis.
                     </p>
-                    <a class="btn btn-primary" href="#top">Remplir le formulaire</a>
+                    <ul class="channel-list">
+                        <li>
+                            <a class="channel" href="tel:0681327905">
+                                <span class="channel-name">Nous appeler</span>
+                                <span class="channel-detail">06 81 32 79 05</span>
+                            </a>
+                        </li>
+                        <!-- Note : le 06 81 32 79 05 est un numéro mobile normal, probablement aussi joignable sur WhatsApp (à confirmer par le client). Si ce n'est pas le cas, retirer cet élément et le lien WhatsApp du formulaire (#devis). -->
+                        <li>
+                            <a class="channel" href="https://wa.me/33681327905?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20des%20travaux." rel="noopener">
+                                <span class="channel-name">Nous écrire sur WhatsApp</span>
+                                <span class="channel-detail">Un simple message pour démarrer</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="channel" href="#devis">
+                                <span class="channel-name">Être rappelé</span>
+                                <span class="channel-detail">Laissez votre numéro et choisissez un créneau</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="channel" href="mailto:contact@rtb.fr">
+                                <span class="channel-name">Nous envoyer un e-mail</span>
+                                <span class="channel-detail">contact@rtb.fr</span>
+                            </a>
+                        </li>
+                    </ul>
                 </article>
 
                 <aside class="contact-panel">
@@ -1567,46 +1902,36 @@
 
     <footer class="site-footer">
         <div class="container footer-inner">
-            <div>RTB - 59390 Lys-lez-Lannoy - 06 81 32 79 05</div>
+            <div>RTB - 59390 Lys-lez-Lannoy - <a href="tel:0681327905">06 81 32 79 05</a></div>
             <div class="footer-links">
                 <a href="chantiers-recents.html">Chantiers récents</a>
                 <a href="mentions-legales.html">Mentions légales</a>
                 <a href="politique-confidentialite.html">Politique de confidentialité</a>
             </div>
             <div class="footer-zones">
-                Interventions :
+                Interventions dans toute la Métropole Européenne de Lille (MEL), par exemple :
                 <a href="lys-lez-lannoy.html">Lys-lez-Lannoy</a>,
                 <a href="lannoy.html">Lannoy</a>,
                 <a href="hem.html">Hem</a>,
                 <a href="roubaix.html">Roubaix</a>,
                 <a href="toufflers.html">Toufflers</a>,
-                <a href="sailly-lez-lannoy.html">Sailly-lez-Lannoy</a>
-                et la MEL.
+                <a href="sailly-lez-lannoy.html">Sailly-lez-Lannoy</a>.
             </div>
         </div>
     </footer>
 
+    <nav class="mobile-bar" aria-label="Actions rapides">
+        <a class="mobile-bar-btn mobile-bar-call" href="tel:0681327905">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+            <span>Appeler<span class="sr-only"> le 06 81 32 79 05</span></span>
+        </a>
+        <a class="mobile-bar-btn mobile-bar-devis" href="#devis">Devis</a>
+    </nav>
+
     <button class="scroll-top" type="button" aria-label="Revenir en haut de la page" data-scroll-top></button>
-    <div class="form-toast" role="status" aria-live="polite" data-form-toast></div>
 
     <script>
-        const toggle = document.querySelector("[data-menu-toggle]");
-        const navWrap = document.querySelector("[data-nav-wrap]");
         const scrollTopButton = document.querySelector("[data-scroll-top]");
-
-        if (toggle && navWrap) {
-            toggle.addEventListener("click", () => {
-                const isOpen = navWrap.classList.toggle("open");
-                toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-            });
-
-            navWrap.querySelectorAll("a").forEach((link) => {
-                link.addEventListener("click", () => {
-                    navWrap.classList.remove("open");
-                    toggle.setAttribute("aria-expanded", "false");
-                });
-            });
-        }
 
         const trackedLinks = Array.from(document.querySelectorAll(".nav-link[data-scroll-target]"));
 
@@ -1623,7 +1948,7 @@
                     const isCurrent = link.getAttribute("data-scroll-target") === `#${activeId}`;
                     link.classList.toggle("is-current", isCurrent);
                     if (isCurrent) {
-                        link.setAttribute("aria-current", "page");
+                        link.setAttribute("aria-current", "location");
                     } else {
                         link.removeAttribute("aria-current");
                     }
@@ -1673,19 +1998,18 @@
             updateScrollButton();
             window.addEventListener("scroll", updateScrollButton, { passive: true });
             scrollTopButton.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
             });
         }
 
         const formStatus = new URLSearchParams(window.location.search).get("status");
-        const formToast = document.querySelector("[data-form-toast]");
         const formMessages = {
-            success: "Votre demande a bien été envoyée. Nous vous rappelons sous 48 h.",
-            error: "Merci de vérifier votre nom, votre téléphone et votre e-mail, puis de renvoyer le formulaire.",
+            success: "Merci, votre demande est bien envoyée. Nous vous rappelons sous 48 h.",
+            error: "Le formulaire est incomplet : indiquez votre nom, et au moins un téléphone ou une adresse e-mail valide, puis renvoyez-le.",
             server_error: "L'envoi n'a pas abouti. Appelez-nous au 06 81 32 79 05 ou réessayez dans quelques instants."
         };
 
-        if (formStatus && formMessages[formStatus] && formToast) {
+        if (formStatus && formMessages[formStatus]) {
             const isError = formStatus !== "success";
             const message = formMessages[formStatus];
             const targetId = window.location.hash.replace("#", "") || "top";
@@ -1694,23 +2018,18 @@
                 ? target.querySelector("[data-form-alert]")
                 : document.querySelector("[data-form-alert]");
 
-            formToast.textContent = message;
-            formToast.classList.add("is-visible", isError ? "is-error" : "is-success");
-
             if (alertBox) {
                 alertBox.textContent = message;
                 alertBox.classList.add("is-visible", isError ? "is-error" : "is-success");
+                alertBox.setAttribute("role", isError ? "alert" : "status");
             }
 
             if (target) {
                 window.setTimeout(() => {
-                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                    target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+                    if (alertBox) alertBox.focus({ preventScroll: true });
                 }, 80);
             }
-
-            window.setTimeout(() => {
-                formToast.classList.remove("is-visible");
-            }, 9000);
 
             if (window.history && window.history.replaceState) {
                 const cleanUrl = window.location.pathname + (window.location.hash || "");

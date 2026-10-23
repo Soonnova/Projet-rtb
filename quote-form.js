@@ -139,10 +139,8 @@
     function showSuccess() {
         var tel = fields.telephone.value.trim();
         var mail = fields.email.value.trim();
-        var slot = form.elements.creneau ? form.elements.creneau.value : "";
         var text = "Nous vous rappelons sous 48 h";
         if (tel) text += " au " + tel;
-        if (slot && tel) text += ", " + slot.charAt(0).toLowerCase() + slot.slice(1) + " si possible";
         text += ".";
         if (!tel && mail) text = "Nous vous répondons sous 48 h par e-mail, à l'adresse " + mail + ".";
         successDetail.textContent = text;

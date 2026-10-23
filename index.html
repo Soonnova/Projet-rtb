@@ -1035,6 +1035,7 @@
             height: 5.5rem;
             border-radius: 50%;
             object-fit: cover;
+            object-position: 50% 18%;
         }
         .person-initial {
             display: flex;
@@ -1529,18 +1530,6 @@
                         </fieldset>
 
                         <div class="field">
-                            <label for="hero-slot">Être rappelé : créneau souhaité (facultatif)</label>
-                            <select id="hero-slot" name="creneau" autocomplete="off" aria-describedby="hero-slot-hint">
-                                <option value="">Peu importe</option>
-                                <option value="Le matin">Le matin</option>
-                                <option value="Le midi">Le midi</option>
-                                <option value="L'après-midi">L'après-midi</option>
-                                <option value="En fin de journée">En fin de journée</option>
-                            </select>
-                            <p class="field-hint" id="hero-slot-hint">Nous vous rappelons sous 48 h, si possible sur ce créneau.</p>
-                        </div>
-
-                        <div class="field">
                             <label for="hero-message">Détails de votre besoin (facultatif)</label>
                             <textarea id="hero-message" name="message" placeholder="Commune, surface, précisions utiles..."></textarea>
                         </div>
@@ -1722,7 +1711,7 @@
                     <li class="step">
                         <span class="step-num" aria-hidden="true">1</span>
                         <h3><span class="sr-only">Étape 1 : </span>Vous nous contactez</h3>
-                        <p>Par le formulaire, par téléphone ou sur WhatsApp. Vous pouvez aussi choisir un créneau pour être rappelé.</p>
+                        <p>Par le formulaire, par téléphone ou sur WhatsApp.</p>
                     </li>
                     <li class="step">
                         <span class="step-num" aria-hidden="true">2</span>
@@ -1759,13 +1748,8 @@
                         Créée en 1998 à Lys-lez-Lannoy, RTB reste une structure à taille humaine. Vous parlez directement à celui qui suit le chantier, du premier rendez-vous à la réception.
                     </p>
 
-                    <!-- TODO (client) : PRÉSENTATION DU DIRIGEANT.
-                         - Fournir une vraie photo (carrée, 400 x 400 px minimum, visage bien visible) et la déposer dans /images (ex. images/yann.jpg).
-                         - Remplacer <div class="person-photo person-initial" aria-hidden="true">Y</div> par :
-                           <img class="person-photo" src="images/yann.jpg" alt="Yann, dirigeant de RTB" width="88" height="88" loading="lazy">
-                         - Confirmer le prénom, le rôle exact et la phrase de présentation ci-dessous. -->
                     <div class="person-card">
-                        <div class="person-photo person-initial" aria-hidden="true">Y</div>
+                        <img class="person-photo" src="images/yann.jpg" alt="Yann, dirigeant de RTB" width="88" height="88" loading="lazy">
                         <div>
                             <span class="person-name">Yann</span>
                             <span class="person-role">Dirigeant de RTB, votre interlocuteur unique</span>
@@ -1866,7 +1850,7 @@
                         <li>
                             <a class="channel" href="#devis">
                                 <span class="channel-name">Être rappelé</span>
-                                <span class="channel-detail">Laissez votre numéro et choisissez un créneau</span>
+                                <span class="channel-detail">Laissez votre numéro, nous vous rappelons sous 48 h</span>
                             </a>
                         </li>
                         <li>

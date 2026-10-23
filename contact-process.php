@@ -44,13 +44,6 @@ $email = isset($_POST['email']) ? filter_var(trim((string) $_POST['email']), FIL
 $ville = isset($_POST['ville']) ? trim(strip_tags((string) $_POST['ville'])) : '';
 $projet = isset($_POST['projet']) ? trim(strip_tags((string) $_POST['projet'])) : '';
 $message = isset($_POST['message']) ? trim(strip_tags((string) $_POST['message'])) : '';
-$creneau = isset($_POST['creneau']) ? trim(strip_tags((string) $_POST['creneau'])) : '';
-
-// Creneaux de rappel proposes par le formulaire : toute autre valeur est ignoree.
-$creneauxAutorises = ['Le matin', 'Le midi', "L'apr\u{E8}s-midi", "En fin de journ\u{E9}e"];
-if (!in_array($creneau, $creneauxAutorises, true)) {
-    $creneau = '';
-}
 
 // Il faut un nom et au moins un moyen de contact valide : telephone OU e-mail.
 $telephoneValide = $telephone !== '' && preg_match('/^\+?[0-9 .\-()]+$/', $telephone) === 1
@@ -80,7 +73,6 @@ $mail = rtb_build_lead_mail([
     'ville' => $ville,
     'projet' => $projet,
     'details' => $message,
-    'creneau' => $creneau,
     'dateEnvoi' => $dateEnvoi,
     'sourceFormulaire' => $sourceFormulaire,
 ]);
